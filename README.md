@@ -9,7 +9,7 @@
 
 ---
 
-## 🚨 The Problem
+##  The Problem
 
 South Africa loses an estimated **40–56% of treated water** before it reaches a tap (DWS estimates). In Tshwane, roughly **1 in 3 households** report long water interruptions. Families in Ga-Rankuwa, Soshanguve, Mabopane, and Winterveldt face outages 3–4 times a week — sometimes for 12 hours, sometimes for nearly 30 days during Rand Water maintenance.
 
