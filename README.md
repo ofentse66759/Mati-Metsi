@@ -77,5 +77,4 @@ To run Mati-Metsi locally and test the Service Worker functionality:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/mati-metsi.git
-   cd mati-metsi
+    https://ofentse66759.github.io/Mati-Metsi/
