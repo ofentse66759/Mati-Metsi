@@ -1,22 +1,8 @@
-name: Validate
-
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-jobs:
-  html:
-    name: HTML validation
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: HTML5 Validator
+      - name: HTML5Validator
         uses: Cyb3r-Jak3/html5validator-action@v7.2.0
         with:
           root: .
-          # Pass the ignore patterns directly to html5validator via the 'extra' input
-          extra: '--ignore "A document must not include more than one visible \"main\" element" --ignore "Element \"style\" not allowed as child of element \"body\"" --ignore "Element \"h1\" not allowed as child of element \"span\"" --ignore "Element \"h1\" not allowed as child of element \"button\"" --ignore "The \"aria-labelledby\" attribute must point to an element"'
-          blacklist: sw.js
+          # Add specific error messages to ignore if absolutely necessary
+          ignore: |
+            Element "option" without attribute "label" must not be empty.
+            The "aria-label" attribute is unnecessary for this element.
