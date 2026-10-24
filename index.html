@@ -5498,14 +5498,6 @@ try {
   /* ---- 6. Push + WhatsApp/SMS fallback (stubs; needs mm-sw.js beside this file) ---- */
    var SW="self.addEventListener('push',function(e){var d=e.data?e.data.json():{title:'Mati-Metsi',body:'New alert in your area'};e.waitUntil(self.registration.showNotification(d.title,{body:d.body,icon:d.icon}));});self.addEventListener('notificationclick',function(e){e.notification.close();e.waitUntil(clients.openWindow('./#alerts'));});";
   
-  // Safely register the fallback worker only if online
-  if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
-    if (navigator.onLine) {
-      fetch('mm-sw.js', { method: 'HEAD' })
-        .then(function(r) { return r.ok ? navigator.serviceWorker.register('mm-sw.js') : null; })
-        .catch(function() { /* Ignore network errors */ });
-    }
-  }
 
   function notifyNew(n){
     if(!('Notification' in window)||Notification.permission!=='granted')return;
