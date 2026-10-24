@@ -1895,7 +1895,7 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
       'common.update': 'Opdateer', 'common.search': 'Soek', 'common.area': 'Area', 'common.severity': 'Erns', 'common.status': 'Status', 'common.time': 'Tyd', 'common.sort': 'Sorteer',
       'common.clear': 'Vee filters uit', 'common.signinContinue': 'Teken in om voort te gaan', 'common.back': 'Terug na tuis', 'common.save': 'Stoor',
       'map.title': 'Verslagdigtheid per area', 'map.list': 'Alle areas',
-      'sev.low': 'Laag', 'sev.medium': 'Medium', 'sev.high': 'Hoog', 'sev.critical': 'Krities',
+      'sev.low': 'Laag', 'sev.medium': 'Medium', 'sev.high': 'Hoog', 'sev.critical': 'Kritiek',
       'status.reported': 'Gerapporteer', 'status.confirmed': 'Bevestig', 'status.inprogress': 'Aan die gang', 'status.resolved': 'Opgelos',
       'risk.low': 'Laag', 'risk.moderate': 'Matig', 'risk.high': 'Hoog', 'risk.severe': 'Ernstig',
       'risk.flood': 'Oorstroming / ontwrigting', 'risk.water': 'Watertekort', 'risk.heat': 'Hitte- en energiedruk', 'risk.transport': 'Vervoerontwrigting', 'risk.food': 'Toegang tot kos',
@@ -3345,9 +3345,26 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     };
   }
 
-  var wxBusy = false;
+     var wxBusy = false;
   async function refreshWeather() {
     if (wxBusy) return;
+
+    // 1. Check connectivity first
+    if (!navigator.onLine) {
+      console.log('[Mati-Metsi] Device is offline. Suppressing weather fetch and using cache.');
+      var cached = lsGet(K.wx, null);
+      wxState = cached ? { status: 'cached', data: cached } : { status: 'error', data: null };
+      renderWeather();
+      computeScore();
+      renderRisks();
+      renderInsights();
+      runWeatherAlerts();
+      renderDashboard();
+      if (currentView === 'plan') renderPlan();
+      return;
+    }
+
+    // 2. Try to fetch if online
     wxBusy = true;
     try {
       var data = await fetchForecast();
@@ -3358,8 +3375,10 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
       var cached = lsGet(K.wx, null);
       wxState = cached ? { status: 'cached', data: cached } : { status: 'error', data: null };
     } finally {
-      wxBusy = false;
+      wxBusy = false; // <--- This is the part that was missing or broken!
     }
+    
+    // 3. Render the results
     renderWeather();
     computeScore();
     renderRisks();
@@ -3368,7 +3387,6 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     renderDashboard();
     if (currentView === 'plan') renderPlan();
   }
-  var loadWeather = refreshWeather;
 
   function wxDesc(code) {
     if (code === 0) return 'Clear sky'; if (code === 1) return 'Mainly clear';
@@ -4685,29 +4703,12 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
       });
     } else {
       var svc = ob.services.length ? ob.services : ['all'];
-      var nextStep;
-      if (isLoggedIn()) {
-        nextStep = '<p class="text-sm">You\'re signed in as <strong>' + esc(getUser().name) +
-          '</strong>. Your dashboard is ready.</p>';
-      } else {
-        nextStep =
-          '<p class="text-sm">Want to report issues and help neighbours? Create a free account — or browse first and sign up later.</p>' +
-          '<div class="flex gap-2 flex-wrap mt-3">' +
-            '<button type="button" class="btn btn-sm" data-ob-go="register">Create an account</button>' +
-            '<button type="button" class="btn btn-outline btn-sm" data-ob-go="login">Sign in</button>' +
-            '<button type="button" class="btn btn-ghost btn-sm" data-ob-go="">Browse first</button>' +
-          '</div>';
-      }
-      c.innerHTML =
-        '<h3 id="onboardTitle" style="margin-top:0">You\'re all set 🎉</h3>' +
-        '<ul class="action-list mb-4">' +
-          '<li><strong>Area:</strong> ' + esc(ob.area || 'All areas') + '</li>' +
-          '<li><strong>Services:</strong> ' + svc.map(function (s) { return t('cat.' + s); }).join(', ') + '</li>' +
-          '<li><strong>Alert level:</strong> ' + t('level.' + ob.level) + ' and above</li>' +
-        '</ul>' +
-        nextStep +
-        '<p class="text-xs text-muted mt-4">🚨 Mati-Metsi is not an emergency service. ' +
-          'In an emergency call 10111, 10177 or 112.</p>';
+      c.innerHTML = '<h3 id="onboardTitle" style="margin-top:0">You\'re all set 🎉</h3><ul class="action-list mb-4">' +
+        '<li><strong>Area:</strong> ' + esc(ob.area || 'All areas') + '</li>' +
+        '<li><strong>Services:</strong> ' + svc.map(function (s) { return t('cat.' + s); }).join(', ') + '</li>' +
+        '<li><strong>Alert level:</strong> ' + t('level.' + ob.level) + ' and above</li></ul>' +
+        '<p class="text-sm text-muted">Your dashboard shows <strong>What may happen next</strong> for your area, alerts, open reports and your readiness. You can change this any time under Alerts.</p>' +
+        '<p class="text-xs text-muted mt-4">🚨 Mati-Metsi is not an emergency service. In an emergency call 10111, 10177 or 112.</p>';
     }
     var first = c.querySelector('input');
     if (first) setTimeout(function () { first.focus(); }, 30);
@@ -4719,44 +4720,18 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     finishOnboarding();
   });
   $('onboardBack').addEventListener('click', function () { obCollect(); if (ob.step > 0) { ob.step--; renderOnboarding(); } });
-  $('onboardSkip').addEventListener('click', function () {
-    setPrefs({ onboarded: true });
-    $('onboardDialog').close();
-    applyOnboardDestination();          // NEW — was previously a no-op, now routes to intended view
-  });
-  $('onboardDialog').addEventListener('cancel', function () {
-    setPrefs({ onboarded: true });
-    applyOnboardDestination();          // NEW — Escape key path now also routes correctly
-  });
-
-  // NEW — single place that decides where onboarding hands off to
-  function applyOnboardDestination() {
-    var dest = window.__onboardDest;
-    window.__onboardDest = null;
-    if (dest === '') { goHome(); return; }                            // "browse first"
-    if (dest) {
-      if (['login', 'register', 'profile', 'privacy', 'alerts', 'help', 'plan', 'about', 'partner', 'impact', 'myreports'].indexOf(dest) !== -1) {
-        showView(dest);
-        return;
-      }
-      if (document.getElementById(dest)) { goHome('#' + dest); return; }
-    }
-    goHome('#dashboard');                                             // default fallback
-  }
-
+  $('onboardSkip').addEventListener('click', function () { setPrefs({ onboarded: true }); $('onboardDialog').close(); });
+  $('onboardDialog').addEventListener('cancel', function () { setPrefs({ onboarded: true }); });
   function finishOnboarding() {
     var hadLocation = !!lsRaw(K.location);
     setPrefs({ homeArea: ob.area, services: ob.services.length ? ob.services : ['all'], level: ob.level, onboarded: true, subscribed: true });
-    if (ob.area && !hadLocation) {
-      try { localStorage.setItem(K.location, ob.area); } catch (e) {}
-      $('locationInput').value = ob.area;
-    }
+    if (ob.area && !hadLocation) { try { localStorage.setItem(K.location, ob.area); } catch (e) {} $('locationInput').value = ob.area; }
     $('onboardDialog').close();
     riskArea = null;
     refreshReportAuthUI();
     renderAll();
     refreshWeather();
-    applyOnboardDestination();                 // NEW — replaces goHome('#dashboard')
+    goHome('#dashboard');
     toast('Setup complete — your dashboard is ready.', 'success');
   }
 
@@ -4805,14 +4780,6 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
   document.addEventListener('click', function (e) {
     var scope = e.target.closest('[data-alert-scope]');
     if (scope) { alertScope = scope.dataset.alertScope; renderAlerts(); return; }
-    // NEW — destination buttons on the onboarding summary step
-    var obBtn = e.target.closest('[data-ob-go]');
-    if (obBtn) {
-      e.preventDefault();
-      window.__onboardDest = obBtn.getAttribute('data-ob-go');   // '' = browse, 'login', 'register'
-      finishOnboarding();                                        // closes, then routes via applyOnboardDestination
-      return;
-    }
     var el = e.target.closest('[data-action]');
     if (el) { e.preventDefault(); handleAction(el); }
   });
@@ -4884,20 +4851,14 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     runClusterAlerts();
     refreshWeather();
 
-    // NEW — capture where the user was trying to go before onboarding ran
     var hash = (location.hash || '').replace('#', '');
-    var needsOnboard = !getPrefs().onboarded;
-
-    if (needsOnboard) {
-      // Don't navigate yet — remember where the user wanted to land.
-      window.__onboardDest = hash || null;
-    } else if (['login', 'register', 'profile', 'privacy', 'alerts', 'help', 'plan', 'about', 'partner', 'impact', 'myreports'].indexOf(hash) !== -1) {
+    if (['login', 'register', 'profile', 'privacy', 'alerts', 'help', 'plan', 'about', 'partner', 'impact', 'myreports'].indexOf(hash) !== -1) {
       showView(hash);
     } else if (hash && document.getElementById(hash)) {
       goHome('#' + hash);
     }
 
-    if (needsOnboard) setTimeout(openOnboarding, 600);
+    if (!getPrefs().onboarded) setTimeout(openOnboarding, 600);
 
     setInterval(function () {
       if (!document.hidden) refreshWeather();
@@ -5078,7 +5039,7 @@ try {
 try {
 (function () {
   'use strict';
-  var KEY = 'eebc85e45b3ebe3f2b921682100e3e96';
+  var KEY = '8a3f71b78d5e49b6a1f164447262110';
   var API = 'https://api.weatherapi.com/v1/';
   var origFetch = window.fetch.bind(window);
 
