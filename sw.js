@@ -1,4 +1,4 @@
-const VERSION = 'v1.0.2';
+const VERSION = 'v1.0.3';
 const APP_CACHE = `mm-app-${VERSION}`;
 const RUNTIME_CACHE = `mm-runtime-${VERSION}`;
 
@@ -52,40 +52,43 @@ self.addEventListener('fetch', (event) => {
   // 2. Network-First for App Shell
   const isShell = url.pathname === APP_PATH || url.pathname === '/' || url.pathname.endsWith('.html');
   if (isShell) {
-    event.respondWith(
-      fetch(req)
-        .then((res) => {
-          const cache = caches.open(APP_CACHE);
-          cache.then((c) => c.put(req, res.clone()));
-          return res;
-        })
-        .catch(async () => {
-          // FALLBACK: If network fails, try cache
-          const cached = await caches.match(req) || await caches.match(APP_PATH);
-          return cached || new Response('<h1>Mati-Metsi is offline</h1><p>Please reconnect to the internet.</p>', {
-            headers: { 'Content-Type': 'text/html' }
-          });
-        })
-    );
+    event.respondWith((async () => {
+      try {
+        const res = await fetch(req);
+        // Only cache successful, non-redirect responses to prevent clone errors
+        if (res && res.ok && res.status === 200 && !res.redirected) {
+          const cache = await caches.open(APP_CACHE);
+          await cache.put(req, res.clone()); 
+        }
+        return res;
+      } catch (err) {
+        // Fallback to cache if offline
+        const cached = await caches.match(req) || await caches.match(APP_PATH);
+        return cached || new Response('<h1>Mati-Metsi is offline</h1><p>Please reconnect to the internet.</p>', {
+          headers: { 'Content-Type': 'text/html; charset=utf-8' }
+        });
+      }
+    })());
     return;
   }
 
   // 3. Cache-First for CDN assets
   if (CDN_CACHEABLE.some((h) => url.hostname.endsWith(h))) {
-    event.respondWith(
-      caches.match(req).then((cached) => {
-        if (cached) return cached;
-        return fetch(req)
-          .then((res) => {
-            if (res.ok) {
-              const cache = caches.open(RUNTIME_CACHE);
-              cache.then((c) => c.put(req, res.clone()));
-            }
-            return res;
-          })
-          .catch(() => new Response('Network error', { status: 408 })); // Catch the fetch failure!
-      })
-    );
+    event.respondWith((async () => {
+      const cached = await caches.match(req);
+      if (cached) return cached;
+      
+      try {
+        const res = await fetch(req);
+        if (res && res.ok && res.status === 200) {
+          const cache = await caches.open(RUNTIME_CACHE);
+          await cache.put(req, res.clone());
+        }
+        return res;
+      } catch (err) {
+        return cached || new Response('Network error', { status: 408 });
+      }
+    })());
     return;
   }
 });
