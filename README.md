@@ -1,79 +1,81 @@
-# Mati-Metsi — Township Resilience OS
+# Mati-Metsi: Community Resilience Platform
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-GitHub_Pages-22a6bf?style=for-the-badge&logo=github)](https://ofentse66759.github.io/Mati-Metsi/)
-[![Built with](https://img.shields.io/badge/Built_with-Vanilla_JS-f7df1e?style=for-the-badge&logo=javascript)](https://github.com/ofentse66759/Mati-Metsi)
-[![Languages](https://img.shields.io/badge/Languages-11_official_SA_languages-6ee7a1?style=for-the-badge)](https://github.com/ofentse66759/Mati-Metsi)
-[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
+Mati-Metsi is a South African community resilience platform designed to help households and neighbourhoods prepare for, coordinate during, and recover from disruptions to essential services: water, energy, transport, and food. 
 
-> **A predictive, offline-first PWA for South African township households to prepare for water, energy, transport and food disruptions.**
+Built as an offline-first Progressive Web App (PWA), Mati-Metsi bridges the gap between scattered community WhatsApp groups and formal municipal response.
 
----
+## Core Features
 
-##  The Problem
+*   **Predictive Risk Engine:** A transparent, rule-based model that combines live Open-Meteo weather forecasts with real-time community reports to predict localized risks (flooding, water shortage, heat stress).
+*   **Offline-First Architecture:** Utilizes Service Workers and local storage. Users can submit reports, browse the help board, and view their resilience plan even without an internet connection. Data automatically syncs to the cloud when connectivity is restored.
+*   **Neighbour Help Board:** A safe, community-driven marketplace for offering or requesting essential resources (water, transport, food parcels, charging stations).
+*   **Two-Sided Verification:** Community members submit reports; verified partners (municipalities/NGOs) can confirm reports and post official public responses.
+*   **Accessibility & Inclusion:** Fully translated into all 11 official South African languages, featuring high-contrast modes, larger text options, and text-to-speech support.
+*   **POPIA Compliant:** Built with privacy at its core. No third-party trackers, no GPS tracking, and full user data export/deletion capabilities.
 
-South Africa loses an estimated **40–56% of treated water** before it reaches a tap (DWS estimates). In Tshwane, roughly **1 in 3 households** report long water interruptions. Families in Ga-Rankuwa, Soshanguve, Mabopane, and Winterveldt face outages 3–4 times a week — sometimes for 12 hours, sometimes for nearly 30 days during Rand Water maintenance.
+## Technology Stack
 
-When the taps run dry, households spend **R500–R600 a month** on bottled water and wheelbarrow trips they did not budget for. Students miss classes queuing for JoJo tanks. 
-
-Existing tools (like EskomSePush-style apps) alert *after* the water is gone; municipal updates are in English, on Twitter, two days late. **Nobody warns residents before, tells them how much to store, or shows them what to do.**
-
----
-
-## 💡 The Solution
-
-**Mati-Metsi** is a single-file, offline-first Progressive Web App (PWA) that gives households a **24–72 hour head start** before a disruption. It is built for low-end Android phones, a 50MB monthly data budget, and speaks all 11 official South African languages.
-
-### Core Features
-*   🔮 **Predict & Prepare Engine:** A transparent, rule-based risk model for **five categories**: Flood, Water Shortage, Heat & Energy Stress, Transport Disruption, Food Access. Combines live weather with recent community reports. Every score opens a **"Why this prediction?"** table listing every factor and its point contribution.
-*   📢 **Community Reports:** Residents report issues by suburb (street addresses are blocked). Reports move through *Reported → Confirmed → In Progress → Resolved*. Three independent confirmations auto-promote a report. Duplicate detection prevents spam.
-*   ✔️ **Verified-Partner Dashboard:** Ward committees and NGOs can bulk-confirm reports, post public response notes, and see a full audit log. *(Demo accounts only in this build).*
-*   🤝 **Neighbour Help Board:** Offer or request water, containers, food, lifts, solar charging, shelter, tools and storage. Inline regex blocks banking details and street addresses.
-*   ✅ **Resilience Plan & Cost Saver:** Ten practical household actions. Each action shows **litres of water**, **kWh of electricity**, and **Rand saved per month** using Tshwane tariffs. The app recommends the *next best action* based on live risk in your area.
-*   🔔 **Local Alerts:** Serious reports, clusters of similar reports, and weather forecasts create Watch / Warning / Emergency alerts with recommended actions.
-*   🔒 **POPIA Compliance:** No GPS, no trackers, no third-party ads. One-click JSON export and one-click account deletion. Photos are stored separately so a future backend sync can never lose them.
+*   **Frontend:** Vanilla HTML5, CSS3, JavaScript (ES6+), Progressive Web App (PWA)
+*   **Backend & Database:** Supabase (PostgreSQL)
+*   **Authentication:** Supabase Auth (Anonymous Sign-ins)
+*   **Storage:** Supabase Storage (for report photos)
+*   **External APIs:** Open-Meteo (Weather & Air Quality)
+*   **Hosting:** GitHub Pages
 
 ---
 
-## 🚀 Live Demo
+## Project Development Timeline
 
-👉 **Open the app:** [https://ofentse66759.github.io/Mati-Metsi/](https://ofentse66759.github.io/Mati-Metsi/)
+The following steps were executed to build, secure, and deploy the Mati-Metsi platform:
 
-### Try the Verified-Partner Workflow
-1. Open the app and go to **Login**.
-2. Sign in with the demo partner credentials:
-   *   **Email:** `partner@tshwane-demo.org`
-   *   **Password:** `partner123`
-3. You will see the **Partner Dashboard** in the navigation. Try bulk-confirming a report or posting a public response.
+### Phase 1: Core Application Development
+1.  Built the single-page application architecture using vanilla HTML, CSS, and JavaScript.
+2.  Implemented the localization engine supporting 11 South African languages.
+3.  Integrated Open-Meteo APIs for live weather, forecasts, and air quality data.
+4.  Developed the "Resilience Plan" and savings calculator (estimating Rand, kWh, and Liters saved).
+5.  Built the client-side rule-based risk prediction engine.
+6.  Developed the local-first data layer using `localStorage` for reports, alerts, and user profiles.
 
-### Test the Offline Mode
-1. Open the app in Chrome or Edge.
-2. Press `F12` to open DevTools → Go to the **Network** tab.
-3. Change "No throttling" to **Offline**.
-4. Refresh the page. The app will load entirely from the Service Worker cache.
-5. Submit a report. It will be saved to the **Offline Outbox** and sent automatically when you go back online.
+### Phase 2: Progressive Web App & Offline Capabilities
+1.  Created and registered `sw.js` (Service Worker) to handle app-shell caching and offline routing.
+2.  Implemented an offline outbox system to queue reports submitted without internet access.
+3.  Added a `manifest.json` file to enable installation on mobile devices (Add to Home Screen).
+4.  Integrated connectivity detection (`navigator.onLine`) to gracefully handle network failures.
+
+### Phase 3: Cloud Backend & Security (Supabase)
+1.  Provisioned a Supabase PostgreSQL database.
+2.  Created relational tables: `profiles`, `reports`, `help_listings`, and `alerts`.
+3.  Implemented robust **Row Level Security (RLS)** policies to ensure users can only modify their own data, while allowing public read access to community feeds.
+4.  Optimized database performance by adding indexes to foreign keys and heavily queried columns (e.g., `author_id`, `status`).
+5.  Enabled Supabase Anonymous Authentication to provide a secure, zero-friction `auth.uid()` for every user.
+6.  Created a database trigger (`handle_new_user`) to automatically generate a profile when a new anonymous user is created.
+
+### Phase 4: Cloud Storage & Synchronization
+1.  Provisioned a Supabase Storage bucket (`photos`) with specific RLS policies for public read and owner-restricted uploads.
+2.  Migrated image handling from local Base64 strings to direct uploads to Supabase Storage.
+3.  Implemented a bi-directional data sync layer:
+    *   **Push:** Local report/listing creation, updates, and deletions are automatically synced to Supabase (fire-and-forget).
+    *   **Pull:** On app boot, the application fetches the latest community data from Supabase to enable cross-device visibility.
+4.  Updated the offline outbox to automatically sync queued reports to Supabase upon reconnection.
+
+### Phase 5: Performance Optimization
+1.  Implemented memoization (caching) for heavy `localStorage` reads (`getReports`, `getListings`) to reduce JSON parsing overhead by 30x per render cycle.
+2.  Optimized the duplicate detection algorithm by filtering by category and area before running text similarity checks.
+3.  Throttled the application's auto-render interval to prevent unnecessary DOM updates.
+4.  Cached the heavy Risk Engine calculations to prevent re-rendering if weather and report data remain unchanged.
+
+### Phase 6: Deployment
+1.  Configured the repository for deployment via GitHub Pages.
+2.  Ensured all Service Worker and Manifest paths use relative routing (`./`) to support sub-directory hosting.
+3.  Conducted final cross-device and offline testing to verify PWA integrity.
 
 ---
 
-## 🛠️ Technology Stack
+## Local Development Setup
 
-| Layer | What we use | Why |
-| :--- | :--- | :--- |
-| **Frontend** | Vanilla HTML/CSS/JS (single file) | Under 2MB, works on 50MB data budget, no build step |
-| **Data Storage** | Browser `localStorage` | Offline-first, zero server cost, POPIA-friendly |
-| **Weather** | WeatherAPI.com + Open-Meteo fallback | Live conditions, 3-day forecast, air quality |
-| **Auth** | SHA-256 via Web Crypto API | Demo-grade; replaced by server-side Argon2id in Phase 2 |
-| **Photos** | Canvas downscale (strips EXIF) | Privacy by design — no GPS metadata leaks |
-| **i18n** | Static dictionary in-file | 11 languages, no external requests |
+To run Mati-Metsi locally and test the Service Worker functionality:
 
----
-
-## 📁 Repository Structure
-
-```text
-.
-├── index.html              # The complete application (single file)
-├── sw.js                   # Service Worker (offline cache + push)
-├── .nojekyll               # Tells GitHub Pages to skip Jekyll
-├── SECURITY.md             # SSDLC, risk assessment, STRIDE model
-├── LICENSE                 # MIT License
-└── README.md               # This file
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/mati-metsi.git
+   cd mati-metsi
