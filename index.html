@@ -5484,18 +5484,25 @@ try {
   });
 
   /* ---- 6. Push + WhatsApp/SMS fallback (stubs; needs mm-sw.js beside this file) ---- */
-  var SW="self.addEventListener('push',function(e){var d=e.data?e.data.json():{title:'Mati-Metsi',body:'New alert in your area'};e.waitUntil(self.registration.showNotification(d.title,{body:d.body,icon:d.icon}));});self.addEventListener('notificationclick',function(e){e.notification.close();e.waitUntil(clients.openWindow('./#alerts'));});";
-  // The service worker is not shipped with this build. Download it from the Impact page and place it beside this HTML file to enable background push.
-  // (A missing file may still show one 404 line in the console; browsers do not allow hiding that.)
-  if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))fetch('mm-sw.js',{method:'HEAD'}).then(function(r){return r.ok?navigator.serviceWorker.register('mm-sw.js'):null;}).catch(function(){});
+   var SW="self.addEventListener('push',function(e){var d=e.data?e.data.json():{title:'Mati-Metsi',body:'New alert in your area'};e.waitUntil(self.registration.showNotification(d.title,{body:d.body,icon:d.icon}));});self.addEventListener('notificationclick',function(e){e.notification.close();e.waitUntil(clients.openWindow('./#alerts'));});";
+  
+  // Safely register the fallback worker only if online
+  if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+    if (navigator.onLine) {
+      fetch('mm-sw.js', { method: 'HEAD' })
+        .then(function(r) { return r.ok ? navigator.serviceWorker.register('mm-sw.js') : null; })
+        .catch(function() { /* Ignore network errors */ });
+    }
+  }
+
   function notifyNew(n){
     if(!('Notification' in window)||Notification.permission!=='granted')return;
     var t='Mati-Metsi: '+n+' new community report'+(n>1?'s':'');
     navigator.serviceWorker&&navigator.serviceWorker.getRegistration().then(function(r){r?r.showNotification(t):new Notification(t);}).catch(function(){});
   }
+  
   window.MM.fallback={ // no WhatsApp/SMS gateway is connected in this build
     send:function(){return Promise.reject(new Error('No notification backend configured'));}};
-
   /* ---- 7. Impact page + JSON export ---- */
   function stats(){
     var ev=get(EV,[]),c=function(t){return ev.filter(function(e){return e.t===t;}).length;};
