@@ -5077,16 +5077,16 @@ try {
     return cache[q].p;
   }
 
-  window.fetch = function (input, init) {
+    window.fetch = function (input, init) {
+    // ===== OFFLINE CHECK: Stop fetch if there is no internet =====
+    if (navigator.onLine === false) {
+      return Promise.reject(new Error('Offline: Request suppressed to avoid console errors.'));
+    }
+    // ==============================================================
+
     var url = typeof input === 'string' ? input : (input && input.url) || '';
     try {
       if (url.indexOf('geocoding-api.open-meteo.com') > -1) {
-        var name = decodeURIComponent((/[?&]name=([^&]*)/.exec(url) || [])[1] || '');
-        return getJ('search.json?q=' + encodeURIComponent(name + ', South Africa'), init).then(function (list) {
-          list = (list || []).filter(function (x) { return /south africa/i.test(x.country || ''); });
-          return json({ results: list.slice(0, 1).map(function (x) { return { name: x.name, latitude: x.lat, longitude: x.lon, admin1: x.region, timezone: 'Africa/Johannesburg' }; }) });
-        }).catch(function () { return origFetch(input, init); });
-      }
       if (url.indexOf('api.open-meteo.com/v1/forecast') > -1 && coords(url)) {
         return forecast(coords(url), init).then(function (w) {
           var c = w.current, days = w.forecast.forecastday, hrs = [];
