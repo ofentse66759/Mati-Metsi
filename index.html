@@ -6,16 +6,7 @@
 <meta name="description" content="Mati-Metsi helps South African communities prepare for disruptions to water, energy, transport and food — with live weather, community reports, alerts and neighbour help.">
 <meta name="theme-color" content="#08161b">
 <title>Mati-Metsi — Community Resilience &amp; Essential Services</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%F0%9F%92%A7%3C/text%3E%3C/svg%3E">
-<link rel="manifest" href="manifest.json">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-<link rel="apple-touch-icon" href="icon-192.png">
-<meta property="og:title" content="Mati-Metsi — Township Resilience OS">
-<meta property="og:description" content="Predict water, energy, and transport disruptions before they happen. Built for South African townships.">
-<meta property="og:image" content="https://ofentse66759.github.io/Mati-Metsi/icon-512.png">
-<meta property="og:url" content="https://ofentse66759.github.io/Mati-Metsi/">
-<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💧%3C/text%3E%3C/svg%3E">
 <style>
 /* ===== THEME TOKENS ===== */
 :root, [data-theme="dark"] {
@@ -103,8 +94,8 @@ header.top {
   border-radius: 10px; display: grid; place-items: center; font-size: 1.125rem;
   box-shadow: 0 0 0 3px rgba(34,166,191,0.15);
 }
-.brand-title { font-size: 1rem; color: var(--brand); line-height: 1.1; font-weight: 700; display: block; }
-.brand small { font-size: 0.5625rem; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; display: block; }
+.brand h1 { font-size: 1rem; color: var(--brand); line-height: 1.1; }
+.brand small { font-size: 0.5625rem; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
 header.top nav.desktop { display: flex; gap: 2px; align-items: center; }
 header.top nav.desktop button {
   padding: 8px 11px; border-radius: 999px; font-size: 0.8125rem;
@@ -156,7 +147,7 @@ header.top nav.desktop button:hover, header.top nav.desktop button[aria-current=
 .view.active { display: block; animation: viewIn .25s ease; }
 @keyframes viewIn { from { opacity: 0; transform: translateY(6px); } }
 
-main, .main { max-width: 1040px; margin: 0 auto; padding: 24px 16px 100px; display: block; }
+main { max-width: 1040px; margin: 0 auto; padding: 24px 16px 100px; }
 section { margin-bottom: 48px; scroll-margin-top: 80px; }
 .kicker { font-size: 0.6875rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
 h2 { font-size: 1.625rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; line-height: 1.2; }
@@ -501,36 +492,19 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
 .legal p { font-size: 0.8125rem; color: var(--muted); line-height: 1.6; margin-bottom: 12px; }
 .legal strong { color: var(--text); }
 
-/* ===== Add-on Styles ===== */
-body.menu-locked { overflow: hidden; }
-.mm-lang-row { margin-top: 12px; padding: 14px 16px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
-.mm-lang-row label { font-size: 0.8125rem; font-weight: 700; color: var(--muted); }
-.mm-lang-row select { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; }
-.mm-dash-head { margin-bottom: 12px; }
-.mm-dash-head h2 { margin-bottom: 0; }
-@keyframes mmFlash { 0% { box-shadow: 0 0 0 0 var(--focus); } 30% { box-shadow: 0 0 0 6px var(--focus); } 100% { box-shadow: 0 0 0 0 transparent; } }
-.mm-arrived { animation: mmFlash 1.2s ease; border-radius: 12px; }
-.mm-ob-skip { position: absolute; top: 10px; right: 10px; z-index: 2; width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); font-size: 1rem; display: grid; place-items: center; }
-.mm-ob-skip:hover { background: var(--surface-3); }
-#onboardDialog .modal-body { position: relative; }
-.mm-rh-filters { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 16px; }
-.mm-rh-filters button { padding: 6px 14px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); font-size: 0.8125rem; font-weight: 600; }
-.mm-rh-filters button[aria-pressed="true"] { background: var(--btn); color: var(--btn-text); border-color: var(--btn); }
-.mm-rh-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
-.mm-rh-meta { font-size: 0.8125rem; color: var(--muted); margin: 4px 0 8px; }
-.mm-tl { list-style: none; margin: 12px 0 0; padding: 0 0 0 14px; border-left: 2px solid var(--border); }
-.mm-tl li { position: relative; padding: 0 0 12px 12px; font-size: 0.875rem; }
-.mm-tl li::before { content: ''; position: absolute; left: -21px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--brand); }
-.mm-tl li.resp::before { background: var(--accent); }
-.mm-tl small { display: block; color: var(--muted); font-size: 0.75rem; }
-.mm-queued { border-style: dashed; }
-.mm-or { text-align: center; color: var(--muted); font-size: 0.8125rem; margin: 14px 0 10px; }
-.mm-demo-flag { display: inline-block; padding: 2px 10px; border-radius: 999px; border: 1px dashed var(--accent); font-size: .75rem; font-weight: 700; color: var(--accent); }
-.mm-row { display: flex; gap: 10px; align-items: flex-start; flex-wrap: wrap; }
-.mm-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 14px 0; }
-.mm-kpi b { display: block; font-size: 1.6rem; }
-.mm-pred { border-left: 4px solid var(--brand); }
-.mm-log { font-size: 0.8125rem; max-height: 240px; overflow: auto; }
+.tk h3{margin:0 0 4px}.tk .sub{color:var(--muted);font-size:.875rem;margin-bottom:12px}
+.tk-row{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.tk-chip{padding:8px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);font-weight:600;cursor:pointer}
+.tk-chip.on{background:var(--accent);color:#000;border-color:var(--accent)}
+.tk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.tk-tl{list-style:none;padding:0;margin:10px 0}.tk-tl li{display:flex;gap:12px;padding:10px 12px;border:1px solid var(--border-soft);border-radius:10px;margin-bottom:6px;background:var(--surface-2)}
+.tk-tl b{color:var(--accent);font-variant-numeric:tabular-nums;min-width:48px}
+.tk-out{font-size:1.5rem;font-weight:800;color:var(--accent)}.tk-hub{padding:12px;border:1px solid var(--border-soft);border-radius:10px;margin-bottom:8px;background:var(--surface-2)}
+.tk label{display:block;font-size:.8125rem;font-weight:600;margin:8px 0 4px}
+
+.adv-m{padding:10px 12px;border-radius:12px;max-width:92%;white-space:pre-wrap;line-height:1.45}
+.adv-u{align-self:flex-end;background:var(--btn);color:var(--btn-text)}.adv-b{align-self:flex-start;background:var(--surface-2);border:1px solid var(--border-soft)}
+.leaflet-container{font-family:inherit}
 </style>
 </head>
 <body>
@@ -539,8 +513,8 @@ body.menu-locked { overflow: hidden; }
 <header class="top">
   <button class="brand" onclick="goHome()" aria-label="Mati-Metsi home">
     <span class="brand-mark" aria-hidden="true">💧</span>
-    <span style="display:flex; flex-direction:column; align-items:flex-start;">
-      <span class="brand-title">Mati-Metsi</span>
+    <span>
+      <h1>Mati-Metsi</h1>
       <small data-i18n="brand.sub">Community Resilience</small>
     </span>
   </button>
@@ -551,6 +525,7 @@ body.menu-locked { overflow: hidden; }
     <button data-nav="help" onclick="showView('help')" data-i18n="nav.help">Neighbour Help</button>
     <button data-nav="plan" onclick="showView('plan')" data-i18n="nav.plan">My Plan</button>
     <button data-nav="about" onclick="showView('about')" data-i18n="nav.about">About</button>
+    <button data-nav="tools" onclick="showView('tools')">Toolkit</button>
     <button data-nav="privacy" onclick="showView('privacy')" data-i18n="nav.privacy">Privacy</button>
     <button id="navAuthBtn" onclick="handleAuthNav()">Login</button>
   </nav>
@@ -560,7 +535,7 @@ body.menu-locked { overflow: hidden; }
   </div>
 </header>
 
-<div class="settings-pop hidden" id="settingsPop" role="dialog" aria-label="Display and language settings">
+<div class="settings-pop hidden" id="settingsPop" role="dialog" aria-labelledby="settingsTitle">
   <h4 id="settingsTitle" data-i18n="a11y.title">Display &amp; language</h4>
   <div class="field mt-2">
     <label for="langSelect" data-i18n="a11y.lang">Language</label>
@@ -588,9 +563,7 @@ body.menu-locked { overflow: hidden; }
   <div class="mobile-nav-head">
     <button class="brand" onclick="closeMobileMenu(); goHome()">
       <span class="brand-mark" aria-hidden="true">💧</span>
-      <span style="display:flex; flex-direction:column; align-items:flex-start;">
-        <span class="brand-title">Mati-Metsi</span>
-      </span>
+      <h1>Mati-Metsi</h1>
     </button>
     <button class="icon-btn" onclick="closeMobileMenu()" aria-label="Close menu">✕</button>
   </div>
@@ -607,6 +580,7 @@ body.menu-locked { overflow: hidden; }
     <button onclick="closeMobileMenu(); showView('plan')">✅ <span data-i18n="nav.plan">My Plan</span></button>
     <button onclick="closeMobileMenu(); goHome('#guide')">📖 <span data-i18n="guide.short">Saving guide</span></button>
     <button onclick="closeMobileMenu(); showView('about')">ℹ️ <span data-i18n="nav.about">About</span></button>
+    <button onclick="closeMobileMenu(); showView('tools')">🧰 Toolkit</button>
     <button onclick="closeMobileMenu(); showView('privacy')">🔒 <span data-i18n="nav.privacyFull">Privacy &amp; POPIA</span></button>
     <button id="mobileAuthBtn" onclick="closeMobileMenu(); handleAuthNav()">👤 Login</button>
   </div>
@@ -616,6 +590,7 @@ body.menu-locked { overflow: hidden; }
 
 <div class="view active" id="view-home">
 <main id="main-content">
+
 
 <div id="offlineBanner" class="banner banner-offline hidden" role="status">
   <span aria-hidden="true">📡</span><span class="grow" data-i18n="offline">You're offline. Everything you add is saved on this device and the last saved forecast is shown.</span>
@@ -635,7 +610,6 @@ body.menu-locked { overflow: hidden; }
     <div class="flex gap-2 flex-wrap">
       <a href="#predict" class="btn" data-i18n="hero.cta1">See what may happen next</a>
       <a href="#report-form" class="btn btn-outline" data-i18n="hero.cta2">Report an issue</a>
-      <button id="installPwaBtn" class="btn btn-outline hidden" style="margin-top: 10px;">📲 Install App</button>
     </div>
   </div>
   <div class="service-orbit" aria-label="Services covered">
@@ -744,6 +718,13 @@ body.menu-locked { overflow: hidden; }
       <div class="density-list" id="densityList"></div>
     </div>
   </div>
+  <div class="card mt-4" id="liveMapCard">
+    <h3 style="margin-top:0">🗺️ Live street map</h3>
+    <p class="text-sm text-muted">Real map of Tshwane with community reports at each area's approximate centre (never exact addresses). Loading it contacts the map provider (Google Maps, or OpenStreetMap/CARTO/Esri and cdnjs), which can see your IP address. Nothing you report is sent to them.</p>
+    <button class="btn" id="liveMapBtn" type="button">Load live map</button>
+    <div id="liveMap" style="display:none;height:420px;border-radius:12px;margin-top:12px;border:1px solid var(--border)" role="region" aria-label="Live map of community reports"></div>
+    <p class="text-xs text-muted mt-2" id="liveMapNote"></p>
+  </div>
 </section>
 
 <section id="reports">
@@ -798,6 +779,12 @@ body.menu-locked { overflow: hidden; }
         <label for="reportZone" data-i18n="report.area">Area / suburb</label>
         <input id="reportZone" class="input" required maxlength="100" list="areaList" placeholder="e.g. Mamelodi East">
         <p class="help" data-i18n="report.areaHelp">Suburb or community only — never a street address.</p>
+        <div id="pinBox" class="mt-2">
+          <button type="button" class="btn btn-outline btn-sm" id="pinOpen">📍 Drop a pin (optional)</button>
+          <button type="button" class="btn btn-ghost btn-sm" id="pinClear" style="display:none">Remove pin</button>
+          <p class="help" id="pinStatus">Pin the problem (leak, outage, road) — not your home. The pin is rounded to about a street block (~110 m) before it is saved.</p>
+          <div id="pinMap" style="display:none;height:260px;border-radius:10px;margin-top:8px;border:1px solid var(--border)"></div>
+        </div>
       </div>
     </div>
     <div class="grid-2">
@@ -812,7 +799,7 @@ body.menu-locked { overflow: hidden; }
       </div>
       <div class="field">
         <label for="reportType" data-i18n="report.type">Issue type</label>
-        <select id="reportType" class="select" required><option value="">Select an issue…</option></select>
+        <select id="reportType" class="select" required></select>
       </div>
     </div>
     <fieldset class="field" style="border:none">
@@ -832,7 +819,7 @@ body.menu-locked { overflow: hidden; }
     <div class="field">
       <label for="reportPhoto"><span data-i18n="report.photo">Photo (optional)</span></label>
       <div class="photo-drop">
-        <img id="photoPreview" class="hidden" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Selected photo preview">
+        <img id="photoPreview" class="hidden" alt="Selected photo preview">
         <div style="flex:1;min-width:180px">
           <input id="reportPhoto" type="file" accept="image/*" class="text-sm">
           <p class="help">Resized and stored on this device only. Avoid faces and number plates.</p>
@@ -973,7 +960,7 @@ body.menu-locked { overflow: hidden; }
 </div>
 
 <div class="view" id="view-alerts">
-<div class="main">
+<main>
   <button class="btn btn-outline btn-sm mb-4" onclick="goHome()">← <span data-i18n="common.back">Back to home</span></button>
   <p class="kicker" data-i18n="alerts.kicker">Stay ahead</p>
   <h2 data-i18n="alerts.title">Local alerts</h2>
@@ -1037,11 +1024,11 @@ body.menu-locked { overflow: hidden; }
   </div>
   <input id="alertSearch" class="input" type="search" placeholder="Search alerts…" maxlength="100" aria-label="Search alerts" style="margin-bottom:12px">
   <div id="alertFeed"></div>
-</div>
+</main>
 </div>
 
 <div class="view" id="view-help">
-<div class="main">
+<main>
   <button class="btn btn-outline btn-sm mb-4" onclick="goHome()">← <span data-i18n="common.back">Back to home</span></button>
   <p class="kicker" data-i18n="help.kicker">Share what you can</p>
   <h2 data-i18n="help.title">Neighbour Help</h2>
@@ -1067,7 +1054,7 @@ body.menu-locked { overflow: hidden; }
       </div>
     </div>
     <div class="grid-2">
-      <div class="field"><label for="helpCategory">Category</label><select id="helpCategory" class="select" required><option value="">Select a category…</option></select></div>
+      <div class="field"><label for="helpCategory">Category</label><select id="helpCategory" class="select" required></select></div>
       <div class="field"><label for="helpArea">Area / suburb</label><input id="helpArea" class="input" list="areaList" maxlength="80" required placeholder="e.g. Hatfield"><p class="help">Suburb only — never your street or house number.</p></div>
     </div>
     <div class="field"><label for="helpTitle">Short title</label><input id="helpTitle" class="input" maxlength="80" required placeholder="e.g. 4 × 25 L containers to lend"></div>
@@ -1090,19 +1077,19 @@ body.menu-locked { overflow: hidden; }
 
   <div class="card card-tight mb-4">
     <div class="filter-grid">
-      <div><label for="hKind">Type</label><select id="hKind" class="select"><option value="">Offers &amp; requests</option><option value="offer">Offers</option><option value="request">Requests</option></select></div>
-      <div><label for="hCategory">Category</label><select id="hCategory" class="select"><option value="">All categories</option></select></div>
-      <div><label for="hArea">Area</label><input id="hArea" class="input" type="search" list="areaList" placeholder="Any area"></div>
-      <div><label for="hStatus">Status</label><select id="hStatus" class="select"><option value="active">Available</option><option value="">Any status</option><option value="claimed">Claimed</option><option value="completed">Completed</option><option value="expired">Expired</option></select></div>
+      <div><label for="hKind" data-i18n="h.type">Type</label><select id="hKind" class="select"><option value="" data-i18n="h.kindAll">Offers &amp; requests</option><option value="offer" data-i18n="h.offers">Offers</option><option value="request" data-i18n="h.requests">Requests</option></select></div>
+      <div><label for="hCategory" data-i18n="h.category">Category</label><select id="hCategory" class="select"><option value="" data-i18n="h.allCats">All categories</option></select></div>
+      <div><label for="hArea" data-i18n="h.area">Area</label><input id="hArea" class="input" type="search" list="areaList" placeholder="Any area" data-i18n-ph="h.anyArea"></div>
+      <div><label for="hStatus" data-i18n="h.status">Status</label><select id="hStatus" class="select"><option value="active" data-i18n="h.stActive">Available</option><option value="" data-i18n="h.stAny">Any status</option><option value="claimed" data-i18n="h.stClaimed">Claimed</option><option value="completed" data-i18n="h.stCompleted">Completed</option><option value="expired" data-i18n="h.stExpired">Expired</option></select></div>
     </div>
   </div>
   <div class="result-meta"><span id="helpCount" aria-live="polite"></span></div>
   <div id="helpList" class="listing-grid"></div>
-</div>
+</main>
 </div>
 
 <div class="view" id="view-plan">
-<div class="main">
+<main>
   <button class="btn btn-outline btn-sm mb-4" onclick="goHome()">← <span data-i18n="common.back">Back to home</span></button>
   <p class="kicker" data-i18n="plan.kicker">Save money · Be ready</p>
   <h2 data-i18n="plan.title">My Resilience Plan</h2>
@@ -1134,11 +1121,56 @@ body.menu-locked { overflow: hidden; }
     </div>
     <div id="planActions"></div>
   </div>
+</main>
 </div>
+
+<div class="view" id="view-tools">
+<main class="tk">
+  <button class="btn btn-outline btn-sm mb-4" onclick="goHome()">← <span data-i18n="common.back">Back to home</span></button>
+  <p class="kicker" data-i18n="tk.kicker">Practical tools</p><h2 data-i18n="tk.title">Toolkit</h2>
+  <p class="lead" data-i18n="tk.lead">Plan for load-shedding, estimate your savings and see what to grow. Everything runs on this device.</p>
+
+  <section class="card mb-4"><h3>⚡ <span data-i18n="tk.ls">Load-shedding planner</span></h3><p class="sub">Pick the stage and your next outage time for an action timeline and battery backup hours.</p>
+    <div class="tk-row" id="tkStages"></div>
+    <div class="grid-2"><div><label for="tkStart" data-i18n="tk.start">Next outage starts at</label><input id="tkStart" class="input" type="time" value="18:00"></div>
+    <div><label for="tkGroup" data-i18n="tk.group">Area / municipal group</label><select id="tkGroup" class="select"><option value="">Select your municipality</option><optgroup label="Metropolitan municipalities"><option>City of Johannesburg</option><option>City of Tshwane</option><option>City of Ekurhuleni</option><option>City of Cape Town</option><option>eThekwini (Durban)</option><option>Nelson Mandela Bay (Gqeberha)</option><option>Buffalo City (East London)</option><option>Mangaung (Bloemfontein)</option></optgroup><optgroup label="Eastern Cape districts"><option>Alfred Nzo</option><option>Amathole</option><option>Chris Hani</option><option>Joe Gqabi</option><option>OR Tambo</option><option>Sarah Baartman</option></optgroup><optgroup label="Free State districts"><option>Fezile Dabi</option><option>Lejweleputswa</option><option>Thabo Mofutsanyana</option><option>Xhariep</option></optgroup><optgroup label="Gauteng districts"><option>Sedibeng</option><option>West Rand</option></optgroup><optgroup label="KwaZulu-Natal districts"><option>Amajuba</option><option>Harry Gwala</option><option>iLembe</option><option>King Cetshwayo</option><option>Ugu</option><option>uMgungundlovu</option><option>uMkhanyakude</option><option>uMzinyathi</option><option>uThukela</option><option>Zululand</option></optgroup><optgroup label="Limpopo districts"><option>Capricorn</option><option>Mopani</option><option>Sekhukhune</option><option>Vhembe</option><option>Waterberg</option></optgroup><optgroup label="Mpumalanga districts"><option>Ehlanzeni</option><option>Gert Sibande</option><option>Nkangala</option></optgroup><optgroup label="Northern Cape districts"><option>Frances Baard</option><option>John Taolo Gaetsewe</option><option>Namakwa</option><option>Pixley ka Seme</option><option>ZF Mgcawu</option></optgroup><optgroup label="North West districts"><option>Bojanala Platinum</option><option>Dr Kenneth Kaunda</option><option>Dr Ruth Segomotsi Mompati</option><option>Ngaka Modiri Molema</option></optgroup><optgroup label="Western Cape districts"><option>Cape Winelands</option><option>Central Karoo</option><option>Garden Route</option><option>Overberg</option><option>West Coast</option></optgroup><option>Other / not sure</option></select></div></div>
+    <p class="text-sm text-muted mt-2" id="tkDur"></p><ul class="tk-tl" id="tkTl"></ul>
+    <div class="grid-2"><div><label for="tkAh" data-i18n="tk.bat">Battery (Ah, 12 V)</label><input id="tkAh" class="input" type="number" value="100" min="1"></div>
+    <div><label for="tkW" data-i18n="tk.load">Load (watts: Wi-Fi + TV + lights)</label><input id="tkW" class="input" type="number" value="120" min="1"></div></div>
+    <p class="mt-2"><span data-i18n="tk.backup">Backup time</span>: <span class="tk-out" id="tkBat"></span> <span class="text-sm text-muted" id="tkBatNote"></span></p>
+    <p class="text-xs text-muted">Check your real schedule on Eskom / City of Tshwane channels — durations here are typical, not official.</p></section>
+
+  <section class="card mb-4"><h3>💰 <span data-i18n="tk.sav">Household savings calculator</span></h3><p class="sub">Estimate rand and litres saved by using less water and catching rain.</p>
+    <div class="grid-2"><div><label for="tkPpl"><span data-i18n="tk.people">People in household</span>: <b id="tkPplV"></b></label><input id="tkPpl" type="range" min="1" max="12" value="4" style="width:100%"></div>
+    <div><label for="tkLpd" data-i18n="tk.lpd">Litres per person per day</label><input id="tkLpd" class="input" type="number" value="180" min="20"></div>
+    <div><label for="tkCut"><span data-i18n="tk.cut">How much less you will use</span>: <b id="tkCutV"></b></label><input id="tkCut" type="range" min="0" max="50" value="15" style="width:100%"></div>
+    <div><label for="tkRoof" data-i18n="tk.roof">Roof area feeding a tank (m²)</label><input id="tkRoof" class="input" type="number" value="60" min="0"></div></div>
+    <div class="tk-row" id="tkApp"></div>
+    <div class="tk-grid mt-2"><div><div class="text-sm text-muted" data-i18n="tk.wsaved">Water saved / month</div><div class="tk-out" id="tkL"></div></div>
+    <div><div class="text-sm text-muted" data-i18n="tk.rain">Rain harvested / month (avg)</div><div class="tk-out" id="tkR"></div></div>
+    <div><div class="text-sm text-muted" data-i18n="tk.esaved">Electricity saved / month</div><div class="tk-out" id="tkE"></div></div>
+    <div><div class="text-sm text-muted" data-i18n="tk.total">Estimated total saving / month</div><div class="tk-out" id="tkT"></div></div></div>
+    <p class="text-xs text-muted mt-2">Estimate only: first 9 kL/month free, then about R45/kL + 15% VAT, electricity R3.20/kWh, ~650 mm rain/year with 80% capture. Check the current City of Tshwane tariff for exact figures.</p></section>
+
+  <section class="card mb-4"><h3>🌱 <span data-i18n="tk.plant">Highveld planting matrix</span></h3><p class="sub">Water-wise crops for Gauteng. Adapted for Highveld climate.</p>
+    <div class="tk-row" id="tkSeasons"></div><p><b id="tkSeaT"></b></p><div class="tk-row" id="tkCrops"></div>
+    <p class="text-sm"><b><span data-i18n="tk.tipLabel">Water-saving practice</span>:</b> <span id="tkTip"></span></p>
+    <h4 class="mt-4" data-i18n="tk.food">Neighbourhood food resilience</h4>
+    <label for="tkFoodArea">Your community</label>
+    <input id="tkFoodArea" class="input" list="areaList" maxlength="80" placeholder="e.g. Tembisa, Katlehong, Hammanskraal">
+    <div id="tkFood" class="mt-2"></div></section>
+
+  <section class="card mb-4"><h3>💬 Resilience Advisor <span class="text-xs text-muted">(offline, English)</span></h3>
+    <p class="sub">Practical answers about water leaks, load-shedding batteries, rainwater savings and food growing. It runs on this device and does not use AI or the internet — for emergencies call your municipality.</p>
+    <div class="tk-row" id="advChips"></div>
+    <div id="advLog" aria-live="polite" style="display:flex;flex-direction:column;gap:8px;margin:10px 0"></div>
+    <div class="flex gap-2"><input id="advIn" class="input grow" maxlength="200" placeholder="Ask about leaks, batteries, tanks, planting…" aria-label="Ask the advisor"><button class="btn" id="advGo" type="button">Ask</button></div>
+  </section>
+</main>
 </div>
 
 <div class="view" id="view-about">
-<div class="main">
+<main>
   <button class="btn btn-outline btn-sm mb-4" onclick="goHome()">← <span data-i18n="common.back">Back to home</span></button>
   <p class="kicker">About · Roadmap · Business model</p>
   <h2 data-i18n="about.title">About Mati-Metsi</h2>
@@ -1251,7 +1283,7 @@ body.menu-locked { overflow: hidden; }
     <h3 style="margin-top:0">Contact</h3>
     <p class="text-sm text-muted">General: <a href="mailto:hello@mati-metsi.org">hello@mati-metsi.org</a> · Privacy / DPO: <a href="mailto:privacy@mati-metsi.org">privacy@mati-metsi.org</a> · Legal: <a href="mailto:legal@mati-metsi.org">legal@mati-metsi.org</a></p>
   </div>
-</div>
+</main>
 </div>
 
 <div class="view" id="view-login">
@@ -1361,7 +1393,7 @@ body.menu-locked { overflow: hidden; }
 </div>
 
 <div class="view" id="view-profile">
-<div class="main">
+<main>
   <section>
     <div class="profile-header">
       <div class="avatar" id="profileAvatar">?</div>
@@ -1429,11 +1461,11 @@ body.menu-locked { overflow: hidden; }
       </div>
     </div>
   </section>
-</div>
+</main>
 </div>
 
 <div class="view" id="view-privacy">
-<div class="main legal">
+<main class="legal">
   <button class="btn btn-outline btn-sm mb-4" onclick="goHome()">← Back to home</button>
   <p class="kicker">Legal · Your data</p>
   <h2>Privacy &amp; POPIA</h2>
@@ -1470,7 +1502,7 @@ body.menu-locked { overflow: hidden; }
     <p><a href="mailto:privacy@mati-metsi.org">privacy@mati-metsi.org</a></p>
     <p class="text-xs mt-6">Last updated: 23 October 2026 · Version 2.1</p>
   </div>
-</div>
+</main>
 </div>
 
 <div class="emergency-bar" role="note">
@@ -1514,29 +1546,77 @@ body.menu-locked { overflow: hidden; }
 
 <div class="toast-wrap" id="toastWrap" aria-live="polite" aria-atomic="false"></div>
 
-<!-- ===== Feature: "My reports" history page + offline outbox ===== -->
+
+
+<!-- ===== Feature: Dashboard nav, hamburger upgrades, language helpers ===== -->
+<style>
+body.menu-locked { overflow: hidden; }
+.mm-lang-row { margin-top: 12px; padding: 14px 16px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
+.mm-lang-row label { font-size: 0.8125rem; font-weight: 700; color: var(--muted); }
+.mm-lang-row select { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; }
+.mm-dash-head { margin-bottom: 12px; }
+.mm-dash-head h2 { margin-bottom: 0; }
+</style>
+
+<!-- ===== Feature: reliable section navigation (re-aligns if the layout shifts while scrolling) ===== -->
+<style>
+@keyframes mmFlash { 0% { box-shadow: 0 0 0 0 var(--focus); } 30% { box-shadow: 0 0 0 6px var(--focus); } 100% { box-shadow: 0 0 0 0 transparent; } }
+.mm-arrived { animation: mmFlash 1.2s ease; border-radius: 12px; }
+</style>
+
+<!-- ===== Feature: top "Skip" on the setup popup + Weather / Report links in the desktop nav ===== -->
+<style>
+.mm-ob-skip { position: absolute; top: 10px; right: 10px; z-index: 2; width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); font-size: 1rem; display: grid; place-items: center; }
+.mm-ob-skip:hover { background: var(--surface-3); }
+#onboardDialog .modal-body { position: relative; }
+</style>
+
+<!-- ===== Feature: WeatherAPI.com as the weather source (falls back to the original source if it fails) ===== -->
+
+<!-- ===== "Setup questions" menu entry ===== -->
+<!-- ===== Feature: "My reports" history page + offline outbox (draft offline, auto-send when back online) ===== -->
+<style>
+.mm-rh-filters { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 16px; }
+.mm-rh-filters button { padding: 6px 14px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); font-size: 0.8125rem; font-weight: 600; }
+.mm-rh-filters button[aria-pressed="true"] { background: var(--btn); color: var(--btn-text); border-color: var(--btn); }
+.mm-rh-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
+.mm-rh-meta { font-size: 0.8125rem; color: var(--muted); margin: 4px 0 8px; }
+.mm-tl { list-style: none; margin: 12px 0 0; padding: 0 0 0 14px; border-left: 2px solid var(--border); }
+.mm-tl li { position: relative; padding: 0 0 12px 12px; font-size: 0.875rem; }
+.mm-tl li::before { content: ''; position: absolute; left: -21px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--brand); }
+.mm-tl li.resp::before { background: var(--accent); }
+.mm-tl small { display: block; color: var(--muted); font-size: 0.75rem; }
+.mm-queued { border-style: dashed; }
+</style>
 <div class="view" id="view-myreports">
-  <div class="main">
+  <main>
     <section>
       <p class="kicker">My account</p>
       <h2>My report history</h2>
       <p class="lead">Every issue you have submitted, its current status and each update. Reports written offline wait here until you are back online.</p>
       <div id="mmRhBody"></div>
     </section>
-  </div>
+  </main>
 </div>
-
+<!-- ===== Feature: extra sign-up fields (surname, cell number), sign in by cell number, working "Remember me" — nothing existing is replaced ===== -->
+<style>
+.mm-or { text-align: center; color: var(--muted); font-size: 0.8125rem; margin: 14px 0 10px; }
+</style>
 <!-- ===== Feature: shared sync layer, learning intelligence, partner dashboard, push/fallback stubs, impact page, UX presets ===== -->
-<div class="view" id="view-partner"><div class="main"><section>
+<style>
+.mm-demo-flag{display:inline-block;padding:2px 10px;border-radius:999px;border:1px dashed var(--accent);font-size:.75rem;font-weight:700;color:var(--accent)}
+.mm-row{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}.mm-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0}
+.mm-kpi b{display:block;font-size:1.6rem}.mm-pred{border-left:4px solid var(--brand)}.mm-log{font-size:.8125rem;max-height:240px;overflow:auto}
+</style>
+<div class="view" id="view-partner"><main><section>
   <p class="kicker">Partner workspace</p><h2>Partner dashboard</h2>
   <p id="mmPDemo"></p><div id="mmPBody"></div>
-</section></div></div>
-<div class="view" id="view-impact"><div class="main"><section>
+</section></main></div>
+<div class="view" id="view-impact"><main><section>
   <p class="kicker">Pilot evidence</p><h2>Impact</h2>
   <p class="lead">Measured on this device only. No third-party trackers, no personal identifiers in the export.</p>
   <div id="mmImpBody"></div>
-</section></div></div>
-
+</section></main></div>
 <script>
 // The 4 setup steps (area, services, alert level, dashboard) run once per device. Returning users land on Home; re-open via the "Setup questions" menu item or the "Run setup again" button in demo-controls.
 window.MM_DEBUG = false; // true = module errors are re-thrown after being logged
@@ -1627,6 +1707,8 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
 
   var I18N = {
     en: {
+      'tk.kicker': 'Practical tools', 'tk.title': 'Toolkit', 'tk.lead': 'Plan for load-shedding, estimate your savings and see what to grow. Everything runs on this device.', 'tk.ls': 'Load-shedding planner', 'tk.start': 'Next outage starts at', 'tk.group': 'Area / municipal group', 'tk.bat': 'Battery (Ah, 12 V)', 'tk.load': 'Load (watts: Wi-Fi + TV + lights)', 'tk.backup': 'Backup time', 'tk.enough': 'enough for this outage', 'tk.short': 'not enough for this outage', 'tk.stage': 'Stage', 'tk.s1': 'Charge phones, power banks and torches', 'tk.s2': 'Cook, fill flasks and kettles', 'tk.s3': 'Unplug sensitive appliances', 'tk.s4': 'Power off — switch to backup lights and battery', 'tk.s5': 'Keep the fridge closed; prepare for power return', 'tk.s6': 'Wait 15 min after power returns, then reconnect appliances one by one', 'tk.sav': 'Household savings calculator', 'tk.people': 'People in household', 'tk.lpd': 'Litres per person per day', 'tk.cut': 'How much less you will use', 'tk.roof': 'Roof area feeding a tank (m²)', 'tk.wsaved': 'Water saved / month', 'tk.rain': 'Rain harvested / month (avg)', 'tk.esaved': 'Electricity saved / month', 'tk.total': 'Estimated total saving / month', 'tk.plant': 'Highveld planting matrix', 'tk.food': 'Neighbourhood food resilience', 'tk.sample': 'sample listings', 'tk.sea.Spring': 'Spring', 'tk.sea.Summer': 'Summer', 'tk.sea.Autumn': 'Autumn', 'tk.sea.Winter': 'Winter', 'tk.tipLabel': 'Water-saving practice',
+      'h.type': 'Type', 'h.category': 'Category', 'h.area': 'Area', 'h.status': 'Status', 'h.anyArea': 'Any area', 'h.kindAll': 'Offers & requests', 'h.offers': 'Offers', 'h.requests': 'Requests', 'h.allCats': 'All categories', 'h.stActive': 'Available', 'h.stAny': 'Any status', 'h.stClaimed': 'Claimed', 'h.stCompleted': 'Completed', 'h.stExpired': 'Expired', 'h.count': '{n} of {total} listings', 'h.emptyTitle': 'No listings yet', 'h.emptyBody': 'Got spare water containers, a free seat or a solar charger? Offer it — or ask for what you need.', 'h.noMatchTitle': 'No listings match these filters', 'h.noMatchBody': 'Try "Any status" or another area.',
       'brand.sub': 'Community Resilience',
       'nav.home': 'Home', 'nav.reports': 'Reports', 'nav.alerts': 'Alerts', 'nav.help': 'Neighbour Help', 'nav.plan': 'My Plan',
       'nav.privacy': 'Privacy', 'nav.privacyFull': 'Privacy & POPIA', 'nav.login': 'Login', 'nav.account': 'My account',
@@ -1685,6 +1767,8 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
       'insight.ruleD.body': 'You follow {area}, but browser notifications are not enabled.'
     },
     zu: {
+      'tk.kicker': 'Amathuluzi asebenzayo', 'tk.title': 'Ibhokisi lamathuluzi', 'tk.lead': 'Hlela ukucisha kukagesi, linganisa ukonga kwakho futhi ubone okufanele ukutshale. Konke kusebenza kule divayisi.', 'tk.ls': 'Umhleli wokucisha kukagesi', 'tk.start': 'Ukucisha kulandelayo kuqala ngo', 'tk.group': 'Indawo / iqembu likamasipala', 'tk.bat': 'Ibhethri (Ah, 12 V)', 'tk.load': 'Umthwalo (amawathi: i-Wi-Fi + ithelevishini + amalambu)', 'tk.backup': 'Isikhathi sebhethri', 'tk.enough': 'kwanele lokhu kucisha', 'tk.short': 'akwanele lokhu kucisha', 'tk.stage': 'Izinga', 'tk.s1': 'Shaja amafoni, ama-power bank namathoshi', 'tk.s2': 'Pheka, gcwalisa ama-flask namakhetela', 'tk.s3': 'Khipha ezingasenzi ezizwelayo emshinini', 'tk.s4': 'Cisha — sebenzisa amalambu ebhethri', 'tk.s5': 'Gcina ifriji ivaliwe; lungela ukubuya kukagesi', 'tk.s6': 'Linda imizuzu eyi-15 ugesi ubuyile, bese uxhuma izinto ngayinye', 'tk.sav': 'Isibali sokonga komndeni', 'tk.people': 'Abantu emndenini', 'tk.lpd': 'Amalitha ngomuntu ngosuku', 'tk.cut': 'Ongakanani okuzosebenzisa kancane', 'tk.roof': 'Indawo yophahla ehambisa ethangini (m²)', 'tk.wsaved': 'Amanzi alondolozwe / inyanga', 'tk.rain': 'Imvula eqoqiwe / inyanga (isilinganiso)', 'tk.esaved': 'Ugesi olondolozwe / inyanga', 'tk.total': 'Isilinganiso sokonga okuphelele / inyanga', 'tk.plant': 'Imbalelwano yokutshala ye-Highveld', 'tk.food': 'Ukuqina kokudla komakhelwane', 'tk.sample': 'uhlu lwesibonelo', 'tk.sea.Spring': 'Intwasahlobo', 'tk.sea.Summer': 'Ihlobo', 'tk.sea.Autumn': 'Ukwindla', 'tk.sea.Winter': 'Ubusika', 'tk.tipLabel': 'Indlela yokonga amanzi',
+      'alerts.heat': 'Umkhawulo wezexwayiso zokushisa (°C ophezulu)', 'alerts.kicker': 'Hlala uphambili', 'alerts.lead': 'Khetha indawo yakho yasekhaya namasevisi ongawakhathalelayo. Izexwayiso ziyakhiwa ngokuzenzakalelayo emibikweni ebucayi, emaqenjini emibiko efanayo nasesibikezelweni sezulu — ngasinye sinezinyathelo ezisebenzayo.', 'alerts.rain': 'Umkhawulo wezexwayiso zemvula (mm ngosuku)', 'contact.kicker': 'Xhumana nathi', 'help.kicker': 'Yabelana ngokusemandleni akho', 'help.lead': 'Nikela noma cela amanzi, ukudla, ezokuthutha, ukushaja, indawo yokukhosela, amathuluzi noma indawo yokugcina. Uhlu lubonisa isifunda sakho kuphela — akubonisi ikheli lakho lasekhaya.', 'hero.energy': 'Ukucisha kukagesi, amaphutha', 'hero.food': 'Amaphasela, amanani, izingadi', 'hero.lead': 'Isimo sezulu esiqondile, isibikezelo esilula se-"okungenzeka ngokulandelayo", imibiko yomphakathi nosizo lomakhelwane lwamanzi, amandla, ezokuthutha nokudla. Buka ungangenanga — ngena kuphela uma ufuna ukubika noma ukuthumela.', 'hero.transport': 'Izikhukhula, ukuvalwa kwemigwaqo, ukuthuthwa', 'hero.water': 'Ukucinywa kwamanzi, ukuvuza, amathangi', 'map.kicker': 'Lapho imibiko ikhona', 'map.lead': 'Isithombe esifushane samaqoqo emibiko evulekile e-Tshwane nasezindaweni ezizungezile — usayizi webhamuza ubonisa inani, umbala ubonisa okubi kakhulu. Thinta indawo ukuze uhlunge imibiko engezansi. Akukho sevisi yemephu noma ukulandelwa kwendawo okusetshenziswayo.', 'plan.kicker': 'Onga imali · Lungela', 'plan.lead': 'Maka izinyathelo ezisebenzayo ukuze ubone ukuthi ungasongela amanzi, ugesi nemali engakanani — nokuthi umndeni wakho ulungele kangakanani ukuphazamiseka okulandelayo.', 'predict.lead': 'Isilinganiso esicacile esisekelwe emithethweni esihlanganisa isibikezelo se-Open-Meteo nemibiko yamuva yomphakathi. Vula "Kungani lesi sibikezelo?" ukuze ubone isici ngasinye namaphuzu asengeza.', 'report.areaHelp': 'Isifunda noma umphakathi kuphela — hhayi ikheli lomgwaqo.', 'report.lead': 'Amanzi, amandla, ezokuthutha noma ukudla. Kudingeka ukungena ukuze uthumele. Igama lakho nesifunda sakho kuzobonwa abanye — sebenzisa isifunda sakho kuphela, hhayi ikheli lakho lasekhaya, futhi ungafaki imininingwane yomuntu siqu yabanye abantu.', 'reports.lead': 'Imibiko eyabiwe ngamalungu omphakathi nabalingani abaqinisekisiwe. Imibiko yomphakathi akuyona izinqumo ezisemthethweni zikamasipala. Buka ungangenanga — ukuthumela nokuqinisekisa kudinga ukungena.', 'score.lead': 'Inombolo eyodwa (0–100) eyakhiwe ngesimo sezulu esiqondile. Ephakeme = ulungele kakhulu. Ivuselelwa njalo ngemizuzu engu-15 ngenkathi ivuliwe. Akudingeki ukungena.', 'weather.lead': 'Iqondile isuka ku-Open-Meteo. Akudingeki ukungena. Sisebenzisa kuphela idolobha noma isifunda osibhalayo — akusetshenziswa i-GPS.', 'h.type': 'Uhlobo', 'h.category': 'Isigaba', 'h.area': 'Indawo', 'h.status': 'Isimo', 'h.anyArea': 'Noma iyiphi indawo', 'h.kindAll': 'Iziphakamiso nezicelo', 'h.offers': 'Iziphakamiso', 'h.requests': 'Izicelo', 'h.allCats': 'Zonke izigaba', 'h.stActive': 'Iyatholakala', 'h.stAny': 'Noma yimuphi isimo', 'h.stClaimed': 'Kuthathiwe', 'h.stCompleted': 'Kuqediwe', 'h.stExpired': 'Kuphelelwe yisikhathi', 'h.count': '{n} kwezingu-{total} zohlu', 'h.emptyTitle': 'Akukho uhlu okwamanje', 'h.emptyBody': 'Unezitsha zamanzi eziyisipele, isihlalo esikhululekile noma ishaja yelanga? Nikela — noma ucele okudingayo.', 'h.noMatchTitle': 'Akukho uhlu oluvumelana nalezi zihlungi', 'h.noMatchBody': 'Zama "Noma yimuphi isimo" noma enye indawo.',
       'brand.sub': 'Ukuqina Komphakathi',
       'nav.home': 'Ikhaya', 'nav.reports': 'Imibiko', 'nav.alerts': 'Izexwayiso', 'nav.help': 'Usizo Lomakhelwane', 'nav.plan': 'Uhlelo Lwami',
       'nav.privacy': 'Ubumfihlo', 'nav.privacyFull': 'Ubumfihlo ne-POPIA', 'nav.login': 'Ngena', 'nav.account': 'I-akhawunti yami',
@@ -1735,6 +1819,8 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
       'insight.ruleD.body': 'Ulandela i-{area}, kodwa izaziso zesiphequluli azivuliwe.'
     },
     xh: {
+      'tk.kicker': 'Izixhobo ezisebenzayo', 'tk.title': 'Ibhokisi lezixhobo', 'tk.lead': 'Cwangcisa ukucinywa kombane, qikelela ukonga kwakho uze ubone into ofanele uyitshale. Yonke into isebenza kule divayisi.', 'tk.ls': 'Umcwangcisi wokucinywa kombane', 'tk.start': 'Ukucinywa okulandelayo kuqala ngo', 'tk.group': 'Indawo / iqela likamasipala', 'tk.bat': 'Ibhetri (Ah, 12 V)', 'tk.load': 'Umthwalo (iwatts: i-Wi-Fi + umabonakude + izibane)', 'tk.backup': 'Ixesha lebhetri', 'tk.enough': 'kwanele oku kucinywa', 'tk.short': 'akwanelanga oku kucinywa', 'tk.stage': 'Inqanaba', 'tk.s1': 'Tshaja iifowuni, ii-power bank neetorshi', 'tk.s2': 'Pheka, zalisa iiflaski neekhetile', 'tk.s3': 'Khupha izixhobo ezibuthathaka kumbane', 'tk.s4': 'Cima — tshintshela kwizibane zebhetri', 'tk.s5': 'Gcina ifriji ivaliwe; zilungiselele ukubuya kombane', 'tk.s6': 'Linda imizuzu eyi-15 emva kokubuya kombane, uze uqhagamshele izixhobo ngazinye', 'tk.sav': 'Ikhaltyuleyitha yokonga yekhaya', 'tk.people': 'Abantu ekhaya', 'tk.lpd': 'Iilitha ngomntu ngosuku', 'tk.cut': 'Unganciphisa kangakanani ukusebenzisa', 'tk.roof': 'Indawo yophahla enikezela kwitanki (m²)', 'tk.wsaved': 'Amanzi alondolozwe / inyanga', 'tk.rain': 'Imvula ekhutshiweyo / inyanga (umndilili)', 'tk.esaved': 'Umbane olondolozwe / inyanga', 'tk.total': 'Uqikelelo lokonga okuphelele / inyanga', 'tk.plant': 'Imatriksi yokutyala ye-Highveld', 'tk.food': 'Ukomelela kokutya kommelwane', 'tk.sample': 'uluhlu lomzekelo', 'tk.sea.Spring': 'Intwasahlobo', 'tk.sea.Summer': 'Ihlobo', 'tk.sea.Autumn': 'Ukwindla', 'tk.sea.Winter': 'Ubusika', 'tk.tipLabel': 'Indlela yokonga amanzi',
+      'alerts.heat': 'Umqathango wesilumkiso sobushushu (°C ephezulu)', 'alerts.kicker': 'Hlala phambili', 'alerts.lead': 'Khetha indawo yakho yasekhaya neenkonzo ozikhathalelayo. Izilumkiso ziyenziwa ngokuzenzekelayo kwiingxelo ezinzulu, kumaqela eengxelo ezifanayo nakuqikelelo lwemozulu — nganye inamanyathelo asebenzayo.', 'alerts.rain': 'Umqathango wesilumkiso semvula (mm ngosuku)', 'contact.kicker': 'Qhagamshelana nathi', 'help.kicker': 'Yabelana ngoko unokukwenza', 'help.lead': 'Nikela okanye cela amanzi, ukutya, ezothutho, ukutshaja, indawo yokukhosela, izixhobo okanye indawo yokugcina. Uluhlu lubonisa indawo yakho kuphela — alubonisi idilesi yekhaya lakho.', 'hero.energy': 'Ukucinywa kombane, iimpazamo', 'hero.food': 'Iiparsile, amaxabiso, iigadi', 'hero.lead': 'Imozulu ekhoyo ngoku, uqikelelo olulula lwe-"okunokwenzeka okulandelayo", iingxelo zoluntu noncedo loomelwane lwamanzi, amandla, ezothutho nokutya. Khangela ungangenanga — ngena kuphela xa ufuna ukuxela okanye ukuposa.', 'hero.transport': 'Izikhukula, ukuvalwa kwezitrato, ukuhamba', 'hero.water': 'Ukunqunyanyiswa, ukuvuza, iitanki', 'map.kicker': 'Apho iingxelo zikhoyo', 'map.lead': 'Umbono olula wamaqela eengxelo ezivulekileyo kwa-Tshwane nakwiindawo ezijikelezileyo — ubungakanani bebhamuza bubonisa inani, umbala ubonisa ezona zinzulu. Cofa indawo ukuze uhluze iingxelo ezingezantsi. Akukho nkonzo yemephu okanye ukulandelwa kwendawo.', 'plan.kicker': 'Gcina imali · Lungela', 'plan.lead': 'Phawula amanyathelo asebenzayo ukubona ukuba unokonga malini emanzini, kombane nasemalini — nokuba usapho lwakho lukulungele kangakanani ukuphazamiseka okulandelayo.', 'predict.lead': 'Uqikelelo olucacileyo olusekelwe kwimithetho oludibanisa uqikelelo lwe-Open-Meteo neengxelo zamva nje zoluntu. Vula "Kutheni olu qikelelo?" ukubona into nganye namanqaku ongezelelwa.', 'report.areaHelp': 'Indawo okanye uluntu kuphela — ungabhali idilesi yesitrato.', 'report.lead': 'Amanzi, amandla, ezothutho okanye ukutya. Kufuneka ungene ukuze uthumele. Igama lakho nendawo yakho ziza kubonwa ngabanye — sebenzisa indawo yakho kuphela, ungabhali idilesi yekhaya lakho, kwaye ungafaki iinkcukacha zabanye abantu.', 'reports.lead': 'Iingxelo ezabelwana ngamalungu oluntu namahlakani aqinisekisiweyo. Iingxelo zoluntu azizizo izingqinisiso ezisemthethweni zikamasipala. Khangela ungangenanga — ukuthumela nokuqinisekisa kufuna ukungena.', 'score.lead': 'Inani elinye (0–100) elakhiwe yimozulu ekhoyo. Ngaphezulu = ulungele ngakumbi. Liyahlaziywa rhoqo emva kwemizuzu eli-15 xa livuliwe. Akufuneki kungene.', 'weather.lead': 'Ithathwa ngqo kwi-Open-Meteo. Akufuneki kungene. Sisebenzisa kuphela idolophu okanye indawo oyibhalayo — akukho GPS.', 'h.type': 'Uhlobo', 'h.category': 'Udidi', 'h.area': 'Indawo', 'h.status': 'Imeko', 'h.anyArea': 'Nayiphi na indawo', 'h.kindAll': 'Iminikelo neziceliso', 'h.offers': 'Iminikelo', 'h.requests': 'Izicelo', 'h.allCats': 'Zonke iindidi', 'h.stActive': 'Iyafumaneka', 'h.stAny': 'Nayiphi na imeko', 'h.stClaimed': 'Kuthathiwe', 'h.stCompleted': 'Kugqityiwe', 'h.stExpired': 'Kuphelelwe lixesha', 'h.count': '{n} kwezi-{total} zohlu', 'h.emptyTitle': 'Akukabikho luhlu', 'h.emptyBody': 'Unazo iikhonteyina zamanzi eziseleyo, isihlalo esikhululekileyo okanye itshaja yelanga? Nikela — okanye cela into ofuna yona.', 'h.noMatchTitle': 'Akukho luhlu lufanelana nezi zihluzi', 'h.noMatchBody': 'Zama "Nayiphi na imeko" okanye enye indawo.',
       'brand.sub': 'Ukuqina koLuntu',
       'nav.home': 'Ikhaya', 'nav.reports': 'Iingxelo', 'nav.alerts': 'Izilumkiso', 'nav.help': 'Uncedo loMmelwane', 'nav.plan': 'Icebo lam',
       'nav.privacy': 'Bucala', 'nav.privacyFull': 'Bucala ne-POPIA', 'nav.login': 'Ngena', 'nav.account': 'I-akhawunti yam',
@@ -1785,6 +1871,8 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
       'insight.ruleD.body': 'Ulandela i-{area}, kodwa izaziso zesiphequluli azivulwanga.'
     },
     af: {
+      'tk.kicker': 'Praktiese gereedskap', 'tk.title': 'Gereedskapskas', 'tk.lead': 'Beplan vir beurtkrag, skat jou besparings en sien wat om te plant. Alles werk op hierdie toestel.', 'tk.ls': 'Beurtkrag-beplanner', 'tk.start': 'Volgende onderbreking begin om', 'tk.group': 'Gebied / munisipale groep', 'tk.bat': 'Battery (Ah, 12 V)', 'tk.load': 'Las (watt: Wi-Fi + TV + ligte)', 'tk.backup': 'Rugsteuntyd', 'tk.enough': 'genoeg vir hierdie onderbreking', 'tk.short': 'nie genoeg vir hierdie onderbreking nie', 'tk.stage': 'Fase', 'tk.s1': 'Laai foon, kragbanke en flitse', 'tk.s2': 'Kook, vul flaskies en ketels', 'tk.s3': 'Trek sensitiewe toestelle uit', 'tk.s4': 'Krag af — skakel oor na rugsteunligte en battery', 'tk.s5': 'Hou die yskas toe; berei voor vir kragterugkeer', 'tk.s6': 'Wag 15 min nadat krag terugkeer, koppel dan toestelle een vir een weer aan', 'tk.sav': 'Huishoudelike besparingsrekenaar', 'tk.people': 'Mense in huishouding', 'tk.lpd': 'Liter per persoon per dag', 'tk.cut': 'Hoeveel minder jy gaan gebruik', 'tk.roof': 'Dakoppervlak wat \'n tenk voed (m²)', 'tk.wsaved': 'Water bespaar / maand', 'tk.rain': 'Reën versamel / maand (gemiddeld)', 'tk.esaved': 'Elektrisiteit bespaar / maand', 'tk.total': 'Geskatte totale besparing / maand', 'tk.plant': 'Hoëveld-plantmatriks', 'tk.food': 'Buurt-voedselweerbaarheid', 'tk.sample': 'voorbeeldlysings', 'tk.sea.Spring': 'Lente', 'tk.sea.Summer': 'Somer', 'tk.sea.Autumn': 'Herfs', 'tk.sea.Winter': 'Winter', 'tk.tipLabel': 'Waterbesparingspraktyk',
+      'alerts.heat': 'Hitte-waarskuwingsdrempel (°C maks)', 'alerts.kicker': 'Bly voor', 'alerts.lead': 'Kies jou tuisgebied en die dienste waaroor jy omgee. Waarskuwings word outomaties geskep uit ernstige verslae, groepe soortgelyke verslae en die weervoorspelling — elk met praktiese stappe.', 'alerts.rain': 'Reën-waarskuwingsdrempel (mm per dag)', 'contact.kicker': 'Kontak', 'help.kicker': 'Deel wat jy kan', 'help.lead': 'Bied water, kos, vervoer, laai-geriewe, skuiling, gereedskap of stoorplek aan, of vra daarvoor. Lysings wys net jou woonbuurt — nooit jou huisadres nie.', 'hero.energy': 'Beurtkrag, foute', 'hero.food': 'Pakkette, pryse, tuine', 'hero.lead': 'Lewendige weer, \'n eenvoudige "wat kan volgende gebeur"-voorspelling, gemeenskapsverslae en buurhulp vir water, energie, vervoer en kos. Blaai sonder om in te teken — teken net in om te rapporteer of te plaas.', 'hero.transport': 'Oorstromings, sluitings, ritte', 'hero.water': 'Onderbrekings, lekke, tenkwaens', 'map.kicker': 'Waar verslae is', 'map.lead': '\'n Skematiese groepaansig van oop verslae oor Tshwane en omstreke — borrelgrootte wys hoeveel, kleur wys die ernstigste. Tik op \'n gebied om die verslae hieronder te filtreer. Geen kaartdiens of liggingsopsporing word gebruik nie.', 'plan.kicker': 'Spaar geld · Wees gereed', 'plan.lead': 'Merk praktiese aksies af om te sien hoeveel water, elektrisiteit en geld jy kan spaar — en hoe gereed jou huishouding is vir die volgende ontwrigting.', 'predict.lead': '\'n Deursigtige, reëlgebaseerde skatting wat die Open-Meteo-voorspelling met onlangse gemeenskapsverslae kombineer. Maak "Hoekom hierdie voorspelling?" oop om elke faktor en hoeveel punte dit byvoeg te sien.', 'report.areaHelp': 'Net woonbuurt of gemeenskap — nooit \'n straatadres nie.', 'report.lead': 'Water, energie, vervoer of kos. Aanmelding is nodig om in te dien. Jou naam en woonbuurt sal vir ander sigbaar wees — gebruik net jou woonbuurt, nooit jou huisadres nie, en moenie ander mense se persoonlike besonderhede insluit nie.', 'reports.lead': 'Verslae gedeel deur gemeenskapslede en geverifieerde vennote. Gemeenskapsverslae is nie amptelike munisipale bevestigings nie. Blaai sonder aanmelding — indiening en bevestiging vereis aanmelding.', 'score.lead': '\'n Enkele getal (0–100) gebou uit lewendige weer. Hoër = meer voorbereid. Werk elke 15 minute op terwyl dit oop is. Geen aanmelding nodig nie.', 'weather.lead': 'Lewendig van Open-Meteo. Geen aanmelding nodig nie. Ons gebruik net die dorp of woonbuurt wat jy tik — nooit GPS nie.', 'h.type': 'Tipe', 'h.category': 'Kategorie', 'h.area': 'Gebied', 'h.status': 'Status', 'h.anyArea': 'Enige gebied', 'h.kindAll': 'Aanbiedinge en versoeke', 'h.offers': 'Aanbiedinge', 'h.requests': 'Versoeke', 'h.allCats': 'Alle kategorieë', 'h.stActive': 'Beskikbaar', 'h.stAny': 'Enige status', 'h.stClaimed': 'Opgeëis', 'h.stCompleted': 'Voltooi', 'h.stExpired': 'Verval', 'h.count': '{n} van {total} lysings', 'h.emptyTitle': 'Nog geen lysings nie', 'h.emptyBody': 'Het jy ekstra watercontainers, \'n vrye sitplek of \'n sonlaaier? Bied dit aan — of vra vir wat jy nodig het.', 'h.noMatchTitle': 'Geen lysings pas by hierdie filters nie', 'h.noMatchBody': 'Probeer "Enige status" of \'n ander gebied.',
       'brand.sub': 'Gemeenskapsveerkragtigheid',
       'nav.home': 'Tuis', 'nav.reports': 'Verslae', 'nav.alerts': 'Waarskuwings', 'nav.help': 'Bure-hulp', 'nav.plan': 'My Plan',
       'nav.privacy': 'Privaatheid', 'nav.privacyFull': 'Privaatheid en POPIA', 'nav.login': 'Teken in', 'nav.account': 'My rekening',
@@ -1807,7 +1895,7 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
       'common.update': 'Opdateer', 'common.search': 'Soek', 'common.area': 'Area', 'common.severity': 'Erns', 'common.status': 'Status', 'common.time': 'Tyd', 'common.sort': 'Sorteer',
       'common.clear': 'Vee filters uit', 'common.signinContinue': 'Teken in om voort te gaan', 'common.back': 'Terug na tuis', 'common.save': 'Stoor',
       'map.title': 'Verslagdigtheid per area', 'map.list': 'Alle areas',
-      'sev.low': 'Laag', 'sev.medium': 'Medium', 'sev.high': 'Hoog', 'sev.critical': 'Kritiek',
+      'sev.low': 'Laag', 'sev.medium': 'Medium', 'sev.high': 'Hoog', 'sev.critical': 'Krities',
       'status.reported': 'Gerapporteer', 'status.confirmed': 'Bevestig', 'status.inprogress': 'Aan die gang', 'status.resolved': 'Opgelos',
       'risk.low': 'Laag', 'risk.moderate': 'Matig', 'risk.high': 'Hoog', 'risk.severe': 'Ernstig',
       'risk.flood': 'Oorstroming / ontwrigting', 'risk.water': 'Watertekort', 'risk.heat': 'Hitte- en energiedruk', 'risk.transport': 'Vervoerontwrigting', 'risk.food': 'Toegang tot kos',
@@ -1835,6 +1923,8 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
       'insight.ruleD.body': 'Jy volg {area}, maar blaaierkennisgewings is nie geaktiveer nie.'
     },
     nso: {
+      'tk.kicker': 'Didiriswa tše di šomago', 'tk.title': 'Lebokoso la didiriswa', 'tk.lead': 'Rulaganya go tima ga mohlagase, akanya tšhomišo ya gago gomme o bone seo o ka se bjalago. Tšohle di šoma sedirišweng se.', 'tk.ls': 'Moralo wa go tima ga mohlagase', 'tk.start': 'Go tima go latelago go thoma ka', 'tk.group': 'Lefelo / sehlopha sa mmasepala', 'tk.bat': 'Peteri (Ah, 12 V)', 'tk.load': 'Morwalo (diwata: Wi-Fi + TV + mabone)', 'tk.backup': 'Nako ya peteri', 'tk.enough': 'e lekane go tima ga mohlagase wo', 'tk.short': 'ga e lekane go tima ga mohlagase wo', 'tk.stage': 'Legato', 'tk.s1': 'Tšhaja megala, diphaphe tša matla le ditšhesa', 'tk.s2': 'Apea, tlatša difleski le dikete', 'tk.s3': 'Tlogela didirišwa tše di tšhogago', 'tk.s4': 'Tima — fetolela mabone a peteri', 'tk.s5': 'Boloka sehlwa se tswaletšwe; itokišetše go boa ga mohlagase', 'tk.s6': 'Ema metsotso e 15 ka morago ga go boa ga mohlagase, ke moka o hlomele didirišwa o tee ka o tee', 'tk.sav': 'Khalkhuleita ya go boloka ya lapa', 'tk.people': 'Batho lapeng', 'tk.lpd': 'Dilitara ka motho ka letšatši', 'tk.cut': 'O tla diriša go fokotšega gakae', 'tk.roof': 'Bogolo bja marulelo a fepago tanka (m²)', 'tk.wsaved': 'Meetse a bolokilwego / kgwedi', 'tk.rain': 'Pula e kgobokeditšwego / kgwedi (palogare)', 'tk.esaved': 'Mohlagase o bolokilwego / kgwedi', 'tk.total': 'Kakanyo ya polokelo ka moka / kgwedi', 'tk.plant': 'Letlapa la go bjala la Highveld', 'tk.food': 'Maatla a dijo a baagišani', 'tk.sample': 'mehlala ya lenaneo', 'tk.sea.Spring': 'Selemo', 'tk.sea.Summer': 'Lehlabula', 'tk.sea.Autumn': 'Letlhafula', 'tk.sea.Winter': 'Marega', 'tk.tipLabel': 'Mokgwa wa go boloka meetse',
+      'alerts.heat': 'Mothalo wa temošo ya mogote (°C ya godimo)', 'alerts.kicker': 'Dula o le pele', 'alerts.lead': 'Kgetha lefelo la gae le ditirelo tšeo o di kgahlegelago. Ditemošo di hlolwa ka bo tšona go tšwa dipegong tše masetlapelo, dihlopheng tša dipego tše di swanago le polelelopele ya boso — e nngwe le e nngwe e na le magato a šomago.', 'alerts.rain': 'Mothalo wa temošo ya pula (mm ka letšatši)', 'contact.kicker': 'Ikgokaganye le rena', 'help.kicker': 'Abelana ka seo o ka se kgonago', 'help.lead': 'Nepiša goba kopa meetse, dijo, dipalangwa, go tlhatlha, bodulo, didiriswa goba sebaka sa go boloka. Lenaneo le bontšha motse wa gago fela — le ka mohla aterese ya gae.', 'hero.energy': 'Go tima ga mohlagase, diphošo', 'hero.food': 'Diphasele, ditheko, dirapa', 'hero.lead': 'Boso bja bjale, polelelopele ye bonolo ya "seo se ka diregago ka morago", dipego tša setšhaba le thušo ya baagišani ya meetse, matla, dipalangwa le dijo. Sefa o sa tsene — tsena fela ge o nyaka go bega goba go phatlalatša.', 'hero.transport': 'Mafula, go tswalwa ga ditsela, dipalangwa', 'hero.water': 'Go tima ga meetse, go rotoga, dithanka', 'map.kicker': 'Moo dipego di lego gona', 'map.lead': 'Pono ye kopana ya dihlopha tša dipego tše di bulegilego ka Tshwane le dikgauswi — bogolo bja bubble bo bontšha palo, mmala o bontšha tše masetlapelo kudu. Kgoma lefelo go sefa dipego ka fase. Ga go na tirelo ya mapa goba go latelwa ga lefelo.', 'plan.kicker': 'Boloka tšhelete · Itokišetše', 'plan.lead': 'Swaya magato a šomago go bona gore o ka boloka meetse, mohlagase le tšhelete ye kae — le gore lapa la gago le itokišeditše bjang bakeng sa tshitišo ye e latelago.', 'predict.lead': 'Kakanyo ye e kwešišegago e theilwego melaong yeo e kopanyago polelelopele ya Open-Meteo le dipego tša morago tša setšhaba. Bula "Ke ka lebaka la eng polelelopele ye?" go bona lehlakore le lengwe le le lengwe le dintlha tšeo le di oketšago.', 'report.areaHelp': 'Motse goba setšhaba fela — le ka mohla aterese ya mmila.', 'report.lead': 'Meetse, matla, dipalangwa goba dijo. Go nyakega go tsena gore o romele. Leina la gago le motse wa gago di tla bonwa ke ba bangwe — diriša motse wa gago fela, le ka mohla aterese ya gae, o be o se ke wa tsenya dintlha tša botho tša batho ba bangwe.', 'reports.lead': 'Dipego tšeo di abelanwago ke maloko a setšhaba le balekane ba netefaditšwego. Dipego tša setšhaba ga se netefatšo ya semmušo ya mmasepala. Sefa o sa tsene — go romela le go netefatša go nyaka go tsena.', 'score.lead': 'Nomoro e tee (0–100) yeo e agilwego ka boso bja bjale. E phagamego = o itokišeditše kudu. E mpshafatšwa ka metsotso e 15 ge e bulegile. Ga go nyakege go tsena.', 'weather.lead': 'Bjale go tšwa go Open-Meteo. Ga go nyakege go tsena. Re diriša fela toropo goba motse woo o o ngwalago — le ka mohla GPS.', 'h.type': 'Mohuta', 'h.category': 'Karolo', 'h.area': 'Lefelo', 'h.status': 'Maemo', 'h.anyArea': 'Lefelo le lengwe le le lengwe', 'h.kindAll': 'Dinepišo le dikgopelo', 'h.offers': 'Dinepišo', 'h.requests': 'Dikgopelo', 'h.allCats': 'Dikarolo ka moka', 'h.stActive': 'Di a hwetšagala', 'h.stAny': 'Maemo a mangwe le a mangwe', 'h.stClaimed': 'Di tšerwe', 'h.stCompleted': 'Di phethilwe', 'h.stExpired': 'Di fedile', 'h.count': '{n} ya {total} ya lenaneo', 'h.emptyTitle': 'Ga go na lenaneo le gona', 'h.emptyBody': 'O na le dikgamelo tša meetse tše di šetšego, setulo se se lokologilego goba tšhaja ya letšatši? Nepiša — goba kopa seo o se hlokago.', 'h.noMatchTitle': 'Ga go na lenaneo leo le tsebelelanago le disefi tše', 'h.noMatchBody': 'Leka "Maemo a mangwe le a mangwe" goba lefelo le lengwe.',
       'brand.sub': 'Boikemišetšo bja Setšhaba',
       'nav.home': 'Gae', 'nav.reports': 'Dipego', 'nav.alerts': 'Ditsebišo', 'nav.help': 'Thušo ya Moagišani', 'nav.plan': 'Thulaganyo ya ka',
       'nav.privacy': 'Sephiri', 'nav.privacyFull': 'Sephiri le POPIA', 'nav.login': 'Tsena', 'nav.account': 'Akhaonto ya ka',
@@ -1885,6 +1975,8 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
       'insight.ruleD.body': 'O latela {area}, eupša ditsebišo tša sephequledi ga di butšwe.'
     },
     tn: {
+      'tk.kicker': 'Didiriswa tse di dirang', 'tk.title': 'Lebokose la didiriswa', 'tk.lead': 'Rulaganya go tima ga motlakase, akanya go boloka ga gago mme o bone se o ka se jalang. Tsotlhe di dira mo sedirisweng seno.', 'tk.ls': 'Moralo wa go tima ga motlakase', 'tk.start': 'Go tima go go latelang go simolola ka', 'tk.group': 'Lefelo / setlhopha sa mmasepala', 'tk.bat': 'Betri (Ah, 12 V)', 'tk.load': 'Morwalo (diwata: Wi-Fi + TV + diterata)', 'tk.backup': 'Nako ya betri', 'tk.enough': 'e lekane go tima ga motlakase gono', 'tk.short': 'ga e lekane go tima ga motlakase gono', 'tk.stage': 'Kgato', 'tk.s1': 'Tshaja megala, dibanka tsa maatla le ditšhesa', 'tk.s2': 'Apaya, tlatsa difleske le dikete', 'tk.s3': 'Ntsha didiriswa tse di tshogang', 'tk.s4': 'Tima — fetolela kwa diterateng tsa betri', 'tk.s5': 'Boloka sekgatlhisi se tswaletswe; ipaakanyetse go boa ga motlakase', 'tk.s6': 'Leta metsotso e le 15 morago ga go boa ga motlakase, ebe o hudugantsha didiriswa nngwe le nngwe', 'tk.sav': 'Khalkhuleita ya go boloka ya lelapa', 'tk.people': 'Batho mo lelapeng', 'tk.lpd': 'Dilitara ka motho ka letsatsi', 'tk.cut': 'O tla dirisa go kae go se kae', 'tk.roof': 'Bogolo jwa marulelo a a fepang tanka (m²)', 'tk.wsaved': 'Metsi a a bolokilweng / kgwedi', 'tk.rain': 'Pula e e kokoantsweng / kgwedi (palogare)', 'tk.esaved': 'Motlakase o o bolokilweng / kgwedi', 'tk.total': 'Kakanyo ya polokelo yotlhe / kgwedi', 'tk.plant': 'Letlapa la go jala la Highveld', 'tk.food': 'Maatla a dijo a baagisani', 'tk.sample': 'dikai tsa lenaneo', 'tk.sea.Spring': 'Selemo', 'tk.sea.Summer': 'Lehlabula', 'tk.sea.Autumn': 'Letlhafula', 'tk.sea.Winter': 'Marega', 'tk.tipLabel': 'Mokgwa wa go boloka metsi',
+      'alerts.heat': 'Selekanyo sa kitsiso ya mogote (°C e kwa godimo)', 'alerts.kicker': 'Nna o le pele', 'alerts.lead': 'Tlhopha lefelo la gae le ditirelo tse o di tlhokomelang. Ditlhagiso di dirwa ka bonako go tswa mo dipegong tse di masisi, mo dihlopheng tsa dipego tse di tshwanang le tlhagelelo ya loapi — nngwe le nngwe e na le dikgato tse di dirisegang.', 'alerts.rain': 'Selekanyo sa kitsiso ya pula (mm ka letsatsi)', 'contact.kicker': 'Ikgolaganye le rona', 'help.kicker': 'Abelana ka se o ka se kgonang', 'help.lead': 'Neela kgotsa kopa metsi, dijo, dipalangwa, go tlhatlha, bodulo, didiriswa kgotsa lefelo la go boloka. Lenaneo le bontsha motse wa gago fela — le ka motlha ga se aterese ya gae.', 'hero.energy': 'Go tima ga motlakase, diphoso', 'hero.food': 'Diphasele, ditlhwatlhwa, dirapa', 'hero.lead': 'Loapi lwa jaanong, tlhagelelo e bonolo ya "se se ka diregang morago", dipego tsa setšhaba le thuso ya baagisani ya metsi, maatla, dipalangwa le dijo. Sala o sa tsene — tsena fela fa o batla go bega kgotsa go phatlalatsa.', 'hero.transport': 'Morwalela, go tswalwa ga ditsela, dipalangwa', 'hero.water': 'Go tima ga metsi, go dutla, dithanka', 'map.kicker': 'Kwa dipego di leng teng', 'map.lead': 'Pono e khutshwane ya dihlopha tsa dipego tse di bulegileng mo Tshwane le mafelong a a mo go yone — bogolo jwa bubble bo bontsha palo, mmala o bontsha tse di masisi thata. Tobetsa lefelo go sefa dipego fa tlase. Ga go dirisiwe tirelo ya mmapa kgotsa go latelwa ga lefelo.', 'plan.kicker': 'Boloka madi · Nna o ipaakanyeditse', 'plan.lead': 'Tshwaya dikgato tse di dirisegang go bona gore o ka boloka metsi, motlakase le madi a le kae — le gore lelapa la gago le ipaakantse jang bakeng sa tshitshino e e latelang.', 'predict.lead': 'Poelo e e tlhaloganyesegang e e theilweng mo melaong e e kopanyang tlhagelelo ya Open-Meteo le dipego tsa bosheng tsa setšhaba. Bula "Ke ka goreng tlhagelelo e?" go bona senotlolo sengwe le sengwe le dintlha tse se di oketsang.', 'report.areaHelp': 'Motse kgotsa setšhaba fela — le ka motlha ga se aterese ya tsela.', 'report.lead': 'Metsi, maatla, dipalangwa kgotsa dijo. Go tlhokega go tsena gore o romele. Leina la gago le motse wa gago di tla bonwa ke ba bangwe — dirisa motse wa gago fela, le ka motlha ga se aterese ya gae, o bo o se ka wa tsenya dintlha tsa botho tsa batho ba bangwe.', 'reports.lead': 'Dipego tse di abelanwang ke maloko a setšhaba le balekane ba ba netefaditsweng. Dipego tsa setšhaba ga se tshomarelo ya semmuso ya mmasepala. Sala o sa tsene — go romela le go netefatsa go tlhoka go tsena.', 'score.lead': 'Palo e le nngwe (0–100) e e agilweng ka loapi lwa jaanong. E e kwa godimo = o ipaakantse thata. E ntšhafadiwa ka metsotso e le 15 fa e bulegile. Ga go tlhokege go tsena.', 'weather.lead': 'Go tswa kwa Open-Meteo. Ga go tlhokege go tsena. Re dirisa fela toropo kgotsa motse o o kwalang — le ka motlha GPS.', 'h.type': 'Mofuta', 'h.category': 'Karolo', 'h.area': 'Lefelo', 'h.status': 'Maemo', 'h.anyArea': 'Lefelo lepe fela', 'h.kindAll': 'Dineelo le dikopo', 'h.offers': 'Dineelo', 'h.requests': 'Dikopo', 'h.allCats': 'Dikarolo tsotlhe', 'h.stActive': 'Di a nna teng', 'h.stAny': 'Maemo ape fela', 'h.stClaimed': 'Di tserwe', 'h.stCompleted': 'Di wetswe', 'h.stExpired': 'Di fedile', 'h.count': '{n} ya {total} ya lenaneo', 'h.emptyTitle': 'Ga go na lenaneo le le teng', 'h.emptyBody': 'A o na le dinkgwana tsa metsi tse di setseng, setulo se se lolea kgotsa tšhaja ya letsatsi? Neela — kgotsa kopa se o se tlhokang.', 'h.noMatchTitle': 'Ga go na lenaneo le le tsamaelanang le disefi tseno', 'h.noMatchBody': 'Leka "Maemo ape fela" kgotsa lefelo le lengwe.',
       'brand.sub': 'Maitshoko a Setšhaba',
       'nav.home': 'Gae', 'nav.reports': 'Dikgang', 'nav.alerts': 'Ditemoso', 'nav.help': 'Tlhabano ya Moagelani', 'nav.plan': 'Thulaganyo ya me',
       'nav.privacy': 'Sephiri', 'nav.privacyFull': 'Sephiri le POPIA', 'nav.login': 'Tsena', 'nav.account': 'Akhaonto ya me',
@@ -1935,6 +2027,8 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
       'insight.ruleD.body': 'O latela {area}, mme ditemoso tsa sephequledi ga di a bulwa.'
     },
     st: {
+      'tk.kicker': 'Lisebelisoa tse sebetsang', 'tk.title': 'Lebokose la lisebelisoa', 'tk.lead': 'Rala ho tima ha motlakase, hakanya polokelo ea hau ebe u bona seo u ka se lemang. Tsohle li sebetsa sesebelisoa sena.', 'tk.ls': 'Moralo oa ho tima ha motlakase', 'tk.start': 'Ho tima ho latelang ho qala ka', 'tk.group': 'Sebaka / sehlopha sa mmasepala', 'tk.bat': 'Betri (Ah, 12 V)', 'tk.load': 'Moroalo (liwate: Wi-Fi + TV + mabone)', 'tk.backup': 'Nako ea betri', 'tk.enough': 'e lekane ho tima ha motlakase hona', 'tk.short': 'ha e lekane ho tima ha motlakase hona', 'tk.stage': 'Mohato', 'tk.s1': 'Chaja mehala, lipowerbank le lithoishi', 'tk.s2': 'Pheha, tlatsa lifleski le likete', 'tk.s3': 'Tlosa lisebelisoa tse nepahetseng', 'tk.s4': 'Tima — fetohela mabone a betri', 'tk.s5': 'Boloka sehatsetsi se koetsoe; itokisetse ho khutla ha motlakase', 'tk.s6': 'Ema metsotso e 15 ka mor\'a ho khutla ha motlakase, ebe u hokela lisebelisoa ka 1 ka 1', 'tk.sav': 'Khalkhuleita ea polokelo ea lelapa', 'tk.people': 'Batho lelapeng', 'tk.lpd': 'Lilitara ka motho ka letsatsi', 'tk.cut': 'U tla sebelisa hakae ka tlase', 'tk.roof': 'Boholo ba marulelo a fepang tanka (m²)', 'tk.wsaved': 'Metsi a bolokiloeng / khoeli', 'tk.rain': 'Pula e bokelletsoeng / khoeli (palogare)', 'tk.esaved': 'Motlakase o bolokiloeng / khoeli', 'tk.total': 'Khakanyo ea polokelo kaofela / khoeli', 'tk.plant': 'Letlapa la ho lema la Highveld', 'tk.food': 'Matla a lijo a baahisani', 'tk.sample': 'mehlala ea lethathamo', 'tk.sea.Spring': 'Selemo', 'tk.sea.Summer': 'Lehlabula', 'tk.sea.Autumn': 'Hoetla', 'tk.sea.Winter': 'Mariha', 'tk.tipLabel': 'Mokhoa oa ho boloka metsi',
+      'alerts.heat': 'Moeli oa temoso ea mocheso (°C e phahameng)', 'alerts.kicker': 'Lula u le pele', 'alerts.lead': 'Khetha sebaka sa lehae le litšebeletso tseo u li nahanang. Litemoso li entsoe ka boiketsetso ho tsoa litlalehong tse tebileng, lihlopheng tsa litlaleho tse tšoanang le tlhahiso ea boemo ba leholimo — e\'ngoe le e\'ngoe e na le mehato e sebetsang.', 'alerts.rain': 'Moeli oa temoso ea pula (mm ka letsatsi)', 'contact.kicker': 'Ikopanye le rona', 'help.kicker': 'Abelana ka seo u ka se khonang', 'help.lead': 'Fana kapa kopa metsi, lijo, lipalangoang, ho chaja, setšabelo, lisebelisoa kapa sebaka sa polokelo. Lethathamo le bontša sebaka sa hau feela — le ka mohla aterese ea lehae.', 'hero.energy': 'Ho tima ha motlakase, liphoso', 'hero.food': 'Liphasele, litheko, lirapa', 'hero.lead': 'Boemo ba leholimo ba hona joale, tlhahiso e bonolo ea "se ka etsahalang ka morao", litlaleho tsa sechaba le thuso ea baahisani bakeng sa metsi, matla, lipalangoang le lijo. Sheba u sa kena — kena feela ha u batla ho tlaleha kapa ho posa.', 'hero.transport': 'Likhohola, ho koaloa ha litsela, likoloi', 'hero.water': 'Ho khaoloa, ho dutla, litanka', 'map.kicker': 'Moo litlaleho li leng teng', 'map.lead': 'Pono e khutšoanyane ea lihlopha tsa litlaleho tse bulehileng Tshwane le libakeng tse haufi — boholo ba bubble bo bontša palo, mmala o bontša tse mpe ka ho fetisisa. Tobetsa sebaka ho sefa litlaleho tse ka tlase. Ha ho sebelisoe tšebeletso ea mmapa kapa ho latela sebaka.', 'plan.kicker': 'Boloka chelete · Itokise', 'plan.lead': 'Tšoaea mehato e sebetsang ho bona hore na u ka boloka metsi, motlakase le chelete e kae — le hore na lelapa la hau le loketse hakae bakeng sa tšitiso e latelang.', 'predict.lead': 'Khakanyo e hlakileng e thehiloeng melaong e kopanyang tlhahiso ea Open-Meteo le litlaleho tsa morao tjena tsa sechaba. Bula "Ke ka lebaka la eng tlhahiso ena?" ho bona lintlha tsohle le lintlha tseo li li tlatsang.', 'report.areaHelp': 'Sebaka kapa sechaba feela — le ka mohla aterese ea seterata.', 'report.lead': 'Metsi, matla, lipalangoang kapa lijo. Ho hlokahala ho kena ho romela. Lebitso la hau le sebaka sa hau li tla bonoa ke ba bang — sebelisa sebaka sa hau feela, le ka mohla aterese ea lehae, \'me u se ke ua kenyelletsa lintlha tsa botho tsa batho ba bang.', 'reports.lead': 'Litlaleho tse arolelanoang ke litho tsa sechaba le balekane ba netefalitsoeng. Litlaleho tsa sechaba ha se netefatso ea semmuso ea mmasepala. Sheba u sa kena — ho romela le ho netefatsa ho hloka ho kena.', 'score.lead': 'Nomoro e le\'ngoe (0–100) e hahiloeng ka boemo ba leholimo ba hona joale. E phahameng = u loketse haholoanyane. E ntlafatsoa ka metsotso e 15 ha e butsoe. Ha ho hlokahale ho kena.', 'weather.lead': 'Ho tsoa ho Open-Meteo. Ha ho hlokahale ho kena. Re sebelisa feela toropo kapa sebaka seo u se ngolang — le ka mohla GPS.', 'h.type': 'Mofuta', 'h.category': 'Sehlopha', 'h.area': 'Sebaka', 'h.status': 'Boemo', 'h.anyArea': 'Sebaka leha e le sefe', 'h.kindAll': 'Likabelo le likopo', 'h.offers': 'Likabelo', 'h.requests': 'Likopo', 'h.allCats': 'Lihlopha tsohle', 'h.stActive': 'E a fumaneha', 'h.stAny': 'Boemo leha e le bofe', 'h.stClaimed': 'E nkiloe', 'h.stCompleted': 'E phethiloe', 'h.stExpired': 'E felile', 'h.count': '{n} ho tsoa ho {total} ea lethathamo', 'h.emptyTitle': 'Ha ho na lethathamo ha joale', 'h.emptyBody': 'Na u na le lijana tsa metsi tse setseng, setulo se lokolohileng kapa chaja ea letsatsi? Fana ka eona — kapa kopa seo u se hlokang.', 'h.noMatchTitle': 'Ha ho na lethathamo le tsamaellanang le lisefi tsena', 'h.noMatchBody': 'Leka "Boemo leha e le bofe" kapa sebaka se seng.',
       'brand.sub': 'Mamello a Sechaba',
       'nav.home': 'Hae', 'nav.reports': 'Litlaleho', 'nav.alerts': 'Litemoso', 'nav.help': 'Thuso ea Moahelani', 'nav.plan': 'Morero oa ka',
       'nav.privacy': 'Lekunutu', 'nav.privacyFull': 'Lekunutu le POPIA', 'nav.login': 'Kena', 'nav.account': 'Akhaonto ea ka',
@@ -2206,6 +2300,7 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     $$('[data-i18n-ph]').forEach(function (el) { if (!EN_DOM[el.dataset.i18nPh]) EN_DOM[el.dataset.i18nPh] = el.placeholder; });
   }
 
+  window.__t = t; window.__tf = tFormat;
   function applyI18n() {
     document.documentElement.lang = lang;
     // SECURITY: strings come from the static I18N dictionary above, not user input.
@@ -2750,7 +2845,7 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
 
   function populateTypes(cat, selected) {
     var types = (CATS[cat] || CATS.water).types;
-    $('reportType').innerHTML = '<option value="">Select an issue…</option>' + Object.keys(types).map(function (k) {
+    $('reportType').innerHTML = Object.keys(types).map(function (k) {
       return '<option value="' + k + '"' + (k === selected ? ' selected' : '') + '>' + esc(types[k]) + '</option>';
     }).join('');
   }
@@ -2841,6 +2936,7 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
   $('photoRemove').addEventListener('click', clearPhoto);
 
   function resetReportForm() {
+    if (window.__pinClear) window.__pinClear();
     $('reportDetails').value = '';
     var med = document.querySelector('input[name="severity"][value="medium"]');
     if (med) med.checked = true;
@@ -2916,6 +3012,9 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
         author: d.name, authorEmail: user.email, source: partner ? 'partner' : 'community', org: partner ? user.org : '',
         responses: [], history: [{ status: partner ? 'confirmed' : 'reported', at: created, by: userLabel(user) }], demo: false
       };
+      var pin = window.__pin;
+      if (pin && isFinite(pin.lat) && isFinite(pin.lng) && pin.lat > -35.5 && pin.lat < -21.5 && pin.lng > 15.5 && pin.lng < 33.5) { report.lat = pin.lat; report.lng = pin.lng; }
+      if (window.__pinClear) window.__pinClear();
       if (pendingPhoto) stashPhoto(report.id, pendingPhoto);   // keep the image out of mm_reports
       var list = getReports();
       list.unshift(report);
@@ -3748,7 +3847,7 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     ['Olievenhoutbosch', -25.912, 28.093], ['Hammanskraal', -25.404, 28.281], ['Garsfontein', -25.793, 28.303], ['Tembisa', -25.996, 28.227],
     ['Midrand', -25.989, 28.128], ['Montana', -25.680, 28.260]
   ];
-  var EXTRA_AREAS = ['Soweto', 'Johannesburg CBD', 'Alexandra', 'Diepsloot', 'Ekurhuleni', 'Vosloorus', 'Benoni'];
+  var EXTRA_AREAS = ['Soweto', 'Johannesburg CBD', 'Alexandra', 'Diepsloot', 'Ekurhuleni', 'Vosloorus', 'Benoni', 'Katlehong', 'Thokoza', 'Daveyton', 'Tsakane', 'Orange Farm', 'Evaton', 'Khayelitsha', 'Gugulethu', 'Mitchells Plain', 'Umlazi', 'KwaMashu', 'Mdantsane', 'Botshabelo', 'Polokwane', 'Mbombela', 'Rustenburg', 'Mahikeng'];
 
   function populateAreaList() {
     $('areaList').innerHTML = AREAS.map(function (a) { return a[0]; }).concat(EXTRA_AREAS).map(function (n) { return '<option value="' + esc(n) + '">'; }).join('');
@@ -3764,6 +3863,24 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
   }
 
   var SEV_COLOR = ['#3b82f6', '#f59e0b', '#f97316', '#ef4444'];
+  var MAP_EXTRA = [['Soweto', -26.2485, 27.854], ['Johannesburg CBD', -26.2041, 28.0473], ['Alexandra', -26.1028, 28.0958], ['Diepsloot', -25.9333, 28.0167], ['Ekurhuleni', -26.2167, 28.1667], ['Vosloorus', -26.35, 28.2], ['Benoni', -26.1883, 28.3208], ['Katlehong', -26.3333, 28.15], ['Thokoza', -26.3417, 28.15], ['Daveyton', -26.15, 28.4167], ['Tsakane', -26.3667, 28.3833], ['Orange Farm', -26.4667, 27.8667], ['Evaton', -26.5333, 27.9], ['Khayelitsha', -34.0333, 18.6667], ['Gugulethu', -33.9833, 18.5667], ['Mitchells Plain', -34.05, 18.6167], ['Umlazi', -29.9667, 30.8833], ['KwaMashu', -29.75, 30.9833], ['Mdantsane', -32.95, 27.7667], ['Botshabelo', -29.2667, 26.7167], ['Polokwane', -23.9045, 29.4689], ['Mbombela', -25.4753, 30.9694], ['Rustenburg', -25.6676, 27.2421], ['Mahikeng', -25.856, 25.6403]];
+  window.__reportPins = function () {
+    return getReports().filter(function (r) { return r.status !== 'resolved' && isFinite(r.lat) && isFinite(r.lng) && r.lat != null; }).map(function (r) {
+      var i = sevIdx(r.severity);
+      return { lat: r.lat, lon: r.lng, name: String(r.title || typeLabel(r.category, r.type) || 'Report'), area: r.area || '', sevName: SEV[i], color: SEV_COLOR[i], open: 1, titles: [r.area || ''] };
+    });
+  };
+  window.__reportsByArea = function () {
+    var out = [];
+    AREAS.concat(MAP_EXTRA.filter(function (e) { return !AREAS.some(function (a) { return a[0] === e[0]; }); })).forEach(function (a) {
+      var rs = getReports().filter(function (r) { return r.status !== 'resolved' && !(r.lat != null && r.lng != null) && areaMatch(r.area, a[0]); });
+      var worst = rs.reduce(function (m, r) { return Math.max(m, sevIdx(r.severity)); }, -1);
+      if (!rs.length && MAP_EXTRA.some(function (e) { return e[0] === a[0]; })) return;
+      out.push({ name: a[0], lat: a[1], lon: a[2], open: rs.length, sev: worst, sevName: worst >= 0 ? SEV[worst] : '', color: worst >= 0 ? SEV_COLOR[worst] : '#6d8d96',
+        titles: rs.slice(0, 3).map(function (r) { return String(r.title || r.category || 'Report'); }) });
+    });
+    return out;
+  };
   function renderDensity() {
     var svg = $('densityMap'), listEl = $('densityList');
     if (!svg) return;
@@ -4044,7 +4161,14 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     produce: ['🥬', 'Fresh produce'], transport: ['🚐', 'Transport'], lift: ['🚗', 'Lift-sharing'],
     charging: ['🔋', 'Generator/solar charging'], shelter: ['🏠', 'Shelter'], tools: ['🛠️', 'Tools'], storage: ['🗄️', 'Storage space']
   };
+  window.__homeArea = function () { return getPrefs().homeArea || ''; };
+  window.__foodFor = function (area) {
+    return getListings().filter(function (l) {
+      return (l.category === 'food_parcels' || l.category === 'produce') && listingStatus(l) === 'available' && (!area || areaMatch(l.area, area));
+    }).slice(0, 6).map(function (l) { return { kind: l.kind, title: l.title, area: l.area, quantity: l.quantity, desc: l.description || '' }; });
+  };
   var LISTING_PILL = { available: 'pill-good', claimed: 'pill-warn', completed: 'pill-info', expired: 'pill-muted' };
+  var LISTING_STATUS_KEY = { available: 'h.stActive', claimed: 'h.stClaimed', completed: 'h.stCompleted', expired: 'h.stExpired' };
   var CONTACT_LABEL = { inapp: '💬 In-app message', phone: '📞 Phone', whatsapp: '🟢 WhatsApp' };
 
   function getListings() { return lsGet(K.help, []); }
@@ -4054,8 +4178,8 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
 
   function populateHelpSelects() {
     var opts = Object.keys(HELP_CATS).map(function (k) { return '<option value="' + k + '">' + HELP_CATS[k][0] + ' ' + HELP_CATS[k][1] + '</option>'; }).join('');
-    $('helpCategory').innerHTML = '<option value="">Select a category…</option>' + opts;
-    $('hCategory').innerHTML = '<option value="">All categories</option>' + opts;
+    $('helpCategory').innerHTML = opts;
+    $('hCategory').innerHTML = '<option value="" data-i18n="h.allCats">' + t('h.allCats') + '</option>' + opts;
   }
   function localDateTimeValue(d) {
     function p(n) { return String(n).padStart(2, '0'); }
@@ -4194,7 +4318,7 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     var soon = st === 'available' && hrsLeft > 0 && hrsLeft <= 6 ? '<span class="pill pill-warn">⏰ Expires in ' + Math.max(1, Math.round(hrsLeft)) + ' h</span>' : '';
     return '<article class="listing kind-' + l.kind + ' st-' + st + '">' +
       '<div class="badges" style="margin:0"><span class="pill ' + (l.kind === 'offer' ? 'pill-good' : 'pill-warn') + '">' + (l.kind === 'offer' ? '🤲 ' + t('help.offer') : '🙋 ' + t('help.request')) + '</span>' +
-      '<span class="pill ' + LISTING_PILL[st] + '">' + capFirst(st) + '</span>' + soon + (l.demo ? '<span class="pill pill-demo">Demo</span>' : '') + '</div>' +
+      '<span class="pill ' + LISTING_PILL[st] + '">' + (LISTING_STATUS_KEY[st] ? t(LISTING_STATUS_KEY[st]) : capFirst(st)) + '</span>' + soon + (l.demo ? '<span class="pill pill-demo">Demo</span>' : '') + '</div>' +
       '<h4>' + cat[0] + ' ' + esc(l.title) + '</h4>' +
       '<div class="meta"><span>🏷 ' + esc(cat[1]) + '</span><span>📍 ' + esc(l.area) + ' (suburb only)</span><span>📦 ' + esc(l.quantity) + '</span>' +
       '<span>⏳ Until ' + esc(fmtDate(l.until)) + ' (' + esc(timeAgo(l.until)) + ')</span><span>' + contact + '</span>' +
@@ -4221,11 +4345,11 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
       if (av !== bv) return av ? -1 : 1;
       return new Date(b.createdAt) - new Date(a.createdAt);
     });
-    $('helpCount').textContent = list.length + ' of ' + plural(all.length, 'listing');
+    $('helpCount').textContent = tFormat('h.count', { n: list.length, total: all.length });
     $('helpList').innerHTML = list.length ? list.map(listingCard).join('')
-      : '<div style="grid-column:1/-1">' + emptyState('🤝', all.length ? 'No listings match these filters' : 'No listings yet',
-        all.length ? 'Try "Any status" or another area.' : 'Got spare water containers, a free seat or a solar charger? Offer it — or ask for what you need.',
-        '<button class="btn btn-sm" data-action="help-new" data-kind="offer">Offer help</button><button class="btn btn-sm btn-outline" data-action="help-new" data-kind="request">Request help</button>') + '</div>';
+      : '<div style="grid-column:1/-1">' + emptyState('🤝', all.length ? t('h.noMatchTitle') : t('h.emptyTitle'),
+        all.length ? t('h.noMatchBody') : t('h.emptyBody'),
+        '<button class="btn btn-sm" data-action="help-new" data-kind="offer">' + t('help.newOffer') + '</button><button class="btn btn-sm btn-outline" data-action="help-new" data-kind="request">' + t('help.newRequest') + '</button>') + '</div>';
   }
   ['hKind', 'hCategory', 'hStatus'].forEach(function (id) { $(id).addEventListener('change', renderHelp); });
   $('hArea').addEventListener('input', debounce(renderHelp, 150));
@@ -4561,12 +4685,29 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
       });
     } else {
       var svc = ob.services.length ? ob.services : ['all'];
-      c.innerHTML = '<h3 id="onboardTitle" style="margin-top:0">You\'re all set 🎉</h3><ul class="action-list mb-4">' +
-        '<li><strong>Area:</strong> ' + esc(ob.area || 'All areas') + '</li>' +
-        '<li><strong>Services:</strong> ' + svc.map(function (s) { return t('cat.' + s); }).join(', ') + '</li>' +
-        '<li><strong>Alert level:</strong> ' + t('level.' + ob.level) + ' and above</li></ul>' +
-        '<p class="text-sm text-muted">Your dashboard shows <strong>What may happen next</strong> for your area, alerts, open reports and your readiness. You can change this any time under Alerts.</p>' +
-        '<p class="text-xs text-muted mt-4">🚨 Mati-Metsi is not an emergency service. In an emergency call 10111, 10177 or 112.</p>';
+      var nextStep;
+      if (isLoggedIn()) {
+        nextStep = '<p class="text-sm">You\'re signed in as <strong>' + esc(getUser().name) +
+          '</strong>. Your dashboard is ready.</p>';
+      } else {
+        nextStep =
+          '<p class="text-sm">Want to report issues and help neighbours? Create a free account — or browse first and sign up later.</p>' +
+          '<div class="flex gap-2 flex-wrap mt-3">' +
+            '<button type="button" class="btn btn-sm" data-ob-go="register">Create an account</button>' +
+            '<button type="button" class="btn btn-outline btn-sm" data-ob-go="login">Sign in</button>' +
+            '<button type="button" class="btn btn-ghost btn-sm" data-ob-go="">Browse first</button>' +
+          '</div>';
+      }
+      c.innerHTML =
+        '<h3 id="onboardTitle" style="margin-top:0">You\'re all set 🎉</h3>' +
+        '<ul class="action-list mb-4">' +
+          '<li><strong>Area:</strong> ' + esc(ob.area || 'All areas') + '</li>' +
+          '<li><strong>Services:</strong> ' + svc.map(function (s) { return t('cat.' + s); }).join(', ') + '</li>' +
+          '<li><strong>Alert level:</strong> ' + t('level.' + ob.level) + ' and above</li>' +
+        '</ul>' +
+        nextStep +
+        '<p class="text-xs text-muted mt-4">🚨 Mati-Metsi is not an emergency service. ' +
+          'In an emergency call 10111, 10177 or 112.</p>';
     }
     var first = c.querySelector('input');
     if (first) setTimeout(function () { first.focus(); }, 30);
@@ -4578,18 +4719,44 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     finishOnboarding();
   });
   $('onboardBack').addEventListener('click', function () { obCollect(); if (ob.step > 0) { ob.step--; renderOnboarding(); } });
-  $('onboardSkip').addEventListener('click', function () { setPrefs({ onboarded: true }); $('onboardDialog').close(); });
-  $('onboardDialog').addEventListener('cancel', function () { setPrefs({ onboarded: true }); });
+  $('onboardSkip').addEventListener('click', function () {
+    setPrefs({ onboarded: true });
+    $('onboardDialog').close();
+    applyOnboardDestination();          // NEW — was previously a no-op, now routes to intended view
+  });
+  $('onboardDialog').addEventListener('cancel', function () {
+    setPrefs({ onboarded: true });
+    applyOnboardDestination();          // NEW — Escape key path now also routes correctly
+  });
+
+  // NEW — single place that decides where onboarding hands off to
+  function applyOnboardDestination() {
+    var dest = window.__onboardDest;
+    window.__onboardDest = null;
+    if (dest === '') { goHome(); return; }                            // "browse first"
+    if (dest) {
+      if (['login', 'register', 'profile', 'privacy', 'alerts', 'help', 'plan', 'about', 'partner', 'impact', 'myreports'].indexOf(dest) !== -1) {
+        showView(dest);
+        return;
+      }
+      if (document.getElementById(dest)) { goHome('#' + dest); return; }
+    }
+    goHome('#dashboard');                                             // default fallback
+  }
+
   function finishOnboarding() {
     var hadLocation = !!lsRaw(K.location);
     setPrefs({ homeArea: ob.area, services: ob.services.length ? ob.services : ['all'], level: ob.level, onboarded: true, subscribed: true });
-    if (ob.area && !hadLocation) { try { localStorage.setItem(K.location, ob.area); } catch (e) {} $('locationInput').value = ob.area; }
+    if (ob.area && !hadLocation) {
+      try { localStorage.setItem(K.location, ob.area); } catch (e) {}
+      $('locationInput').value = ob.area;
+    }
     $('onboardDialog').close();
     riskArea = null;
     refreshReportAuthUI();
     renderAll();
     refreshWeather();
-    goHome('#dashboard');
+    applyOnboardDestination();                 // NEW — replaces goHome('#dashboard')
     toast('Setup complete — your dashboard is ready.', 'success');
   }
 
@@ -4638,6 +4805,14 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
   document.addEventListener('click', function (e) {
     var scope = e.target.closest('[data-alert-scope]');
     if (scope) { alertScope = scope.dataset.alertScope; renderAlerts(); return; }
+    // NEW — destination buttons on the onboarding summary step
+    var obBtn = e.target.closest('[data-ob-go]');
+    if (obBtn) {
+      e.preventDefault();
+      window.__onboardDest = obBtn.getAttribute('data-ob-go');   // '' = browse, 'login', 'register'
+      finishOnboarding();                                        // closes, then routes via applyOnboardDestination
+      return;
+    }
     var el = e.target.closest('[data-action]');
     if (el) { e.preventDefault(); handleAction(el); }
   });
@@ -4676,6 +4851,8 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     if (currentView === 'help') renderHelp();
     if (currentView === 'plan') renderPlan();
     if (currentView === 'profile') loadProfile();
+    if (window.__tkRender) window.__tkRender();
+    if (window.__mapRefresh) window.__mapRefresh();
   }
 
   function updateOnline() { $('offlineBanner').classList.toggle('hidden', navigator.onLine !== false); }
@@ -4693,12 +4870,7 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     populateAreaList();
     populateHelpSelects();
     populateTypes('water');
-    if (!lsRaw(K.demo)) {
-      seedDemo();
-      setTimeout(() => {
-        if (window.matiToast) window.matiToast('Demo data loaded. You can turn it off in the settings below.', 'success');
-      }, 1500);
-    }
+    if (!lsRaw(K.demo)) seedDemo();
     ensureDemoPartner();
     pruneReports();
     getReports();
@@ -4712,14 +4884,20 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     runClusterAlerts();
     refreshWeather();
 
+    // NEW — capture where the user was trying to go before onboarding ran
     var hash = (location.hash || '').replace('#', '');
-    if (['login', 'register', 'profile', 'privacy', 'alerts', 'help', 'plan', 'about', 'partner', 'impact', 'myreports'].indexOf(hash) !== -1) {
+    var needsOnboard = !getPrefs().onboarded;
+
+    if (needsOnboard) {
+      // Don't navigate yet — remember where the user wanted to land.
+      window.__onboardDest = hash || null;
+    } else if (['login', 'register', 'profile', 'privacy', 'alerts', 'help', 'plan', 'about', 'partner', 'impact', 'myreports'].indexOf(hash) !== -1) {
       showView(hash);
     } else if (hash && document.getElementById(hash)) {
       goHome('#' + hash);
     }
 
-    if (!getPrefs().onboarded) setTimeout(openOnboarding, 600);
+    if (needsOnboard) setTimeout(openOnboarding, 600);
 
     setInterval(function () {
       if (!document.hidden) refreshWeather();
@@ -4735,24 +4913,6 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
 
   console.log('%c💧 Mati-Metsi v8.3 loaded — 11 languages fully functional', 'color:#0b6e82;font-weight:bold');
   console.log('No account? Open the page and click "Login" → "Create one" to register. Demo partner: ' + DEMO_PARTNER.email + ' / ' + DEMO_PARTNER.password);
-  
-  // Handle PWA Install Prompt
-  let deferredPrompt;
-  const installBtn = document.getElementById('installPwaBtn');
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    if (installBtn) installBtn.classList.remove('hidden');
-  });
-  if (installBtn) {
-    installBtn.addEventListener('click', async () => {
-      if (!deferredPrompt) return;
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === 'accepted') installBtn.classList.add('hidden');
-      deferredPrompt = null;
-    });
-  }
 })();
 
 try {
@@ -5362,11 +5522,11 @@ try {
     if(e.target.closest&&e.target.closest('[data-nav="partner"]'))setTimeout(renderPartner,50);
   });
 
-  /* ---- 6. Push + WhatsApp/SMS fallback (stubs; needs sw.js beside this file) ---- */
+  /* ---- 6. Push + WhatsApp/SMS fallback (stubs; needs mm-sw.js beside this file) ---- */
   var SW="self.addEventListener('push',function(e){var d=e.data?e.data.json():{title:'Mati-Metsi',body:'New alert in your area'};e.waitUntil(self.registration.showNotification(d.title,{body:d.body,icon:d.icon}));});self.addEventListener('notificationclick',function(e){e.notification.close();e.waitUntil(clients.openWindow('./#alerts'));});";
   // The service worker is not shipped with this build. Download it from the Impact page and place it beside this HTML file to enable background push.
   // (A missing file may still show one 404 line in the console; browsers do not allow hiding that.)
-  if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))fetch('sw.js',{method:'HEAD'}).then(function(r){return r.ok?navigator.serviceWorker.register('sw.js'):null;}).catch(function(){});
+  if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))fetch('mm-sw.js',{method:'HEAD'}).then(function(r){return r.ok?navigator.serviceWorker.register('mm-sw.js'):null;}).catch(function(){});
   function notifyNew(n){
     if(!('Notification' in window)||Notification.permission!=='granted')return;
     var t='Mati-Metsi: '+n+' new community report'+(n>1?'s':'');
@@ -5385,7 +5545,7 @@ try {
   }
   function renderImpact(){
     var s=stats();$('mmImpBody').innerHTML='<div class="mm-kpis">'+[['Reports',s.reportsSubmitted],['Confirmations',s.confirmations],['Resolved',s.resolutions],['Listings done',s.listingsCompleted],['Readiness Δ',s.readinessScoreDelta==null?'—':(s.readinessScoreDelta>0?'+':'')+s.readinessScoreDelta],['Savings (R)',s.savingsRand==null?'—':s.savingsRand]].map(function(k){return '<div class="card mm-kpi"><b>'+k[1]+'</b>'+k[0]+'</div>';}).join('')+'</div>'+
-      '<div class="mm-row"><button class="btn btn-sm" id="mmExp">Export JSON for pilot report</button><button class="btn btn-outline btn-sm" id="mmCsv">Export alerts CSV</button><button class="btn btn-outline btn-sm" id="mmPush">Enable push alerts</button><button class="btn btn-outline btn-sm" id="mmSwDl" title="Save sw.js next to this HTML file to enable background push">Download sw.js</button></div>';
+      '<div class="mm-row"><button class="btn btn-sm" id="mmExp">Export JSON for pilot report</button><button class="btn btn-outline btn-sm" id="mmCsv">Export alerts CSV</button><button class="btn btn-outline btn-sm" id="mmPush">Enable push alerts</button><button class="btn btn-outline btn-sm" id="mmSwDl" title="Save mm-sw.js next to this HTML file to enable background push">Download mm-sw.js</button></div>';
   }
   function dl(name,txt,type){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:type||'application/json'}));a.download=name;a.click();}
   document.addEventListener('click',function(e){
@@ -5396,7 +5556,7 @@ try {
       var rows=get('mm_alerts',[]).map(function(a){return [a.id||a.key||'',a.createdAt,a.level,a.category,a.area,a.title,a.message,!!a.read,!!a.demo].map(q).join(',');});
       dl('mati-metsi-alerts.csv','\ufeff'+cols.join(',')+'\r\n'+rows.join('\r\n'),'text/csv;charset=utf-8');
     }
-    if(e.target.id==='mmSwDl')dl('sw.js',SW,'text/javascript');
+    if(e.target.id==='mmSwDl')dl('mm-sw.js',SW,'text/javascript');
     if(e.target.id==='mmPush'){if(!('Notification' in window))return toast('Notifications are not supported here.');Notification.requestPermission().then(function(p){toast(p==='granted'?'Push alerts enabled.':'Permission not granted.');});}
   });
   var _sv=window.showView;
@@ -5422,6 +5582,204 @@ try {
   window.addEventListener('storage',function(){setTimeout(ux,100);});
   })();
 } catch (err) { console.error('Mati-Metsi module 9 failed', err); if (window.MM_DEBUG) throw err; }
+
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  var T=function(k){return window.__t?window.__t(k):k};
+  var DUR=[2.5,2.5,2.5,2.5,4,4], stage=2;
+  var st=$('tkStages');
+  for(var i=1;i<=6;i++){var b=document.createElement('button');b.type='button';b.className='tk-chip'+(i===stage?' on':'');b.textContent=T('tk.stage')+' '+i;b.dataset.l='stage';b.dataset.s=i;st.appendChild(b);}
+  st.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;stage=+b.dataset.s;[].forEach.call(st.children,function(c){c.classList.toggle('on',c===b)});plan();});
+  function fmt(m){m=((m%1440)+1440)%1440;return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');}
+  function plan(){
+    var v=($('tkStart').value||'18:00').split(':'),t=+v[0]*60+ +v[1],d=DUR[stage-1];
+    $('tkDur').textContent=T('tk.stage')+' '+stage+' · ~'+d+' h'+($('tkGroup').value?' · '+$('tkGroup').value:'');
+    var steps=[[-120,T('tk.s1')],[-60,T('tk.s2')],[-30,T('tk.s3')],[0,T('tk.s4')],[d*60-15,T('tk.s5')],[d*60+15,T('tk.s6')]];
+    $('tkTl').innerHTML=steps.map(function(x){return '<li><b>'+fmt(t+x[0])+'</b><span>'+x[1]+'</span></li>'}).join('');
+    var h=(+$('tkAh').value||0)*12*0.8/Math.max(1,+$('tkW').value||1);
+    $('tkBat').textContent=h.toFixed(1)+' h';
+    $('tkBatNote').textContent=h>=d?'— '+T('tk.enough'):'— '+T('tk.short')+' ('+d+' h)';
+  }
+  ['tkStart','tkGroup','tkAh','tkW'].forEach(function(i){$(i).addEventListener('input',plan)});
+  var APP=[['Geyser timer',120],['LED lighting',35],['Off-peak shift',25]], on=[true,true,true];
+  APP.forEach(function(a,i){var l=document.createElement('label');l.style.cssText='display:flex;gap:8px;align-items:center;margin:0';l.innerHTML='<input type="checkbox" checked> <span><b>'+a[0]+'</b> <span class="text-xs text-muted">saves ~'+a[1]+' kWh/mo</span></span>';l.firstChild.addEventListener('change',function(){on[i]=this.checked;calc()});$('tkApp').appendChild(l);});
+  var R=function(n){return 'R'+Math.round(n).toLocaleString('en-ZA')};
+  function cost(kl){return Math.max(0,kl-9)*45*1.15}
+  function calc(){
+    var p=+$('tkPpl').value,l=+$('tkLpd').value||0,c=+$('tkCut').value;
+    $('tkPplV').textContent=p;$('tkCutV').textContent=c+'%';
+    var use=p*l*30/1000, saved=use*c/100, rain=(+$('tkRoof').value||0)*650*0.8/12/1000;
+    var rs=cost(use)-cost(Math.max(0,use-saved-rain));
+    var kwh=APP.reduce(function(a,x,i){return a+(on[i]?x[1]:0)},0);
+    $('tkL').textContent=Math.round(saved*1000).toLocaleString('en-ZA')+' L';
+    $('tkR').textContent=Math.round(rain*1000).toLocaleString('en-ZA')+' L';
+    $('tkE').textContent=kwh+' kWh';
+    $('tkT').textContent=R(rs+kwh*3.2);
+  }
+  ['tkPpl','tkLpd','tkCut','tkRoof'].forEach(function(i){$(i).addEventListener('input',calc)});
+  var SEA={Spring:['Spring (Sep – Nov)',['Green beans','Spinach & Swiss chard','Tomatoes','Butternut squash'],'Prepare raised beds with thick mulch before early Highveld summer thunderstorms start.'],
+    Summer:['Summer (Dec – Feb)',['Sweet potato','Maize','Okra','Cucumber'],'Water at dawn, use shade cloth on hot days and collect storm runoff in tanks.'],
+    Autumn:['Autumn (Mar – May)',['Beetroot','Carrots','Kale','Onions'],'Sow into mulched rows while soil is warm; water deeply but less often.'],
+    Winter:['Winter (Jun – Aug)',['Cabbage','Peas','Garlic','Spinach'],'Cover young plants on frost nights; water midday only when soil is dry.']};
+  var m=new Date().getMonth(),cur=m>=8&&m<=10?'Spring':m===11||m<=1?'Summer':m<=4?'Autumn':'Winter';
+  Object.keys(SEA).forEach(function(k){var b=document.createElement('button');b.type='button';b.className='tk-chip';b.textContent=T('tk.sea.'+k);b.dataset.k=k;$('tkSeasons').appendChild(b);});
+  function season(k){shown=k;[].forEach.call($('tkSeasons').children,function(c){c.classList.toggle('on',c.dataset.k===k)});var d=SEA[k];$('tkSeaT').textContent=T('tk.sea.'+k)+' '+d[0].replace(/^\w+\s*/,'');$('tkTip').textContent=d[2];$('tkCrops').innerHTML=d[1].map(function(c){return '<span class="tk-chip">🌱 '+c+'</span>'}).join('');}
+  $('tkSeasons').addEventListener('click',function(e){var b=e.target.closest('button');if(b)season(b.dataset.k)});
+  var shown=cur;
+  function hub(h,body){var d=document.createElement('div');d.className='tk-hub';var b=document.createElement('b');b.textContent=h;d.appendChild(b);var q=document.createElement('div');q.className='text-sm text-muted';q.textContent=body;d.appendChild(q);$('tkFood').appendChild(d);}
+  function food(){
+    var a=$('tkFoodArea').value.trim(), box=$('tkFood'); box.innerHTML='';
+    var found=window.__foodFor?window.__foodFor(a):[];
+    found.forEach(function(f){hub((f.kind==='offer'?'🤲 ':'🙋 ')+f.title,[f.area,f.quantity,f.desc].filter(Boolean).join(' · '));});
+    if(!found.length)hub('No food listings yet'+(a?' in '+a:''),'Nobody has listed food help here yet. Be the first from Neighbour Help — surplus produce, food parcels or a shared garden harvest.');
+    var w=a||'your community';
+    hub('Find food support near '+w,'Ask your ward councillor, street committee, local clinic or church about community gardens, soup kitchens and food parcels. Many spaza shops and gardens also barter fresh produce.');
+    hub('Start or join a garden in '+w,'Use the planting matrix above, share seeds and tools through Neighbour Help, and keep beds mulched so they need less water.');
+    var btn=document.createElement('button');btn.type='button';btn.className='btn btn-sm';btn.textContent='Offer or request food help';btn.onclick=function(){window.showView('help')};box.appendChild(btn);
+  }
+  $('tkFoodArea').addEventListener('input',food);
+  $('tkFoodArea').value=window.__homeArea?window.__homeArea():'';
+  window.__tkRender=function(){[].forEach.call($('tkStages').children,function(b){b.textContent=T('tk.stage')+' '+b.dataset.s});[].forEach.call($('tkSeasons').children,function(b){b.textContent=T('tk.sea.'+b.dataset.k)});plan();calc();season(shown);food();};
+  plan();calc();season(cur);food();
+})();
+
+/* Live map + offline advisor */
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  /* ---- Live map: Google Maps if a key is set, otherwise Leaflet with pin markers ---- */
+  var GOOGLE_MAPS_KEY='AIzaSyDns4gux8wCh5Z9_uSIRRCdgVuVSi228Vw'; // Maps JavaScript API key: must be restricted to your website domain and to the Maps JavaScript API in Google Cloud
+  var map=null,layer=null,loading=false,gmap=null,gmarks=[],gwin=null,provider='';
+  var PIN='M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0z';
+  function popupNode(a){var d=document.createElement('div');d.style.color='#111';var b=document.createElement('b');b.textContent=a.name;d.appendChild(b);
+    var t=document.createElement('div');t.textContent=a.open?(a.open+' open report'+(a.open===1?'':'s')+' · most severe: '+a.sevName):'No open reports';d.appendChild(t);
+    a.titles.forEach(function(x){var q=document.createElement('div');q.style.fontSize='12px';q.textContent='• '+x;d.appendChild(q);});return d;}
+  function fail(msg){loading=false;$('liveMapNote').textContent=msg;$('liveMapBtn').disabled=false;}
+  function loadScript(src,ok,bad){var sc=document.createElement('script');sc.src=src;sc.onload=ok;sc.onerror=bad;document.head.appendChild(sc);}
+  function note(){$('liveMapNote').textContent='Pins show open community reports (number = open reports, colour = most severe). Pins sit at approximate area centres, never exact addresses. Tap a pin for details.';}
+  function showMap(){$('liveMap').style.display='block';$('liveMapBtn').style.display='none';}
+  function startLeaflet(){
+    provider='leaflet';
+    var l=document.createElement('link');l.rel='stylesheet';l.href='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css';document.head.appendChild(l);
+    function go(){
+      $('liveMap').innerHTML='';showMap();
+      var voy=L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors © CARTO'});
+      var osm=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors'});
+      var sat=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:18,attribution:'Imagery © Esri'});
+      map=L.map('liveMap',{scrollWheelZoom:false,layers:[voy]}).setView([-25.70,28.15],10);
+      L.control.layers({'Map':voy,'Streets':osm,'Satellite':sat}).addTo(map);
+      layer=L.layerGroup().addTo(map);draw();note();
+    }
+    if(window.L)go();else loadScript('https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js',go,function(){fail('Could not load the map. Check your connection and try again.');});
+  }
+  function startGoogle(){
+    provider='google';window.__gmInit=function(){
+      $('liveMap').innerHTML='';showMap();
+      gmap=new google.maps.Map($('liveMap'),{center:{lat:-25.70,lng:28.15},zoom:10,mapTypeControl:true,streetViewControl:false,fullscreenControl:true,gestureHandling:'cooperative'});
+      gwin=new google.maps.InfoWindow();draw();note();
+    };
+    window.gm_authFailure=function(){$('liveMap').style.display='none';startLeaflet();$('liveMapNote').textContent='Google Maps key was rejected, so the OpenStreetMap version is shown instead.';};
+    loadScript('https://maps.googleapis.com/maps/api/js?key='+encodeURIComponent(GOOGLE_MAPS_KEY)+'&callback=__gmInit&loading=async',function(){},function(){fail('Could not load Google Maps. Check your connection and try again.');});
+  }
+  function pinIcon(a){return L.divIcon({className:'',iconSize:[30,42],iconAnchor:[15,42],popupAnchor:[0,-38],
+    html:'<svg width="30" height="42" viewBox="-1 -1 26 38"><path d="'+PIN+'" fill="'+a.color+'" stroke="#fff" stroke-width="1.5"/><text x="12" y="16" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" font-family="sans-serif">'+a.open+'</text></svg>'});}
+  function draw(){
+    if(!window.__reportsByArea)return;var data=window.__reportsByArea(),pts=[];
+    var rp=window.__reportPins?window.__reportPins():[];data=data.concat(rp);
+    if(provider==='leaflet'&&map){
+      layer.clearLayers();
+      data.forEach(function(a){
+        var m=a.open?L.marker([a.lat,a.lon],{icon:pinIcon(a),title:a.name}):L.circleMarker([a.lat,a.lon],{radius:5,color:a.color,fillColor:a.color,fillOpacity:.4,weight:2});
+        m.bindPopup(popupNode(a));m.addTo(layer);if(a.open)pts.push([a.lat,a.lon]);});
+      if(pts.length>1&&!window.__mapFitted){map.fitBounds(pts,{padding:[40,40],maxZoom:11});window.__mapFitted=true;}
+    }else if(provider==='google'&&gmap){
+      gmarks.forEach(function(m){m.setMap(null)});gmarks=[];var bnd=new google.maps.LatLngBounds();
+      data.forEach(function(a){
+        var icon=a.open?{path:PIN,fillColor:a.color,fillOpacity:1,strokeColor:'#fff',strokeWeight:1.5,scale:1.1,anchor:new google.maps.Point(12,36),labelOrigin:new google.maps.Point(12,12)}:{path:google.maps.SymbolPath.CIRCLE,fillColor:a.color,fillOpacity:.4,strokeColor:a.color,strokeWeight:2,scale:5};
+        var m=new google.maps.Marker({position:{lat:a.lat,lng:a.lon},map:gmap,title:a.name,icon:icon,label:a.open?{text:String(a.open),color:'#fff',fontWeight:'700',fontSize:'12px'}:null});
+        m.addListener('click',function(){gwin.setContent(popupNode(a));gwin.open(gmap,m);});gmarks.push(m);
+        if(a.open){bnd.extend({lat:a.lat,lng:a.lon});pts.push(1);}});
+      if(pts.length>1&&!window.__mapFitted){gmap.fitBounds(bnd);window.__mapFitted=true;}
+    }
+  }
+  window.__mapRefresh=draw;
+  $('liveMapBtn').addEventListener('click',function(){
+    if(loading)return;loading=true;this.disabled=true;$('liveMapNote').textContent='Loading map…';
+    if(GOOGLE_MAPS_KEY)startGoogle();else startLeaflet();
+  });
+
+
+  /* ---- Pin picker for the report form (rounded to ~110 m) ---- */
+  var pm=null,pk=null;
+  function ensureL(cb){
+    if(window.L){cb();return;}
+    var l=document.createElement('link');l.rel='stylesheet';l.href='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css';document.head.appendChild(l);
+    loadScript('https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js',cb,function(){$('pinStatus').textContent='Could not load the map. Check your connection.';});
+  }
+  function setPin(lat,lng){
+    lat=Math.round(lat*1000)/1000;lng=Math.round(lng*1000)/1000;window.__pin={lat:lat,lng:lng};
+    $('pinStatus').textContent='Pin set near '+lat.toFixed(3)+', '+lng.toFixed(3)+' (rounded to about a street block).';$('pinClear').style.display='';
+  }
+  window.__pinClear=function(){window.__pin=null;if(pk&&pm){pm.removeLayer(pk);}pk=null;$('pinClear').style.display='none';$('pinStatus').textContent='Pin the problem (leak, outage, road) — not your home. The pin is rounded to about a street block (~110 m) before it is saved.';};
+  $('pinClear').addEventListener('click',window.__pinClear);
+  $('pinOpen').addEventListener('click',function(){
+    var box=$('pinMap');
+    if(box.style.display==='block'){box.style.display='none';return;}
+    box.style.display='block';
+    ensureL(function(){
+      if(!pm){
+        var c=[-25.70,28.15],z=10,zone=($('reportZone').value||'').toLowerCase().trim();
+        if(zone&&window.__reportsByArea){var hit=window.__reportsByArea().filter(function(a){return a.name.toLowerCase().indexOf(zone)>-1||zone.indexOf(a.name.toLowerCase())>-1})[0];if(hit){c=[hit.lat,hit.lon];z=13;}}
+        pm=L.map('pinMap').setView(c,z);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{maxZoom:19,attribution:'© OpenStreetMap contributors © CARTO'}).addTo(pm);
+        pm.on('click',function(e){if(pk)pk.setLatLng(e.latlng);else{pk=L.marker(e.latlng,{draggable:true}).addTo(pm);pk.on('dragend',function(){var q=pk.getLatLng();setPin(q.lat,q.lng);});}setPin(e.latlng.lat,e.latlng.lng);});
+      }
+      setTimeout(function(){pm.invalidateSize();},50);
+    });
+  });
+
+  /* ---- Offline advisor ---- */
+  var log=$('advLog');
+  function say(txt,who){var d=document.createElement('div');d.className='adv-m '+(who==='u'?'adv-u':'adv-b');d.textContent=txt;log.appendChild(d);d.scrollIntoView({block:'nearest'});}
+  var num=function(x){return parseFloat(String(x).replace(/[,\s]/g,''))};
+  function fmtH(h){var m=Math.round(h*60);return Math.floor(m/60)+' h '+String(m%60).padStart(2,'0')+' min';}
+  var DEV=[['wifi',15,'Wi-Fi router'],['router',15,'Wi-Fi router'],['tv',80,'TV'],['laptop',50,'laptop'],['fridge',70,'fridge (average)'],['light',10,'light'],['phone',10,'phone charger'],['fan',45,'fan']];
+  function battery(q){
+    var ah=/(\d+(?:\.\d+)?)\s*ah/i.exec(q); ah=ah?+ah[1]:100;
+    var w=/(\d+)\s*w\b/i.exec(q),load=0,names=[];
+    if(w){load=+w[1];names=[load+' W']}else{var lq=q.toLowerCase().replace(/-/g,'');DEV.forEach(function(d){if(lq.indexOf(d[0])>-1&&names.indexOf(d[2])<0){load+=d[1];names.push(d[2]);}});}
+    if(!load){load=100;names=['assumed 100 W']}
+    var hrs=ah*12*0.8/load, st=/stage\s*(\d)/i.exec(q), out='A '+ah+' Ah 12 V battery running '+names.join(' + ')+' (~'+load+' W) lasts roughly '+fmtH(hrs)+' (80% usable capacity, inverter losses ignored).';
+    if(st){var d=+st[1]>=5?4:2.5;out+='\nA typical Stage '+st[1]+' outage is about '+d+' h, so this is '+(hrs>=d?'enough.':'not enough — add battery capacity or cut the load.');}
+    return out+'\nTip: use the battery calculator above to try other loads.';
+  }
+  function tank(q){
+    var m=/(\d[\d,\s]*)\s*(?:l\b|litre|liter)/i.exec(q),size=m?num(m[1]):2500; if(!(size>0))size=2500;
+    var roof=60,yr=roof*650*0.8, used=Math.min(yr,size*6), rand=used/1000*45*1.15;
+    return 'A '+size.toLocaleString('en-ZA')+' L tank on a '+roof+' m² roof catches up to ~'+Math.round(yr).toLocaleString('en-ZA')+' L a year in Pretoria/Highveld rain (~650 mm, 80% capture). If it refills about 6 times a year you use ~'+Math.round(used).toLocaleString('en-ZA')+' L, worth roughly R'+Math.round(rand).toLocaleString('en-ZA')+' a year at about R45/kL + VAT (estimate — check the current tariff). Water from roofs is not drinkable unless treated.';
+  }
+  var MON=['Summer','Summer','Autumn','Autumn','Autumn','Winter','Winter','Winter','Spring','Spring','Spring','Summer'];
+  var CROP={Spring:'green beans, spinach, Swiss chard, tomatoes and butternut',Summer:'sweet potato, maize, okra and cucumber',Autumn:'beetroot, carrots, kale and onions',Winter:'cabbage, peas, garlic and spinach'};
+  function plant(){var se=MON[new Date().getMonth()];return 'This is '+se+' on the Highveld. Good choices: '+CROP[se]+'. Mulch beds thickly, water early morning or evening and group thirsty crops together. See the planting matrix above for each season.';}
+  var RULES=[
+   [/burst|leak|pipe|water\s*(is\s*)?(gushing|flowing)/i,function(){return '1. Stay clear of electrics near the water and switch off power at the board if it is safe.\n2. Close your stopcock/main valve if the leak is on your property.\n3. If the pipe is in the street or on municipal land, report it with the street and suburb (never your full address) to your municipality\'s water line and on this site\'s Report form.\n4. Take a photo from a safe distance and note the time. If water is near a road or live cables, keep people away.';}],
+   [/battery|ah\b|inverter|run .*(wifi|wi-fi|tv)|backup/i,battery],
+   [/tank|jojo|rain(water)?\s*(harvest|tank)?|save.*rand|rand.*save/i,tank],
+   [/plant|grow|veg|garden|crop|seed/i,plant],
+   [/load.?shed|stage\s*\d|eskom|outage|power cut/i,function(q){var st=/stage\s*(\d)/i.exec(q);return (st?'Stage '+st[1]+': ':'')+'Charge phones and power banks 2 h before, cook and fill flasks 1 h before, unplug sensitive appliances and keep the fridge closed. After power returns wait about 15 minutes before reconnecting appliances one by one. Use the load-shedding planner above for a timeline.';}],
+   [/no water|water\s*out|dry tap|shedding.*water|tanker/i,function(){return 'Store 10–20 L per person for emergencies in clean sealed containers. Check Neighbour Help for neighbours offering water, report the outage with your suburb, and use stored water for drinking and cooking first. Boil or treat water if it looks cloudy after it returns.';}],
+   [/escalat|complain|municipal|council|report/i,function(){return 'Report faults to your municipality first and keep the reference number. If nothing happens, follow up using the same reference with the date and suburb, then post on this site\'s Report form so neighbours can confirm. Community reports are not official confirmations.';}],
+   [/save|saving|electric|geyser|led|off.?peak/i,function(){return 'Quick electricity savings: a geyser timer (~120 kWh/month), LED lighting (~35 kWh/month) and moving appliances off-peak (~25 kWh/month). The savings calculator above converts these to rand.';}]
+  ];
+  function answer(q){
+    for(var i=0;i<RULES.length;i++){if(RULES[i][0].test(q))return RULES[i][1](q);}
+    return 'I can help with: burst pipes and leaks, how long a battery will run your Wi-Fi and TV, tank and rainwater savings, load-shedding preparation, no-water days, escalating to the municipality, and what to plant this season. Try one of the questions above.';
+  }
+  function ask(q){q=(q||'').trim();if(!q)return;say(q,'u');say(answer(q),'b');$('advIn').value='';}
+  ['I found a burst pipe on my street. What do I do?','How long will a 100Ah battery run Wi-Fi & TV on Stage 4?','How much Rand can I save with a 2,500L JoJo tank?','What vegetables should I plant this season in Gauteng?'].forEach(function(q){var b=document.createElement('button');b.type='button';b.className='tk-chip';b.textContent=q;b.onclick=function(){ask(q)};$('advChips').appendChild(b);});
+  $('advGo').addEventListener('click',function(){ask($('advIn').value)});
+  $('advIn').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();ask(this.value)}});
+  say('Hi! I\'m the Mati-Metsi offline advisor. Ask me about leaks, load-shedding batteries, rainwater savings or what to grow.','b');
+})();
 </script>
 </body>
 </html>
