@@ -7,6 +7,15 @@
 <meta name="theme-color" content="#08161b">
 <title>Mati-Metsi — Community Resilience &amp; Essential Services</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%F0%9F%92%A7%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta property="og:title" content="Mati-Metsi — Township Resilience OS">
+<meta property="og:description" content="Predict water, energy, and transport disruptions before they happen. Built for South African townships.">
+<meta property="og:image" content="https://ofentse66759.github.io/Mati-Metsi/icon-512.png">
+<meta property="og:url" content="https://ofentse66759.github.io/Mati-Metsi/">
+<meta name="twitter:card" content="summary_large_image">
 <style>
 /* ===== THEME TOKENS ===== */
 :root, [data-theme="dark"] {
@@ -626,6 +635,7 @@ body.menu-locked { overflow: hidden; }
     <div class="flex gap-2 flex-wrap">
       <a href="#predict" class="btn" data-i18n="hero.cta1">See what may happen next</a>
       <a href="#report-form" class="btn btn-outline" data-i18n="hero.cta2">Report an issue</a>
+      <button id="installPwaBtn" class="btn btn-outline hidden" style="margin-top: 10px;">📲 Install App</button>
     </div>
   </div>
   <div class="service-orbit" aria-label="Services covered">
@@ -4683,7 +4693,12 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     populateAreaList();
     populateHelpSelects();
     populateTypes('water');
-    if (!lsRaw(K.demo)) seedDemo();
+    if (!lsRaw(K.demo)) {
+      seedDemo();
+      setTimeout(() => {
+        if (window.matiToast) window.matiToast('Demo data loaded. You can turn it off in the settings below.', 'success');
+      }, 1500);
+    }
     ensureDemoPartner();
     pruneReports();
     getReports();
@@ -4720,6 +4735,24 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
 
   console.log('%c💧 Mati-Metsi v8.3 loaded — 11 languages fully functional', 'color:#0b6e82;font-weight:bold');
   console.log('No account? Open the page and click "Login" → "Create one" to register. Demo partner: ' + DEMO_PARTNER.email + ' / ' + DEMO_PARTNER.password);
+  
+  // Handle PWA Install Prompt
+  let deferredPrompt;
+  const installBtn = document.getElementById('installPwaBtn');
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (installBtn) installBtn.classList.remove('hidden');
+  });
+  if (installBtn) {
+    installBtn.addEventListener('click', async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') installBtn.classList.add('hidden');
+      deferredPrompt = null;
+    });
+  }
 })();
 
 try {
@@ -5329,11 +5362,11 @@ try {
     if(e.target.closest&&e.target.closest('[data-nav="partner"]'))setTimeout(renderPartner,50);
   });
 
-  /* ---- 6. Push + WhatsApp/SMS fallback (stubs; needs mm-sw.js beside this file) ---- */
+  /* ---- 6. Push + WhatsApp/SMS fallback (stubs; needs sw.js beside this file) ---- */
   var SW="self.addEventListener('push',function(e){var d=e.data?e.data.json():{title:'Mati-Metsi',body:'New alert in your area'};e.waitUntil(self.registration.showNotification(d.title,{body:d.body,icon:d.icon}));});self.addEventListener('notificationclick',function(e){e.notification.close();e.waitUntil(clients.openWindow('./#alerts'));});";
   // The service worker is not shipped with this build. Download it from the Impact page and place it beside this HTML file to enable background push.
   // (A missing file may still show one 404 line in the console; browsers do not allow hiding that.)
-  if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))fetch('mm-sw.js',{method:'HEAD'}).then(function(r){return r.ok?navigator.serviceWorker.register('mm-sw.js'):null;}).catch(function(){});
+  if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))fetch('sw.js',{method:'HEAD'}).then(function(r){return r.ok?navigator.serviceWorker.register('sw.js'):null;}).catch(function(){});
   function notifyNew(n){
     if(!('Notification' in window)||Notification.permission!=='granted')return;
     var t='Mati-Metsi: '+n+' new community report'+(n>1?'s':'');
@@ -5352,7 +5385,7 @@ try {
   }
   function renderImpact(){
     var s=stats();$('mmImpBody').innerHTML='<div class="mm-kpis">'+[['Reports',s.reportsSubmitted],['Confirmations',s.confirmations],['Resolved',s.resolutions],['Listings done',s.listingsCompleted],['Readiness Δ',s.readinessScoreDelta==null?'—':(s.readinessScoreDelta>0?'+':'')+s.readinessScoreDelta],['Savings (R)',s.savingsRand==null?'—':s.savingsRand]].map(function(k){return '<div class="card mm-kpi"><b>'+k[1]+'</b>'+k[0]+'</div>';}).join('')+'</div>'+
-      '<div class="mm-row"><button class="btn btn-sm" id="mmExp">Export JSON for pilot report</button><button class="btn btn-outline btn-sm" id="mmCsv">Export alerts CSV</button><button class="btn btn-outline btn-sm" id="mmPush">Enable push alerts</button><button class="btn btn-outline btn-sm" id="mmSwDl" title="Save mm-sw.js next to this HTML file to enable background push">Download mm-sw.js</button></div>';
+      '<div class="mm-row"><button class="btn btn-sm" id="mmExp">Export JSON for pilot report</button><button class="btn btn-outline btn-sm" id="mmCsv">Export alerts CSV</button><button class="btn btn-outline btn-sm" id="mmPush">Enable push alerts</button><button class="btn btn-outline btn-sm" id="mmSwDl" title="Save sw.js next to this HTML file to enable background push">Download sw.js</button></div>';
   }
   function dl(name,txt,type){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:type||'application/json'}));a.download=name;a.click();}
   document.addEventListener('click',function(e){
@@ -5363,7 +5396,7 @@ try {
       var rows=get('mm_alerts',[]).map(function(a){return [a.id||a.key||'',a.createdAt,a.level,a.category,a.area,a.title,a.message,!!a.read,!!a.demo].map(q).join(',');});
       dl('mati-metsi-alerts.csv','\ufeff'+cols.join(',')+'\r\n'+rows.join('\r\n'),'text/csv;charset=utf-8');
     }
-    if(e.target.id==='mmSwDl')dl('mm-sw.js',SW,'text/javascript');
+    if(e.target.id==='mmSwDl')dl('sw.js',SW,'text/javascript');
     if(e.target.id==='mmPush'){if(!('Notification' in window))return toast('Notifications are not supported here.');Notification.requestPermission().then(function(p){toast(p==='granted'?'Push alerts enabled.':'Permission not granted.');});}
   });
   var _sv=window.showView;
