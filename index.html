@@ -5077,44 +5077,7 @@ try {
     return cache[q].p;
   }
 
-    window.fetch = function (input, init) {
-    // ===== OFFLINE CHECK: Stop fetch if there is no internet =====
-    if (navigator.onLine === false) {
-      return Promise.reject(new Error('Offline: Request suppressed to avoid console errors.'));
-    }
-    // ==============================================================
-
-    var url = typeof input === 'string' ? input : (input && input.url) || '';
-    try {
-      if (url.indexOf('geocoding-api.open-meteo.com') > -1) {
-      if (url.indexOf('api.open-meteo.com/v1/forecast') > -1 && coords(url)) {
-        return forecast(coords(url), init).then(function (w) {
-          var c = w.current, days = w.forecast.forecastday, hrs = [];
-          days.forEach(function (d) { d.hour.forEach(function (h) { hrs.push(h); }); });
-          return json({
-            current: { time: iso(c.last_updated), temperature_2m: c.temp_c, relative_humidity_2m: c.humidity, apparent_temperature: c.feelslike_c, precipitation: c.precip_mm, weather_code: wmo(c.condition.code), wind_speed_10m: c.wind_kph },
-            hourly: { time: hrs.map(function (h) { return iso(h.time); }), precipitation: hrs.map(function (h) { return h.precip_mm; }) },
-            daily: {
-              time: days.map(function (d) { return d.date; }),
-              weather_code: days.map(function (d) { return wmo(d.day.condition.code); }),
-              temperature_2m_max: days.map(function (d) { return d.day.maxtemp_c; }),
-              temperature_2m_min: days.map(function (d) { return d.day.mintemp_c; }),
-              precipitation_sum: days.map(function (d) { return d.day.totalprecip_mm; }),
-              precipitation_probability_max: days.map(function (d) { return d.day.daily_chance_of_rain; }),
-              wind_speed_10m_max: days.map(function (d) { return d.day.maxwind_kph; })
-            }
-          });
-        }).catch(function () { delete cache[coords(url)]; return origFetch(input, init); });
-      }
-      if (url.indexOf('air-quality-api.open-meteo.com') > -1 && coords(url)) {
-        return forecast(coords(url), init).then(function (w) {
-          var pm = w.current.air_quality && w.current.air_quality.pm2_5;
-          return json({ current: { european_aqi: eaqi(pm), pm2_5: pm } });
-        }).catch(function () { return origFetch(input, init); });
-      }
-    } catch (e) {}
-    return origFetch(input, init);
-  };
+   
 
   // WeatherAPI terms ask for attribution
   function credit() {
