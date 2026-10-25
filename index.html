@@ -94,7 +94,7 @@ header.top {
   border-radius: 10px; display: grid; place-items: center; font-size: 1.125rem;
   box-shadow: 0 0 0 3px rgba(34,166,191,0.15);
 }
-.brand h1 { font-size: 1rem; color: var(--brand); line-height: 1.1; }
+.brand-title { display: block; font-weight: 700; font-size: 1rem; color: var(--brand); line-height: 1.1; }
 .brand small { font-size: 0.5625rem; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; }
 header.top nav.desktop { display: flex; gap: 2px; align-items: center; }
 header.top nav.desktop button {
@@ -514,7 +514,7 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
   <button class="brand" onclick="goHome()" aria-label="Mati-Metsi home">
     <span class="brand-mark" aria-hidden="true">💧</span>
     <span>
-      <h1>Mati-Metsi</h1>
+      <span class="brand-title">Mati-Metsi</span>
       <small data-i18n="brand.sub">Community Resilience</small>
     </span>
   </button>
@@ -563,7 +563,7 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
   <div class="mobile-nav-head">
     <button class="brand" onclick="closeMobileMenu(); goHome()">
       <span class="brand-mark" aria-hidden="true">💧</span>
-      <h1>Mati-Metsi</h1>
+      <span class="brand-title">Mati-Metsi</span>
     </button>
     <button class="icon-btn" onclick="closeMobileMenu()" aria-label="Close menu">✕</button>
   </div>
@@ -882,7 +882,7 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
     <h3>What we collect</h3>
     <ul>
       <li><strong>Your name and email</strong> — only when you register or sign in. Your name is shown next to your reports and help listings.</li>
-      <li><strong>Approximate location</strong> — the city/suburb you type for weather, your home area and the suburb on reports and listings. The weather place name is sent to Open-Meteo to fetch the forecast.</li>
+      <li><strong>Approximate location</strong> — the city/suburb you type for weather, your home area and the suburb on reports and listings. Reports and listings you submit are also saved to our Supabase database so neighbours can see them. The weather place name is sent to the weather provider (WeatherAPI.com, with Open-Meteo as a fallback) to fetch the forecast.</li>
       <li><strong>Reports, photos and help listings you submit</strong> — content you voluntarily provide. Photos are resized and stored on this device.</li>
       <li><strong>Optional contact details on help listings</strong> — a phone or WhatsApp number only if you choose to add one; it is shown to signed-in members only.</li>
       <li><strong>Preferences</strong> — alert subscriptions, thresholds, resilience-plan progress, language and display settings.</li>
@@ -901,7 +901,7 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
       <li>HTTPS/TLS on all connections when hosted on HTTPS.</li>
       <li>Passwords are hashed with SHA-256 in your browser — never stored in plain text.</li>
       <li>No third-party trackers (no Google Analytics, no ad networks).</li>
-      <li>Your session, reports, listings, alerts and plan live in <em>your browser's localStorage</em> on this device — they are not sent to our servers. Other people only see them if they use the same device. Report photos are stored separately (mm_photos) so a future backend sync can never lose them. Resolved reports older than 12 months are deleted automatically when the app opens.</li>
+      <li>Your session, alerts and plan live in <em>your browser's localStorage</em> on this device. Reports and help listings you submit are also saved to our Supabase database (with Row Level Security) so other residents can see them; you can delete them from your profile. Report photos are stored separately (mm_photos) so a future backend sync can never lose them. Resolved reports older than 12 months are deleted automatically when the app opens.</li>
       <li>Browser notifications are optional and only shown if you grant permission.</li>
     </ul>
     <h3>Your rights (POPIA Chapter 5)</h3>
@@ -1482,7 +1482,7 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
       <li><strong>Session token</strong> — a browser marker that remembers you're signed in</li>
     </ul>
     <h3>How we store it</h3>
-    <p>Everything is stored in <strong>your browser's localStorage</strong> on this device. Nothing you enter is sent to a Mati-Metsi server. The only external request is to Open-Meteo, which receives the place name you search for and the matching coordinates of that town — not your GPS position. You can export or delete everything from your profile page at any time.</p>
+    <p>Your session, preferences and plan are stored in <strong>your browser's localStorage</strong>. Reports and help listings you submit are also saved to our Supabase database so neighbours can see them. Weather lookups go to WeatherAPI.com / Open-Meteo, which receive the place name you search for and the matching coordinates of that town — not your GPS position. You can export or delete everything from your profile page at any time.</p>
     <h3>Your rights</h3>
     <ol>
       <li><strong>Access</strong> — download a JSON copy of all your data from your profile</li>
@@ -2644,6 +2644,13 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
       'This removes your name, email, reports, help listings, alert subscriptions, plan progress and drafts from this device. This cannot be undone.',
       'Delete everything', true);
     if (!ok) return;
+    try {   // also remove what this device synced to Supabase
+      var sbc = await getSupabase(), sid = lsGet('mm_sb_uid', null);
+      if (sid) {
+        await sbc.from('reports').delete().eq('author_id', sid);
+        await sbc.from('help_listings').delete().eq('author_id', sid);
+      }
+    } catch (e) {}
     var user = getUser();
     if (user) {
       lsSet(K.accounts, lsGet(K.accounts, []).filter(function (a) { return a.email !== user.email; }));
@@ -2821,6 +2828,8 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
   }
   function loadPhoto(id) { return lsGet('mm_photos', {})[id] || null; }
   function saveReports(list) {
+    var prevReports = {};
+    lsGet(K.reports, []).forEach(function (r) { if (r && r.id) prevReports[r.id] = JSON.stringify(r); });
     // photos are stored separately under mm_photos so a future backend sync can never lose them
     var ph = lsGet('mm_photos', {}), ids = {}, dirty = false;
     var out = list.map(function (r) {
@@ -2830,6 +2839,9 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     });
     Object.keys(ph).forEach(function (k) { if (!ids[k]) { delete ph[k]; dirty = true; } });   // deleted reports take their photo with them
     if (dirty) lsSet('mm_photos', ph);
+    out.forEach(function (r) {   // sync only my own reports that changed since the last save
+      if (r && r.id && !r.demo && isMine(r) && prevReports[r.id] !== JSON.stringify(r)) syncReportToSupabase(r);
+    });
     return lsSet(K.reports, out);
   }
   // POPIA retention: resolved reports older than 365 days are deleted (photos are part of the report, so they go too).
@@ -3782,7 +3794,7 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
       var best = null;
       Object.keys(byKey).forEach(function (k) {
         var g = byKey[k];
-        if (g.length >= 3 && (!best || g.items.length > best.items.length)) best = { key: k, items: g };
+        if (g.length >= 3 && (!best || g.length > best.items.length)) best = { key: k, items: g };
       });
       if (best) {
         var parts = best.key.split(':');
@@ -4190,7 +4202,14 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
   var CONTACT_LABEL = { inapp: '💬 In-app message', phone: '📞 Phone', whatsapp: '🟢 WhatsApp' };
 
   function getListings() { return lsGet(K.help, []); }
-  function saveListings(list) { return lsSet(K.help, list); }
+  function saveListings(list) {
+    var prevListings = {};
+    lsGet(K.help, []).forEach(function (l) { if (l && l.id) prevListings[l.id] = JSON.stringify(l); });
+    list.forEach(function (l) {   // sync only my own listings that changed
+      if (l && l.id && !l.demo && (isMyListing(l) || l.claimedByUid === lsGet('mm_sb_uid', null)) && prevListings[l.id] !== JSON.stringify(l)) syncListingToSupabase(l);
+    });
+    return lsSet(K.help, list);
+  }
   function listingStatus(l) { return l.status === 'available' && new Date(l.until).getTime() < Date.now() ? 'expired' : l.status; }
   function isMyListing(l) { var u = getUser(); return !!(u && l.authorEmail === u.email); }
 
@@ -4257,7 +4276,7 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
   function claimListing(id) {
     if (!requireLogin('claim listings')) return;
     var u = getUser();
-    updateListing(id, function (l) { l.status = 'claimed'; l.claimedBy = u.email; l.claimedByName = u.name; l.claimedAt = nowIso(); });
+    updateListing(id, function (l) { l.status = 'claimed'; l.claimedBy = u.email; l.claimedByUid = lsGet('mm_sb_uid', null); l.claimedByName = u.name; l.claimedAt = nowIso(); });
     refreshHelpViews();
     toast('Marked as claimed. Remember to meet in a public place.', 'success');
   }
@@ -4830,6 +4849,85 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     if (e.key && e.key.indexOf('mm_') === 0 && e.key !== K.wx) { updateAuthNavLabel(); renderAll(); }
   });
 
+  // ===== SUPABASE INTEGRATION =====
+  var SUPABASE_URL = 'https://imopicicoekcsgbqugai.supabase.co';
+  var SUPABASE_KEY = 'sb_publishable_YsFLdoEplA46N34M9LThVA_z93_VSYT'; 
+  var _sb = null;
+
+  async function getSupabase() {
+    if (_sb) return _sb;
+    if (!window.supabase) {
+      await new Promise(function (resolve, reject) {
+        var s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+        s.onload = resolve;
+        s.onerror = reject;
+        document.head.appendChild(s);
+      });
+    }
+    _sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+      auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false }
+    });
+    try {
+      var r = await _sb.auth.getSession();
+      if (!r.data.session) {
+        var a = await _sb.auth.signInAnonymously();
+        if (a.error) console.warn('[Mati-Metsi] Anon sign-in failed:', a.error.message);
+      }
+      var u = await _sb.auth.getUser();
+      if (u.data.user) lsSet('mm_sb_uid', u.data.user.id);
+    } catch (e) {
+      console.warn('[Mati-Metsi] Supabase unreachable:', e.message);
+    }
+    return _sb;
+  }
+
+  async function syncReportToSupabase(report) {
+    try {
+      var client = await getSupabase();
+      var ur = await client.auth.getUser();
+      if (!ur.data.user) return false;
+      if (!report.author_id) report.author_id = ur.data.user.id;
+      var payload = {
+        id: report.id, author_id: report.author_id, author_name: report.author,
+        category: report.category, type: report.type, area: report.area,
+        severity: report.severity, description: report.description,
+        status: report.status, source: report.source || 'community',
+        org: report.org || null, votes: report.votes || [],
+        history: report.history || [], responses: report.responses || [],
+        demo: !!report.demo, lat: report.lat || null, lng: report.lng || null,
+        photo_path: report.photo_path || null, created_at: report.createdAt
+      };
+      var res = await client.from('reports').upsert(payload, { onConflict: 'id' });
+      if (res.error) { console.warn('[Mati-Metsi] Sync failed:', res.error.message); return false; }
+      return true;
+    } catch (e) { return false; }
+  }
+  
+  async function syncListingToSupabase(listing) {
+    try {
+      var client = await getSupabase();
+      var ur = await client.auth.getUser();
+      if (!ur.data.user) return false;
+      if (!listing.author_id) listing.author_id = ur.data.user.id;
+      var payload = {
+        id: listing.id, author_id: listing.author_id, author_name: listing.author,
+        kind: listing.kind, category: listing.category, title: listing.title,
+        description: listing.description || null, area: listing.area,
+        quantity: listing.quantity || null, until_at: listing.until || null,
+        contact: listing.contact, contact_value: listing.contactValue || null,
+        status: listing.status, claimed_by: listing.claimedByUid || null,
+        messages: listing.messages || [], demo: !!listing.demo,
+        created_at: listing.createdAt
+      };
+      var res = await client.from('help_listings').upsert(payload, { onConflict: 'id' });
+      if (res.error) { console.warn('[Mati-Metsi] Sync failed:', res.error.message); return false; }
+      return true;
+    } catch (e) { return false; }
+  }
+  window.__mmSyncReport = syncReportToSupabase;
+  // ===== END SUPABASE =====
+
   function boot() {
     applyDisplay();
     initI18n();
@@ -5255,6 +5353,7 @@ try {
       list.unshift({ id: 'r-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 7), category: x.category, type: x.type, area: x.area, severity: x.severity, description: x.description, photo: null, createdAt: x.queuedAt, status: st, votes: [], author: x.name, authorEmail: u.email, source: partner ? 'partner' : 'community', org: partner ? (u.org || '') : '', responses: [], history: [{ status: st, at: x.queuedAt, by: u.name + (partner && u.org ? ' (' + u.org + ')' : '') }], demo: false });
     });
     if (put(REP, list)) {
+      list.slice(0, send.length).forEach(function (r) { if (window.__mmSyncReport) window.__mmSyncReport(r); });
       put(OUT, q.filter(function (x) { return x.authorEmail !== u.email; }));
       try { window.dispatchEvent(new StorageEvent('storage', { key: REP })); } catch (e) {}
       toast(send.length + (send.length === 1 ? ' queued report was' : ' queued reports were') + ' sent.', 'success');
