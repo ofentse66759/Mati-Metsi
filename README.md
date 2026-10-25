@@ -112,8 +112,8 @@ The app works without a backend (everything stays in `localStorage`). To enable 
 Set the values where the app configures Supabase (search for `SUPABASE_URL` in the source):
 
 ```js
-const SUPABASE_URL = 'https://YOUR-PROJECT-ref.supabase.co';
-const SUPABASE_ANON_KEY = 'YOUR-ANON-PUBLIC-KEY';
+const SUPABASE_URL = 'https://imopicicoekcsgbqugai.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_YsFLdoEplA46N34M9LThVA_z93_VSYT';
 ```
 
 > **About keys:** the `anon` key is designed to be public in front-end code. Your data is protected by **Row Level Security (RLS)**, not by hiding this key. **Never** put the `service_role` key in this repository or in any front-end file.
