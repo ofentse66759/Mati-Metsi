@@ -27,15 +27,16 @@ Mati-Metsi is a single-file, offline-first Progressive Web App that runs in the 
 
 - **On the device (`localStorage`):** accounts, session, reports, help listings, alert subscriptions, resilience-plan progress, drafts, preferences and the offline outbox.
 - **Supabase (PostgreSQL, Auth, Storage):** reports and help listings you submit are also synced to Supabase so neighbours can see them across devices. Access is controlled by Row Level Security. Deleting your account also removes what your device synced.
-- **Service Worker (`sw.js`):** caches the app shell for offline use.
-- **External services:** WeatherAPI.com (weather and geocoding, with an Open-Meteo fallback) and Open-Meteo (air quality). They receive only the suburb or place name a user types, never GPS coordinates or personal identifiers.
+- **Service Worker (`sw.js`):** caches the app shell for offline use. It only touches same-origin files; weather, Supabase and map requests always go to the network.
+- **External services:** WeatherAPI.com (weather and geocoding, with an Open-Meteo fallback) and Open-Meteo (air quality). They receive only the suburb or place name a user types (and the matching town coordinates), never the user's GPS position or personal identifiers.
+- **Optional live map:** the street map loads only when a user taps "Load live map". The map provider (Google Maps, or OpenStreetMap/CARTO/Esri) can then see the user's IP address. Nothing the user reports is sent to them.
 - **Never used:** `navigator.geolocation`, third-party analytics, advertising or session-replay scripts.
 
 **Trust boundaries.** The device is the trust boundary for local data: `localStorage` is not encrypted at rest. For synced data, the trust boundary is Supabase Row Level Security. Client-side password hashing is a demo-grade control, not a production authentication scheme.
 
 ## 2. Security goals
 
-- **Confidentiality:** no GPS, no home address, no ID number. Only the minimum data (name, email, suburb, optional phone on a listing) is collected.
+- **Confidentiality:** no GPS, no home address, no ID number. Only the minimum data is collected: name, surname, email, cell number (used to sign in, never shown to other residents), suburb, an optional phone number on a listing, and an optional map pin rounded to about 110 m.
 - **Integrity:** a report cannot be marked Confirmed or In Progress by a single normal user, and fake reports alone cannot reach the high-severity alert band.
 - **Availability:** the app runs offline after first load, and a weather outage falls back to the last saved forecast.
 - **POPIA compliance:** data minimisation, no trackers, one-tap export and one-tap deletion.
@@ -133,7 +134,7 @@ Testing so far has been **manual**, not an automated pipeline.
 
 ## 9. POPIA position
 
-- Minimum data: name, email, suburb and an optional phone number on a help listing. No ID number, date of birth or street address.
+- Minimum data: name, surname, email, cell number (sign-in only), suburb, an optional phone number on a help listing and an optional map pin rounded to about 110 m. No ID number, date of birth or street address.
 - No GPS collection and no third-party trackers or advertising.
 - One-click JSON export and one-click account deletion, including data synced to Supabase.
 - DPO contact published in the Privacy Notice and footer.
