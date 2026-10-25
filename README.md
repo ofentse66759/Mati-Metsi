@@ -241,8 +241,7 @@ Please do not commit secrets. Only the Supabase **anon** key belongs in the fron
 - Backend by [Supabase](https://supabase.com/).
 
 ## Licence
-
-MIT. See the `LICENSE` file.
+MIT LICENSE
 
 ## Contact
 
