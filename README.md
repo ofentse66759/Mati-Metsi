@@ -124,141 +124,13 @@ const SUPABASE_ANON_KEY = 'YOUR-ANON-PUBLIC-KEY';
 
 ### 4. Create the schema
 
-Run the SQL below in the **SQL Editor** (save it as `supabase/schema.sql`).
+Open **SQL Editor**, paste the contents of [`supabase/schema.sql`](supabase/schema.sql) and click **Run**. It creates the `reports` and `help_listings` tables, their indexes and the Row Level Security policies. It is safe to re-run.
 
-> This is a **template**. Rename or add columns so they match what your app actually reads and writes.
+The app generates its own text IDs (for example `r-lq3k2-ab12c`), so the `id` columns are `text`, not `uuid`.
 
-```sql
--- ============ Tables ============
-create table if not exists public.profiles (
-  id          uuid primary key references auth.users(id) on delete cascade,
-  display_name text,
-  home_area   text,
-  role        text not null default 'resident',   -- 'resident' | 'partner'
-  created_at  timestamptz not null default now()
-);
+### 5. Photo storage (optional)
 
-create table if not exists public.reports (
-  id          uuid primary key default gen_random_uuid(),
-  author_id   uuid not null default auth.uid() references public.profiles(id) on delete cascade,
-  category    text not null check (category in ('water','energy','transport','food')),
-  type        text,
-  area        text not null,
-  severity    text not null default 'medium'
-              check (severity in ('low','medium','high','critical')),
-  details     text,
-  photo_path  text,
-  status      text not null default 'open',
-  created_at  timestamptz not null default now()
-);
-
-create table if not exists public.help_listings (
-  id          uuid primary key default gen_random_uuid(),
-  author_id   uuid not null default auth.uid() references public.profiles(id) on delete cascade,
-  kind        text not null check (kind in ('offer','request')),
-  category    text not null,
-  area        text not null,
-  details     text,
-  status      text not null default 'active',
-  created_at  timestamptz not null default now()
-);
-
-create table if not exists public.alerts (
-  id          uuid primary key default gen_random_uuid(),
-  area        text,
-  category    text,
-  level       text,
-  message     text,
-  created_at  timestamptz not null default now()
-);
-
--- ============ Indexes ============
-create index if not exists reports_author_idx  on public.reports (author_id);
-create index if not exists reports_status_idx  on public.reports (status);
-create index if not exists reports_area_idx    on public.reports (area);
-create index if not exists listings_author_idx on public.help_listings (author_id);
-create index if not exists listings_status_idx on public.help_listings (status);
-
--- ============ Auto-create a profile for each new (anonymous) user ============
-create or replace function public.handle_new_user()
-returns trigger
-language plpgsql
-security definer
-set search_path = public
-as $$
-begin
-  insert into public.profiles (id) values (new.id) on conflict do nothing;
-  return new;
-end;
-$$;
-
-drop trigger if exists on_auth_user_created on auth.users;
-create trigger on_auth_user_created
-  after insert on auth.users
-  for each row execute function public.handle_new_user();
-
--- ============ Row Level Security ============
-alter table public.profiles      enable row level security;
-alter table public.reports       enable row level security;
-alter table public.help_listings enable row level security;
-alter table public.alerts        enable row level security;
-
--- Profiles: users manage only their own row
-create policy "profiles_select_own" on public.profiles
-  for select to authenticated using ((select auth.uid()) = id);
-create policy "profiles_update_own" on public.profiles
-  for update to authenticated using ((select auth.uid()) = id);
-
--- Reports: public read, owner-only write
-create policy "reports_read_all" on public.reports
-  for select using (true);
-create policy "reports_insert_own" on public.reports
-  for insert to authenticated with check ((select auth.uid()) = author_id);
-create policy "reports_update_own" on public.reports
-  for update to authenticated using ((select auth.uid()) = author_id);
-create policy "reports_delete_own" on public.reports
-  for delete to authenticated using ((select auth.uid()) = author_id);
-
--- Help listings: same pattern
-create policy "listings_read_all" on public.help_listings
-  for select using (true);
-create policy "listings_insert_own" on public.help_listings
-  for insert to authenticated with check ((select auth.uid()) = author_id);
-create policy "listings_update_own" on public.help_listings
-  for update to authenticated using ((select auth.uid()) = author_id);
-create policy "listings_delete_own" on public.help_listings
-  for delete to authenticated using ((select auth.uid()) = author_id);
-
--- Alerts: public read; writes only via the service role / dashboard
-create policy "alerts_read_all" on public.alerts
-  for select using (true);
-```
-
-### 5. Create the photo bucket
-
-1. **Storage → New bucket** → name it `photos`, mark it **public** (public read).
-2. Add policies so only signed-in users can upload, and only into their own folder:
-
-```sql
-create policy "photos_public_read" on storage.objects
-  for select using (bucket_id = 'photos');
-
-create policy "photos_owner_upload" on storage.objects
-  for insert to authenticated
-  with check (
-    bucket_id = 'photos'
-    and (storage.foldername(name))[1] = (select auth.uid())::text
-  );
-
-create policy "photos_owner_delete" on storage.objects
-  for delete to authenticated
-  using (
-    bucket_id = 'photos'
-    and (storage.foldername(name))[1] = (select auth.uid())::text
-  );
-```
-
-Uploads should use the path `<user-id>/<filename>` so the folder rule matches.
+The current build does not upload photos to Storage yet. When you add it, create a public `photos` bucket and use the commented storage policies at the bottom of `schema.sql`.
 
 ### 6. Verify
 
@@ -377,4 +249,3 @@ MIT LICENSE
 
 ## Contact
 ofentserasekhula8@gmail.com
-0781808482
