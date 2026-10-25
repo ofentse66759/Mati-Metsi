@@ -6,7 +6,7 @@
 <meta name="description" content="Mati-Metsi helps South African communities prepare for disruptions to water, energy, transport and food — with live weather, community reports, alerts and neighbour help.">
 <meta name="theme-color" content="#08161b">
 <title>Mati-Metsi — Community Resilience &amp; Essential Services</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💧%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%F0%9F%92%A7%3C/text%3E%3C/svg%3E">
 <style>
 /* ===== THEME TOKENS ===== */
 :root, [data-theme="dark"] {
@@ -652,7 +652,7 @@ body.menu-locked { overflow: hidden; }
       <a href="#report-form" class="btn btn-outline" data-i18n="hero.cta2">Report an issue</a>
     </div>
   </div>
-  <div class="service-orbit" aria-label="Services covered">
+  <div class="service-orbit" role="group" aria-label="Services covered">
     <a href="#reports" class="orbit-tile" data-filter-jump="water" style="--tile:#22a6bf"><span class="ico">💧</span><b data-i18n="cat.water">Water</b><span data-i18n="hero.water">Outages, leaks, tankers</span></a>
     <a href="#reports" class="orbit-tile" data-filter-jump="energy" style="--tile:#f5a524"><span class="ico">⚡</span><b data-i18n="cat.energy">Energy</b><span data-i18n="hero.energy">Load-shedding, faults</span></a>
     <a href="#reports" class="orbit-tile" data-filter-jump="transport" style="--tile:#a78bfa"><span class="ico">🚌</span><b data-i18n="cat.transport">Transport</b><span data-i18n="hero.transport">Flooding, closures, lifts</span></a>
@@ -754,7 +754,7 @@ body.menu-locked { overflow: hidden; }
       </div>
     </div>
     <div>
-      <h4 data-i18n="map.list">All areas</h4>
+      <h3 style="font-size:0.9375rem;margin:0 0 6px" data-i18n="map.list">All areas</h3>
       <div class="density-list" id="densityList"></div>
     </div>
   </div>
@@ -830,7 +830,7 @@ body.menu-locked { overflow: hidden; }
     <div class="grid-2">
       <div class="field">
         <label for="reportCategory" data-i18n="report.category">Service category</label>
-        <select id="reportCategory" class="select" required>
+        <select id="reportCategory" class="select">
           <option value="water">💧 Water</option>
           <option value="energy">⚡ Energy</option>
           <option value="transport">🚌 Transport</option>
@@ -861,7 +861,7 @@ body.menu-locked { overflow: hidden; }
     <div class="field">
       <label for="reportPhoto"><span data-i18n="report.photo">Photo (optional)</span></label>
       <div class="photo-drop">
-        <img id="photoPreview" class="hidden" alt="Selected photo preview">
+        <img id="photoPreview" class="hidden" alt="Selected photo preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
         <div style="flex:1;min-width:180px">
           <input id="reportPhoto" type="file" accept="image/*" class="text-sm">
           <p class="help">Resized and stored on this device only. Avoid faces and number plates.</p>
@@ -1149,7 +1149,7 @@ body.menu-locked { overflow: hidden; }
   <div class="plan-grid">
     <div>
       <div class="card text-center">
-        <h4 data-i18n="plan.readiness">Household readiness</h4>
+        <h3 style="font-size:0.9375rem;margin:0 0 6px" data-i18n="plan.readiness">Household readiness</h3>
         <div class="gauge mt-2">
           <svg viewBox="0 0 120 120" aria-hidden="true">
             <circle cx="60" cy="60" r="52" fill="none" stroke-width="10"></circle>
