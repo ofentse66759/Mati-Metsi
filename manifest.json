@@ -1,9 +1,15 @@
 {
-  "name": "Mati-Metsi",
-  "short_name": "MatiMetsi",
+  "name": "Mati-Metsi: Community Resilience",
+  "short_name": "Mati-Metsi",
+  "description": "Prepare for disruptions to water, energy, transport and food.",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#08161b",
-  "theme_color": "#0b6e82",
-  "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }]
+  "theme_color": "#08161b",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
 }
