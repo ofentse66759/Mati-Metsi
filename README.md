@@ -10,16 +10,6 @@ Mati-Metsi is a South African community resilience platform that helps household
 
 Built as an offline-first Progressive Web App (PWA), it bridges the gap between scattered community WhatsApp groups and formal municipal response.
 
-## Screenshots
-
-| Home, with offline banner | Your dashboard |
-| --- | --- |
-| <img src="https://github.com/user-attachments/assets/285f56c3-1436-49e0-b453-2baef4ee231f" alt="Home page showing the offline banner and the four essential services" width="460"> | <img src="https://github.com/user-attachments/assets/9b14bd72-5782-4f8d-b085-78a6fc687176" alt="Dashboard tiles: alerts, open reports, readiness and help available" width="460"> |
-| **Local alerts** | **Neighbour Help** |
-| <img src="https://github.com/user-attachments/assets/c3dc36da-a6cb-4b04-9227-6a49dc1921a6" alt="Alert subscriptions: home area, minimum level, services and thresholds" width="460"> | <img src="https://github.com/user-attachments/assets/6a83d4e5-b810-41ab-b915-7fdad0082a8f" alt="Neighbour Help board with safety banner and filters" width="460"> |
-
-The offline banner shows that the app keeps working without a connection and uses the last saved forecast.
-
 ## Core Features
 
 - **Predictive Risk Engine:** A transparent, rule-based model that combines live Open-Meteo weather forecasts with recent community reports to predict localised risks (flooding, water shortage, heat stress).
