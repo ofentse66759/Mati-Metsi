@@ -373,9 +373,8 @@ Please do not commit secrets. Only the Supabase **anon** key belongs in the fron
 - Backend by [Supabase](https://supabase.com/).
 
 ## Licence
-
-Add a licence (for example MIT) in a `LICENSE` file and name it here.
+MIT LICENSE
 
 ## Contact
-
-Add a project contact email or issue-tracker link here.
+ofentserasekhula8@gmail.com
+0781808482
