@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Mati-Metsi helps South African communities prepare for disruptions to water, energy, transport and food — with live weather, community reports, alerts and neighbour help.">
 <meta name="theme-color" content="#08161b">
-<link rel="manifest" href="manifest.json">
 <title>Mati-Metsi — Community Resilience &amp; Essential Services</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%F0%9F%92%A7%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💧%3C/text%3E%3C/svg%3E">
 <style>
 /* ===== THEME TOKENS ===== */
 :root, [data-theme="dark"] {
@@ -79,6 +79,7 @@ a:hover { text-decoration: underline; }
 button { font-family: inherit; cursor: pointer; color: inherit; }
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
 [data-contrast="high"] :focus-visible { outline-width: 4px; }
+body.mm-gate > *:not(dialog):not(script):not(style):not(.toast-wrap) { visibility: hidden !important; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 .skip-link { position: absolute; left: 8px; top: -60px; background: var(--btn); color: var(--btn-text); padding: 8px 14px; border-radius: 8px; z-index: 400; }
 .skip-link:focus { top: 8px; }
@@ -148,7 +149,7 @@ header.top nav.desktop button:hover, header.top nav.desktop button[aria-current=
 .view.active { display: block; animation: viewIn .25s ease; }
 @keyframes viewIn { from { opacity: 0; transform: translateY(6px); } }
 
-main, .view-main { max-width: 1040px; margin: 0 auto; padding: 24px 16px 100px; }
+main { max-width: 1040px; margin: 0 auto; padding: 24px 16px 100px; }
 section { margin-bottom: 48px; scroll-margin-top: 80px; }
 .kicker { font-size: 0.6875rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
 h2 { font-size: 1.625rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; line-height: 1.2; }
@@ -506,47 +507,9 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
 .adv-m{padding:10px 12px;border-radius:12px;max-width:92%;white-space:pre-wrap;line-height:1.45}
 .adv-u{align-self:flex-end;background:var(--btn);color:var(--btn-text)}.adv-b{align-self:flex-start;background:var(--surface-2);border:1px solid var(--border-soft)}
 .leaflet-container{font-family:inherit}
-
-/* ===== Feature: Dashboard nav, hamburger upgrades, language helpers ===== */
-body.menu-locked { overflow: hidden; }
-.mm-lang-row { margin-top: 12px; padding: 14px 16px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
-.mm-lang-row label { font-size: 0.8125rem; font-weight: 700; color: var(--muted); }
-.mm-lang-row select { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; }
-.mm-dash-head { margin-bottom: 12px; }
-.mm-dash-head h2 { margin-bottom: 0; }
-
-/* ===== Feature: reliable section navigation (re-aligns if the layout shifts while scrolling) ===== */
-@keyframes mmFlash { 0% { box-shadow: 0 0 0 0 var(--focus); } 30% { box-shadow: 0 0 0 6px var(--focus); } 100% { box-shadow: 0 0 0 0 transparent; } }
-.mm-arrived { animation: mmFlash 1.2s ease; border-radius: 12px; }
-
-/* ===== Feature: top "Skip" on the setup popup + Weather / Report links in the desktop nav ===== */
-.mm-ob-skip { position: absolute; top: 10px; right: 10px; z-index: 2; width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); font-size: 1rem; display: grid; place-items: center; }
-.mm-ob-skip:hover { background: var(--surface-3); }
-#onboardDialog .modal-body { position: relative; }
-
-/* ===== Feature: "My reports" history page + offline outbox (draft offline, auto-send when back online) ===== */
-.mm-rh-filters { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 16px; }
-.mm-rh-filters button { padding: 6px 14px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); font-size: 0.8125rem; font-weight: 600; }
-.mm-rh-filters button[aria-pressed="true"] { background: var(--btn); color: var(--btn-text); border-color: var(--btn); }
-.mm-rh-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
-.mm-rh-meta { font-size: 0.8125rem; color: var(--muted); margin: 4px 0 8px; }
-.mm-tl { list-style: none; margin: 12px 0 0; padding: 0 0 0 14px; border-left: 2px solid var(--border); }
-.mm-tl li { position: relative; padding: 0 0 12px 12px; font-size: 0.875rem; }
-.mm-tl li::before { content: ''; position: absolute; left: -21px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--brand); }
-.mm-tl li.resp::before { background: var(--accent); }
-.mm-tl small { display: block; color: var(--muted); font-size: 0.75rem; }
-.mm-queued { border-style: dashed; }
-
-/* ===== Feature: extra sign-up fields (surname, cell number), sign in by cell number, working "Remember me" — nothing existing is replaced ===== */
-.mm-or { text-align: center; color: var(--muted); font-size: 0.8125rem; margin: 14px 0 10px; }
-
-/* ===== Feature: shared sync layer, learning intelligence, partner dashboard, push/fallback stubs, impact page, UX presets ===== */
-.mm-demo-flag{display:inline-block;padding:2px 10px;border-radius:999px;border:1px dashed var(--accent);font-size:.75rem;font-weight:700;color:var(--accent)}
-.mm-row{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}.mm-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0}
-.mm-kpi b{display:block;font-size:1.6rem}.mm-pred{border-left:4px solid var(--brand)}.mm-log{font-size:.8125rem;max-height:240px;overflow:auto}
 </style>
 </head>
-<body>
+<body class="mm-gate">
 <a href="#main-content" class="skip-link">Skip to content</a>
 
 <header class="top">
@@ -596,8 +559,6 @@ body.menu-locked { overflow: hidden; }
   <div class="toggle-row"><span data-i18n="a11y.contrast">High contrast</span><label class="switch"><input type="checkbox" id="toggleContrast" aria-label="High contrast"><span></span></label></div>
   <div class="toggle-row"><span data-i18n="a11y.light">Light theme</span><label class="switch"><input type="checkbox" id="toggleLight" aria-label="Light theme"><span></span></label></div>
   <p class="text-xs text-muted mt-2" data-i18n="a11y.note">Saved on this device only.</p>
-
-  
 </div>
 
 <div class="mobile-nav" id="mobileNav" role="dialog" aria-label="Menu">
@@ -653,7 +614,7 @@ body.menu-locked { overflow: hidden; }
       <a href="#report-form" class="btn btn-outline" data-i18n="hero.cta2">Report an issue</a>
     </div>
   </div>
-  <div class="service-orbit" role="group" aria-label="Services covered">
+  <div class="service-orbit" aria-label="Services covered">
     <a href="#reports" class="orbit-tile" data-filter-jump="water" style="--tile:#22a6bf"><span class="ico">💧</span><b data-i18n="cat.water">Water</b><span data-i18n="hero.water">Outages, leaks, tankers</span></a>
     <a href="#reports" class="orbit-tile" data-filter-jump="energy" style="--tile:#f5a524"><span class="ico">⚡</span><b data-i18n="cat.energy">Energy</b><span data-i18n="hero.energy">Load-shedding, faults</span></a>
     <a href="#reports" class="orbit-tile" data-filter-jump="transport" style="--tile:#a78bfa"><span class="ico">🚌</span><b data-i18n="cat.transport">Transport</b><span data-i18n="hero.transport">Flooding, closures, lifts</span></a>
@@ -755,7 +716,7 @@ body.menu-locked { overflow: hidden; }
       </div>
     </div>
     <div>
-      <h3 style="font-size:0.9375rem;margin:0 0 6px" data-i18n="map.list">All areas</h3>
+      <h4 data-i18n="map.list">All areas</h4>
       <div class="density-list" id="densityList"></div>
     </div>
   </div>
@@ -831,7 +792,7 @@ body.menu-locked { overflow: hidden; }
     <div class="grid-2">
       <div class="field">
         <label for="reportCategory" data-i18n="report.category">Service category</label>
-        <select id="reportCategory" class="select">
+        <select id="reportCategory" class="select" required>
           <option value="water">💧 Water</option>
           <option value="energy">⚡ Energy</option>
           <option value="transport">🚌 Transport</option>
@@ -840,9 +801,7 @@ body.menu-locked { overflow: hidden; }
       </div>
       <div class="field">
         <label for="reportType" data-i18n="report.type">Issue type</label>
-        <select id="reportType" class="select" required>
-          <option value="" disabled selected>Select issue type</option>
-        </select>
+        <select id="reportType" class="select" required></select>
       </div>
     </div>
     <fieldset class="field" style="border:none">
@@ -862,7 +821,7 @@ body.menu-locked { overflow: hidden; }
     <div class="field">
       <label for="reportPhoto"><span data-i18n="report.photo">Photo (optional)</span></label>
       <div class="photo-drop">
-        <img id="photoPreview" class="hidden" alt="Selected photo preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+        <img id="photoPreview" class="hidden" alt="Selected photo preview">
         <div style="flex:1;min-width:180px">
           <input id="reportPhoto" type="file" accept="image/*" class="text-sm">
           <p class="help">Resized and stored on this device only. Avoid faces and number plates.</p>
@@ -897,11 +856,15 @@ body.menu-locked { overflow: hidden; }
 <section id="contact">
   <p class="kicker" data-i18n="contact.kicker">Contact</p>
   <h2 data-i18n="contact.title">Get in touch</h2>
-  <p class="lead">Report a leak, ask about water shedding, or send us a message.</p>
+  <p class="lead">Report a leak, ask about water shedding, or reach the rapid-response team.</p>
   <a href="#" onclick="event.preventDefault(); showView('about')" class="card" style="border-color:var(--brand)">
     <strong>ℹ️ <span data-i18n="about.title">About Mati-Metsi</span></strong>
     <p class="text-sm text-muted mt-2">The problem we solve, our pilot, roadmap and business model — in one place.</p>
   </a>
+  <div class="grid-2 mb-4">
+    <a href="tel:+27800123456" class="card"><strong>📞 Phone</strong><p class="text-sm text-muted mt-2">+27 80 012 3456 · Mon–Fri 08:00–16:30</p></a>
+    <a href="https://wa.me/27825550199" target="_blank" rel="noopener" class="card"><strong>💬 WhatsApp</strong><p class="text-sm text-muted mt-2">+27 82 555 0199 · Fastest for leak photos</p></a>
+  </div>
   <form id="contactForm" class="card">
     <div class="grid-2">
       <div class="field"><label for="contactName">Full name</label><input id="contactName" class="input" required maxlength="100"></div>
@@ -920,9 +883,9 @@ body.menu-locked { overflow: hidden; }
   <div class="card">
     <h3>What we collect</h3>
     <ul>
-      <li><strong>Your name, surname, email and cell number</strong> — only when you register. Your name and surname are shown next to your reports and help listings; your email and cell number are used to sign in and are never shown to other residents.</li>
+      <li><strong>Your name and email</strong> — only when you register or sign in. Your name is shown next to your reports and help listings.</li>
       <li><strong>Approximate location</strong> — the city/suburb you type for weather, your home area and the suburb on reports and listings. Reports and listings you submit are also saved to our Supabase database so neighbours can see them. The weather place name is sent to the weather provider (WeatherAPI.com, with Open-Meteo as a fallback) to fetch the forecast.</li>
-      <li><strong>Reports, photos and help listings you submit</strong> — content you voluntarily provide. Photos are resized and stored on this device. If you drop a map pin on a report, it is rounded to about 110 m before it is saved.</li>
+      <li><strong>Reports, photos and help listings you submit</strong> — content you voluntarily provide. Photos are resized and stored on this device.</li>
       <li><strong>Optional contact details on help listings</strong> — a phone or WhatsApp number only if you choose to add one; it is shown to signed-in members only.</li>
       <li><strong>Preferences</strong> — alert subscriptions, thresholds, resilience-plan progress, language and display settings.</li>
       <li><strong>Session data</strong> — a browser token in localStorage that remembers you're signed in.</li>
@@ -999,7 +962,7 @@ body.menu-locked { overflow: hidden; }
 </div>
 
 <div class="view" id="view-alerts">
-<div class="view-main">
+<main>
   <button class="btn btn-outline btn-sm mb-4" onclick="goHome()">← <span data-i18n="common.back">Back to home</span></button>
   <p class="kicker" data-i18n="alerts.kicker">Stay ahead</p>
   <h2 data-i18n="alerts.title">Local alerts</h2>
@@ -1063,11 +1026,11 @@ body.menu-locked { overflow: hidden; }
   </div>
   <input id="alertSearch" class="input" type="search" placeholder="Search alerts…" maxlength="100" aria-label="Search alerts" style="margin-bottom:12px">
   <div id="alertFeed"></div>
-</div>
+</main>
 </div>
 
 <div class="view" id="view-help">
-<div class="view-main">
+<main>
   <button class="btn btn-outline btn-sm mb-4" onclick="goHome()">← <span data-i18n="common.back">Back to home</span></button>
   <p class="kicker" data-i18n="help.kicker">Share what you can</p>
   <h2 data-i18n="help.title">Neighbour Help</h2>
@@ -1093,11 +1056,7 @@ body.menu-locked { overflow: hidden; }
       </div>
     </div>
     <div class="grid-2">
-      <div class="field"><label for="helpCategory">Category</label>
-        <select id="helpCategory" class="select" required>
-          <option value="" disabled selected>Select category</option>
-        </select>
-      </div>
+      <div class="field"><label for="helpCategory">Category</label><select id="helpCategory" class="select" required></select></div>
       <div class="field"><label for="helpArea">Area / suburb</label><input id="helpArea" class="input" list="areaList" maxlength="80" required placeholder="e.g. Hatfield"><p class="help">Suburb only — never your street or house number.</p></div>
     </div>
     <div class="field"><label for="helpTitle">Short title</label><input id="helpTitle" class="input" maxlength="80" required placeholder="e.g. 4 × 25 L containers to lend"></div>
@@ -1128,11 +1087,11 @@ body.menu-locked { overflow: hidden; }
   </div>
   <div class="result-meta"><span id="helpCount" aria-live="polite"></span></div>
   <div id="helpList" class="listing-grid"></div>
-</div>
+</main>
 </div>
 
 <div class="view" id="view-plan">
-<div class="view-main">
+<main>
   <button class="btn btn-outline btn-sm mb-4" onclick="goHome()">← <span data-i18n="common.back">Back to home</span></button>
   <p class="kicker" data-i18n="plan.kicker">Save money · Be ready</p>
   <h2 data-i18n="plan.title">My Resilience Plan</h2>
@@ -1146,7 +1105,7 @@ body.menu-locked { overflow: hidden; }
   <div class="plan-grid">
     <div>
       <div class="card text-center">
-        <h3 style="font-size:0.9375rem;margin:0 0 6px" data-i18n="plan.readiness">Household readiness</h3>
+        <h4 data-i18n="plan.readiness">Household readiness</h4>
         <div class="gauge mt-2">
           <svg viewBox="0 0 120 120" aria-hidden="true">
             <circle cx="60" cy="60" r="52" fill="none" stroke-width="10"></circle>
@@ -1164,11 +1123,11 @@ body.menu-locked { overflow: hidden; }
     </div>
     <div id="planActions"></div>
   </div>
-</div>
+</main>
 </div>
 
 <div class="view" id="view-tools">
-<div class="view-main tk">
+<main class="tk">
   <button class="btn btn-outline btn-sm mb-4" onclick="goHome()">← <span data-i18n="common.back">Back to home</span></button>
   <p class="kicker" data-i18n="tk.kicker">Practical tools</p><h2 data-i18n="tk.title">Toolkit</h2>
   <p class="lead" data-i18n="tk.lead">Plan for load-shedding, estimate your savings and see what to grow. Everything runs on this device.</p>
@@ -1209,11 +1168,11 @@ body.menu-locked { overflow: hidden; }
     <div id="advLog" aria-live="polite" style="display:flex;flex-direction:column;gap:8px;margin:10px 0"></div>
     <div class="flex gap-2"><input id="advIn" class="input grow" maxlength="200" placeholder="Ask about leaks, batteries, tanks, planting…" aria-label="Ask the advisor"><button class="btn" id="advGo" type="button">Ask</button></div>
   </section>
-</div>
+</main>
 </div>
 
 <div class="view" id="view-about">
-<div class="view-main">
+<main>
   <button class="btn btn-outline btn-sm mb-4" onclick="goHome()">← <span data-i18n="common.back">Back to home</span></button>
   <p class="kicker">About · Roadmap · Business model</p>
   <h2 data-i18n="about.title">About Mati-Metsi</h2>
@@ -1257,15 +1216,14 @@ body.menu-locked { overflow: hidden; }
           <li>POPIA export and one-click deletion</li>
           <li>Offline outbox with auto-send on reconnect</li>
           <li>Learning weights (per-category, from past confirmations)</li>
-          <li>Shared cloud backend (Supabase): reports and help listings you submit sync across devices, protected by Row Level Security</li>
         </ul>
       </div>
       <div>
         <h4>⏳ Roadmap (not in this build)</h4>
         <ul class="action-list">
-          <li>Per-ward moderation and magic-link sign-in (sign-in is still on this device)</li>
+          <li>Shared backend — reports currently live on the device only</li>
           <li>WhatsApp Business / SMS delivery for feature phones</li>
-          <li>Background push alerts (the app already caches itself for offline use; the push worker is a separate download)</li>
+          <li>Background push (service worker file is downloadable, not auto-registered)</li>
           <li>SAWS rainfall feed and Rand Water reservoir levels</li>
           <li>Leaflet map of verified JoJo tanks and boreholes</li>
           <li>Spaza marketplace with per-litre pricing</li>
@@ -1293,6 +1251,9 @@ body.menu-locked { overflow: hidden; }
       <li><strong>Will neighbours help each other?</strong> Target: ≥ 20 active help-board listings with ≥ 50% completion.</li>
       <li><strong>Will readiness improve?</strong> Target: average household readiness score up by 25 points.</li>
     </ol>
+    <ul class="action-list">
+      <li><strong>User validation:</strong> Early feedback indicates strong willingness to adopt for prevention and neighbour coordination, with a focus on verifying the reliability of warnings before premium monetization.</li>
+    </ul>
     <p class="text-sm text-muted">Partners, letters of intent and pilot results will be published here as they are confirmed.</p>
   </div>
 
@@ -1300,7 +1261,7 @@ body.menu-locked { overflow: hidden; }
     <h3 style="margin-top:0">Roadmap</h3>
     <ol class="action-list">
       <li><strong>Phase 1 — this build.</strong> Single-file PWA, all 11 official languages, offline-first, demo data, personal insights, verified-partner workflow.</li>
-      <li><strong>Phase 2 — shared backend (first version shipped).</strong> Reports and help listings sync to Supabase with Row Level Security. Still to come: server-side sign-in with magic links, and per-ward moderation.</li>
+      <li><strong>Phase 2 — shared backend (not yet shipped).</strong> Supabase/Firebase so reports are shared across devices; magic-link login; per-ward moderation.</li>
       <li><strong>Phase 3 — reach (service-worker file provided for download, not yet registered; WhatsApp/SMS not yet connected).</strong> Push notifications via a service worker; WhatsApp Business API; SMS fallback for feature phones.</li>
       <li><strong>Phase 4 — formal integration (partner dashboard shipped; official feeds pending).</strong> Official SAWS and municipal feeds; verified-partner dashboard; public data export.</li>
       <li><strong>Phase 5 — insights.</strong> Anonymised, POPIA-safe aggregate dashboards for planners and insurers.</li>
@@ -1327,7 +1288,7 @@ body.menu-locked { overflow: hidden; }
     <h3 style="margin-top:0">Contact</h3>
     <p class="text-sm text-muted">General: <a href="mailto:hello@mati-metsi.org">hello@mati-metsi.org</a> · Privacy / DPO: <a href="mailto:privacy@mati-metsi.org">privacy@mati-metsi.org</a> · Legal: <a href="mailto:legal@mati-metsi.org">legal@mati-metsi.org</a></p>
   </div>
-</div>
+</main>
 </div>
 
 <div class="view" id="view-login">
@@ -1437,7 +1398,7 @@ body.menu-locked { overflow: hidden; }
 </div>
 
 <div class="view" id="view-profile">
-<div class="view-main">
+<main>
   <section>
     <div class="profile-header">
       <div class="avatar" id="profileAvatar">?</div>
@@ -1505,11 +1466,11 @@ body.menu-locked { overflow: hidden; }
       </div>
     </div>
   </section>
-</div>
+</main>
 </div>
 
 <div class="view" id="view-privacy">
-<div class="view-main legal">
+<main class="legal">
   <button class="btn btn-outline btn-sm mb-4" onclick="goHome()">← Back to home</button>
   <p class="kicker">Legal · Your data</p>
   <h2>Privacy &amp; POPIA</h2>
@@ -1517,7 +1478,7 @@ body.menu-locked { overflow: hidden; }
   <div class="card">
     <h3>Data we collect</h3>
     <ul>
-      <li><strong>Name, surname, email and cell number</strong> — from your account registration (email and cell number are never shown to other residents)</li>
+      <li><strong>Name and email</strong> — from your account registration</li>
       <li><strong>Password</strong> — hashed with SHA-256 in your browser, never stored in plain text</li>
       <li><strong>Location preferences</strong> — the town/suburb you type (never GPS)</li>
       <li><strong>Reports, photos and help listings</strong> — content you voluntarily submit</li>
@@ -1546,7 +1507,7 @@ body.menu-locked { overflow: hidden; }
     <p><a href="mailto:privacy@mati-metsi.org">privacy@mati-metsi.org</a></p>
     <p class="text-xs mt-6">Last updated: 23 October 2026 · Version 2.1</p>
   </div>
-</div>
+</main>
 </div>
 
 <div class="emergency-bar" role="note">
@@ -1575,7 +1536,7 @@ body.menu-locked { overflow: hidden; }
   </form>
 </dialog>
 
-<dialog class="modal" id="onboardDialog" aria-label="Setup">
+<dialog class="modal" id="onboardDialog" aria-labelledby="onboardTitle">
   <div class="modal-body">
     <div class="steps" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     <p class="kicker" id="onboardStepLabel">Step 1 of 4</p>
@@ -1590,36 +1551,77 @@ body.menu-locked { overflow: hidden; }
 
 <div class="toast-wrap" id="toastWrap" aria-live="polite" aria-atomic="false"></div>
 
+
+
+<!-- ===== Feature: Dashboard nav, hamburger upgrades, language helpers ===== -->
+<style>
+body.menu-locked { overflow: hidden; }
+.mm-lang-row { margin-top: 12px; padding: 14px 16px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
+.mm-lang-row label { font-size: 0.8125rem; font-weight: 700; color: var(--muted); }
+.mm-lang-row select { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; }
+.mm-dash-head { margin-bottom: 12px; }
+.mm-dash-head h2 { margin-bottom: 0; }
+</style>
+
+<!-- ===== Feature: reliable section navigation (re-aligns if the layout shifts while scrolling) ===== -->
+<style>
+@keyframes mmFlash { 0% { box-shadow: 0 0 0 0 var(--focus); } 30% { box-shadow: 0 0 0 6px var(--focus); } 100% { box-shadow: 0 0 0 0 transparent; } }
+.mm-arrived { animation: mmFlash 1.2s ease; border-radius: 12px; }
+</style>
+
+<!-- ===== Feature: top "Skip" on the setup popup + Weather / Report links in the desktop nav ===== -->
+<style>
+.mm-ob-skip { position: absolute; top: 10px; right: 10px; z-index: 2; width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); font-size: 1rem; display: grid; place-items: center; }
+.mm-ob-skip:hover { background: var(--surface-3); }
+#onboardDialog .modal-body { position: relative; }
+</style>
+
+<!-- ===== Feature: WeatherAPI.com as the weather source (falls back to the original source if it fails) ===== -->
+
 <!-- ===== "Setup questions" menu entry ===== -->
 <!-- ===== Feature: "My reports" history page + offline outbox (draft offline, auto-send when back online) ===== -->
+<style>
+.mm-rh-filters { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 16px; }
+.mm-rh-filters button { padding: 6px 14px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); font-size: 0.8125rem; font-weight: 600; }
+.mm-rh-filters button[aria-pressed="true"] { background: var(--btn); color: var(--btn-text); border-color: var(--btn); }
+.mm-rh-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
+.mm-rh-meta { font-size: 0.8125rem; color: var(--muted); margin: 4px 0 8px; }
+.mm-tl { list-style: none; margin: 12px 0 0; padding: 0 0 0 14px; border-left: 2px solid var(--border); }
+.mm-tl li { position: relative; padding: 0 0 12px 12px; font-size: 0.875rem; }
+.mm-tl li::before { content: ''; position: absolute; left: -21px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--brand); }
+.mm-tl li.resp::before { background: var(--accent); }
+.mm-tl small { display: block; color: var(--muted); font-size: 0.75rem; }
+.mm-queued { border-style: dashed; }
+</style>
 <div class="view" id="view-myreports">
-  <div class="view-main">
+  <main>
     <section>
       <p class="kicker">My account</p>
       <h2>My report history</h2>
       <p class="lead">Every issue you have submitted, its current status and each update. Reports written offline wait here until you are back online.</p>
       <div id="mmRhBody"></div>
     </section>
-  </div>
+  </main>
 </div>
-
-<div class="view" id="view-partner">
-  <div class="view-main">
-    <section>
-      <p class="kicker">Partner workspace</p><h2>Partner dashboard</h2>
-      <p id="mmPDemo"></p><div id="mmPBody"></div>
-    </section>
-  </div>
-</div>
-<div class="view" id="view-impact">
-  <div class="view-main">
-    <section>
-      <p class="kicker">Pilot evidence</p><h2>Impact</h2>
-      <p class="lead">Measured on this device only. No third-party trackers, no personal identifiers in the export.</p>
-      <div id="mmImpBody"></div>
-    </section>
-  </div>
-</div>
+<!-- ===== Feature: extra sign-up fields (surname, cell number), sign in by cell number, working "Remember me" — nothing existing is replaced ===== -->
+<style>
+.mm-or { text-align: center; color: var(--muted); font-size: 0.8125rem; margin: 14px 0 10px; }
+</style>
+<!-- ===== Feature: shared sync layer, learning intelligence, partner dashboard, push/fallback stubs, impact page, UX presets ===== -->
+<style>
+.mm-demo-flag{display:inline-block;padding:2px 10px;border-radius:999px;border:1px dashed var(--accent);font-size:.75rem;font-weight:700;color:var(--accent)}
+.mm-row{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}.mm-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0}
+.mm-kpi b{display:block;font-size:1.6rem}.mm-pred{border-left:4px solid var(--brand)}.mm-log{font-size:.8125rem;max-height:240px;overflow:auto}
+</style>
+<div class="view" id="view-partner"><main><section>
+  <p class="kicker">Partner workspace</p><h2>Partner dashboard</h2>
+  <p id="mmPDemo"></p><div id="mmPBody"></div>
+</section></main></div>
+<div class="view" id="view-impact"><main><section>
+  <p class="kicker">Pilot evidence</p><h2>Impact</h2>
+  <p class="lead">Measured on this device only. No third-party trackers, no personal identifiers in the export.</p>
+  <div id="mmImpBody"></div>
+</section></main></div>
 <script>
 // The 4 setup steps (area, services, alert level, dashboard) run once per device. Returning users land on Home; re-open via the "Setup questions" menu item or the "Run setup again" button in demo-controls.
 window.MM_DEBUG = false; // true = module errors are re-thrown after being logged
@@ -2282,11 +2284,10 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
       'insight.ruleD.body': 'Ulandela i-{area}, kodwana iimphawu zesiphequluli azivalwanga.'
     }
   };
+  var OB_I18N = {"en": {"ob.step": "Step {n} of 4", "ob.skip": "Skip setup", "ob.next": "Next", "ob.back": "Back", "ob.finish": "View my dashboard", "ob.welcome": "Welcome to Mati-Metsi 💧", "ob.intro": "Choose your language and area. It takes 30 seconds.", "ob.areaHelp": "Suburb only — we never ask for GPS or your home address. Leave blank to follow all areas.", "ob.servicesTitle": "Which services matter to you?", "ob.servicesSub": "We'll tailor alerts to these.", "ob.alertsTitle": "Enable alerts", "ob.alertsSub": "Choose how serious something must be before we alert you.", "ob.levelHelp": "Watch = early signs · Warning = likely disruption · Emergency = act now", "ob.doneTitle": "You're all set 🎉", "ob.doneBody": "You can change these any time under Alerts."}, "zu": {"ob.step": "Isinyathelo {n} kwezi-4", "ob.skip": "Yeqa ukusetha", "ob.next": "Okulandelayo", "ob.back": "Emuva", "ob.finish": "Buka ideshibhodi yami", "ob.welcome": "Siyakwamukela ku-Mati-Metsi 💧", "ob.intro": "Khetha ulimi nendawo yakho. Kuthatha imizuzwana engu-30.", "ob.areaHelp": "Isifunda kuphela — asiceli i-GPS noma ikheli lakho. Shiya kungenalutho ukulandela zonke izindawo.", "ob.servicesTitle": "Yiziphi izinsizakalo ezibalulekile kuwe?", "ob.servicesSub": "Sizokwenza izexwayiso zihambisane nalokhu.", "ob.alertsTitle": "Vula izexwayiso", "ob.alertsSub": "Khetha ukuthi into kufanele ibucayi kangakanani ngaphambi kokuba sikuxwayise.", "ob.levelHelp": "Qaphela = izimpawu zokuqala · Isexwayiso = ukuphazamiseka okungenzeka · Isimo esiphuthumayo = enza manje", "ob.doneTitle": "Usukulungile 🎉", "ob.doneBody": "Ungashintsha lokhu noma yinini ku-Izexwayiso."}, "xh": {"ob.step": "Inyathelo {n} kwezi-4", "ob.skip": "Tsiba ukuseta", "ob.next": "Okulandelayo", "ob.back": "Emva", "ob.finish": "Jonga ideshibhodi yam", "ob.welcome": "Wamkelekile kwi-Mati-Metsi 💧", "ob.intro": "Khetha ulwimi nendawo yakho. Kuthatha imizuzwana engama-30.", "ob.areaHelp": "Indawo kuphela — asicele GPS okanye idilesi yekhaya. Shiya ingenanto ukulandela zonke iindawo.", "ob.servicesTitle": "Zeziphi iinkonzo ezibalulekileyo kuwe?", "ob.servicesSub": "Siza kwenza izilumkiso zihambelane noku.", "ob.alertsTitle": "Vula izilumkiso", "ob.alertsSub": "Khetha ukuba into kufuneka ibe nzulu kangakanani ngaphambi kokuba sikulumkise.", "ob.levelHelp": "Qaphela = iimpawu zokuqala · Isilumkiso = ukuphazamiseka okunokwenzeka · Imeko engxamisekileyo = yenza ngoku", "ob.doneTitle": "Sele ulungile 🎉", "ob.doneBody": "Unokutshintsha oku nangaliphi na ixesha kwi-Izilumkiso."}, "af": {"ob.step": "Stap {n} van 4", "ob.skip": "Slaan opstelling oor", "ob.next": "Volgende", "ob.back": "Terug", "ob.finish": "Sien my paneelbord", "ob.welcome": "Welkom by Mati-Metsi 💧", "ob.intro": "Kies jou taal en area. Dit neem 30 sekondes.", "ob.areaHelp": "Net woonbuurt — ons vra nooit GPS of jou huisadres nie. Los leeg om alle areas te volg.", "ob.servicesTitle": "Watter dienste is vir jou belangrik?", "ob.servicesSub": "Ons pas waarskuwings hierby aan.", "ob.alertsTitle": "Aktiveer waarskuwings", "ob.alertsSub": "Kies hoe ernstig iets moet wees voordat ons jou waarsku.", "ob.levelHelp": "Waak = vroeë tekens · Waarskuwing = waarskynlike ontwrigting · Noodgeval = tree nou op", "ob.doneTitle": "Jy is gereed 🎉", "ob.doneBody": "Jy kan dit enige tyd onder Waarskuwings verander."}, "nso": {"ob.step": "Mogato {n} ka go 4", "ob.skip": "Tlola go beakanya", "ob.next": "Latelago", "ob.back": "Morago", "ob.finish": "Bona dashboard ya ka", "ob.welcome": "Rea go amogela go Mati-Metsi 💧", "ob.intro": "Kgetha leleme le lefelo la gago. Go tšea metsotswana e 30.", "ob.areaHelp": "Motse fela — ga re kope GPS goba aterese ya gae. Tlogela e se na selo go latela mafelo ka moka.", "ob.servicesTitle": "Ke ditirelo dife tše bohlokwa go wena?", "ob.servicesSub": "Re tla beakanya ditsebišo go tše.", "ob.alertsTitle": "Bula ditsebišo", "ob.alertsSub": "Kgetha gore se swanetše go ba masetlapelo gakae pele re go tsebiša.", "ob.levelHelp": "Leba = dika tša mathomo · Temošo = tshitiso e ka diragalago · Tšhoganetšo = dira bjale", "ob.doneTitle": "O šetše o itokišitše 🎉", "ob.doneBody": "O ka fetola se nako ye nngwe le ye nngwe go Ditsebišo."}, "tn": {"ob.step": "Kgato {n} ka go 4", "ob.skip": "Tlola go baakanya", "ob.next": "E e latelang", "ob.back": "Kwa morago", "ob.finish": "Bona dashboard ya me", "ob.welcome": "Re a go amogela kwa Mati-Metsi 💧", "ob.intro": "Tlhopha puo le lefelo la gago. Go tsaya metsotswana e le 30.", "ob.areaHelp": "Motse fela — ga re kope GPS kgotsa aterese ya gae. Tlogela e le senang sepe go latela mafelo otlhe.", "ob.servicesTitle": "Ke ditirelo dife tse di botlhokwa mo go wena?", "ob.servicesSub": "Re tla baakanya ditemoso go tse.", "ob.alertsTitle": "Bula ditemoso", "ob.alertsSub": "Tlhopha gore sengwe se tshwanetse go bo se masisi go le kae pele re go tlhagisa.", "ob.levelHelp": "Leba = matshwao a ntlha · Temošo = tshitiso e e ka diragalang · Tshoganyetso = dira jaanong", "ob.doneTitle": "O setse o ipaakantse 🎉", "ob.doneBody": "O ka fetola se nako nngwe le nngwe mo Ditemosong."}, "st": {"ob.step": "Mohato {n} ho tsoa ho 4", "ob.skip": "Tlola ho beha", "ob.next": "E latelang", "ob.back": "Morao", "ob.finish": "Sheba dashboard ea ka", "ob.welcome": "Rea u amohela ho Mati-Metsi 💧", "ob.intro": "Khetha puo le sebaka sa hau. Ho nka metsotsoana e 30.", "ob.areaHelp": "Sebaka feela — ha re kope GPS kapa aterese ea lehae. Siea e se na letho ho latela libaka tsohle.", "ob.servicesTitle": "Ke litšebeletso life tse bohlokoa ho uena?", "ob.servicesSub": "Re tla lokisa litemoso ho tsena.", "ob.alertsTitle": "Bula litemoso", "ob.alertsSub": "Khetha hore ntho e tlameha ho ba tebileng hakae pele re u temosa.", "ob.levelHelp": "Lebela = matšoao a pele · Temoso = tšitiso e ka etsahalang · Tšohanyetso = etsa hona joale", "ob.doneTitle": "U se u loketse 🎉", "ob.doneBody": "U ka fetola sena nako efe kapa efe ho Litemoso."}, "ts": {"ob.step": "Xiyenge {n} eka 4", "ob.skip": "Hundza ku lulamisa", "ob.next": "Leyi landzelaka", "ob.back": "Endzhaku", "ob.finish": "Vona dashboard ya mina", "ob.welcome": "Ku amukeriwa eka Mati-Metsi 💧", "ob.intro": "Hlawula ririmi na ndhawu ya wena. Swi teka tisekoni ta 30.", "ob.areaHelp": "Ndhawu ntsena — a hi kombeli GPS kumbe adirese ya le kaya. Siya yi nga ri na nchumu ku landzela tindhawu hinkwato.", "ob.servicesTitle": "I vukorhokeri byihi lebyi nga ni nkoka eka wena?", "ob.servicesSub": "Hi ta lulamisa switsundzuxo hi leswi.", "ob.alertsTitle": "Pfula switsundzuxo", "ob.alertsSub": "Hlawula leswaku xi fanele ku tika ku fika kwihi ku nga si va hi ku tsundzuxa.", "ob.levelHelp": "Languta = swikombiso swo sungula · Xitsundzuxo = mphutselo lowu nga endlakala · Xihangalasa = endla sweswi", "ob.doneTitle": "U lunghekile 🎉", "ob.doneBody": "U nga cinca leswi nkarhi wun'wana ni wun'wana eka Switsundzuxo."}, "ss": {"ob.step": "Sinyatselo {n} kwesi-4", "ob.skip": "Yeqa kusetha", "ob.next": "Lolandzelako", "ob.back": "Emuva", "ob.finish": "Buka dashboard yami", "ob.welcome": "Siyakwemukela ku-Mati-Metsi 💧", "ob.intro": "Khetsa lulwimi nendzawo yakho. Kuthatsa imizuzwana lengu-30.", "ob.areaHelp": "Indzawo kuphela — asicelli i-GPS noma likheli lasekhaya. Yeka kungenalutfo kulandzela tindzawo tonkhe.", "ob.servicesTitle": "Yini tinsita letibalulekile kuwe?", "ob.servicesSub": "Sitawulungisa ticwayiso kuleti.", "ob.alertsTitle": "Vula ticwayiso", "ob.alertsSub": "Khetsa kutsi into kufanele ibe bucayi kangakanani ngembi kwekutsi sikucwayise.", "ob.levelHelp": "Buka = tinkhomba tekucala · Sicwayiso = kuphazamiseka lokungenteka · Siphutfumi = yenta nyalo", "ob.doneTitle": "Usulungile 🎉", "ob.doneBody": "Ungakhona kushintja loku nanoma nini ku-Ticwayiso."}, "ve": {"ob.step": "Tshiga {n} kha 4", "ob.skip": "Fhira u seta", "ob.next": "Zwi tevhelaho", "ob.back": "Murahu", "ob.finish": "Vhonani dashboard yanga", "ob.welcome": "Ni a ṱanganedzwa kha Mati-Metsi 💧", "ob.intro": "Nangani luambo na vhupo haṋu. Zwi dzhia misesekanda ya 30.", "ob.areaHelp": "Vhupo fhedzi — a ri humbeli GPS kana adiresi ya hayani. Litsheni i si na tshithu u tevhela vhupo hoṱhe.", "ob.servicesTitle": "Ndi tshumelo dzifhio dza ndeme kha inwi?", "ob.servicesSub": "Ri ḓo lugisa tsivhudzo kha idzi.", "ob.alertsTitle": "Vulani tsivhudzo", "ob.alertsSub": "Nangani uri tshithu tshi fanela u vha tshihulwane hani phanḓa ha uri ri ni tsivhudze.", "ob.levelHelp": "Sedza = zwiga zwa u thoma · Tsivhudzo = u thithiswa hu nga bvelelaho · Tshikhala = ita zwino", "ob.doneTitle": "Zwoṱhe zwo lugiswa 🎉", "ob.doneBody": "Ni nga shandukisa hezwi tshifhinga tshiṅwe na tshiṅwe kha Tsivhudzo."}, "nr": {"ob.step": "Isinyathelo {n} kwezi-4", "ob.skip": "Yeqa ukusetha", "ob.next": "Okulandelako", "ob.back": "Emuva", "ob.finish": "Buka dashboard yami", "ob.welcome": "Siyakwamukela ku-Mati-Metsi 💧", "ob.intro": "Khetha ilimi nendawo yakho. Kuthatha imizuzwana eyi-30.", "ob.areaHelp": "Indawo kuphela — asicele i-GPS namkha ikheli lasekhaya. Shiya kungenalutho ukulandela zoke iindawo.", "ob.servicesTitle": "Zisiphi iinsiza ezibalulekileko kuwe?", "ob.servicesSub": "Sizokulungisa iimphawu kilokhu.", "ob.alertsTitle": "Vula iimphawu", "ob.alertsSub": "Khetha bona into kufuze ibe nzima kangangani ngaphambi kobana sikuxwayise.", "ob.levelHelp": "Rhweba = iimpawu zokuthoma · Isaziso = ukuphazamiseka okungenzeka · Iphuthuma = enza nje", "ob.doneTitle": "Usulungile 🎉", "ob.doneBody": "Ungakhona ukutjhugulula lokhu nanini ku-Iimphawu."}};
+  Object.keys(OB_I18N).forEach(function (l) { Object.assign(I18N[l], OB_I18N[l]); });
   var EN_DOM = {};
   var lang = 'en';
-  
-  // Expose for Gemini Translator
-  window.__MM_I18N = I18N;
 
   function t(key) {
     return (I18N[lang] && I18N[lang][key]) || I18N.en[key] || EN_DOM[key] || key;
@@ -2314,13 +2315,6 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     $$('[data-i18n-html]').forEach(function (el) { el.innerHTML = t(el.dataset.i18nHtml); });
     $$('[data-i18n-ph]').forEach(function (el) { el.placeholder = t(el.dataset.i18nPh); });
   }
-  
-  window.__MM_setLang = function(newLang) {
-    lang = newLang;
-    applyI18n();
-    updateAuthNavLabel();
-    renderAll();
-  };
 
   var DEFAULT_PREFS = {
     homeArea: '', services: ['all'], level: 'watch', notify: false, subscribed: false,
@@ -3073,7 +3067,9 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     var r = list.find(function (x) { return x.id === id; });
     if (!r) return null;
     fn(r);
+    recentLocal[id] = Date.now();
     saveReports(list);
+    if (!r.demo && !isMine(r) && isPartner()) sbRpc('partner_update_report', { rid: r.id, p_status: r.status, p_history: r.history || [], p_responses: r.responses || [] });
     return r;
   }
 
@@ -3093,6 +3089,7 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
         r.history.push({ status: 'confirmed', at: nowIso(), by: 'Community (' + CONFIRM_THRESHOLD + ' confirmations)' });
       }
     });
+    if (!target.demo) sbRpc('confirm_report', { rid: id });
     renderAll();
     toast(added ? 'Thanks — your confirmation was added.' : 'Confirmation removed.', added ? 'success' : '');
   }
@@ -3144,6 +3141,7 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     var ok = await confirmDialog('Delete this report?', '"' + truncate(r.description, 90) + '" will be removed from this device. This cannot be undone.', 'Delete report', true);
     if (!ok) return;
     saveReports(getReports().filter(function (x) { return x.id !== id; }));
+    if (!r.demo) sbDelete('reports', id);
     renderAll();
     if (currentView === 'profile') loadProfile();
     toast('Report deleted.', 'success');
@@ -4219,7 +4217,7 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     var prevListings = {};
     lsGet(K.help, []).forEach(function (l) { if (l && l.id) prevListings[l.id] = JSON.stringify(l); });
     list.forEach(function (l) {   // sync only my own listings that changed
-      if (l && l.id && !l.demo && (isMyListing(l) || l.claimedByUid === lsGet('mm_sb_uid', null)) && prevListings[l.id] !== JSON.stringify(l)) syncListingToSupabase(l);
+      if (l && l.id && !l.demo && isMyListing(l) && prevListings[l.id] !== JSON.stringify(l)) syncListingToSupabase(l);
     });
     return lsSet(K.help, list);
   }
@@ -4283,6 +4281,7 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     var l = list.find(function (x) { return x.id === id; });
     if (!l) return null;
     fn(l);
+    recentLocal[id] = Date.now();
     saveListings(list);
     return l;
   }
@@ -4290,12 +4289,14 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     if (!requireLogin('claim listings')) return;
     var u = getUser();
     updateListing(id, function (l) { l.status = 'claimed'; l.claimedBy = u.email; l.claimedByUid = lsGet('mm_sb_uid', null); l.claimedByName = u.name; l.claimedAt = nowIso(); });
+    if (String(id).indexOf('demo-') !== 0) sbRpc('claim_listing', { lid: id });
     refreshHelpViews();
     toast('Marked as claimed. Remember to meet in a public place.', 'success');
   }
   function completeListing(id) {
     if (!requireLogin('update listings')) return;
     updateListing(id, function (l) { l.status = 'completed'; l.completedAt = nowIso(); });
+    if (String(id).indexOf('demo-') !== 0) sbRpc('complete_listing', { lid: id });
     refreshHelpViews();
     toast('Marked as completed — thank you for helping!', 'success');
   }
@@ -4304,6 +4305,7 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     if (!l || !isMyListing(l)) return;
     if (!(await confirmDialog('Delete this listing?', '"' + l.title + '" will be removed. This cannot be undone.', 'Delete listing', true))) return;
     saveListings(getListings().filter(function (x) { return x.id !== id; }));
+    if (!l.demo) sbDelete('help_listings', id);
     refreshHelpViews();
     toast('Listing deleted.', 'success');
   }
@@ -4323,6 +4325,7 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
     if (BANKING_RE.test(text) || looksLikeAddress(text)) { toast('Please remove banking details or street addresses from your message.', 'error'); return; }
     var u = getUser();
     updateListing(id, function (x) { x.messages = x.messages || []; x.messages.push({ from: u.name, fromEmail: u.email, text: text, at: nowIso() }); });
+    if (!l.demo) sbRpc('message_listing', { lid: id, msg: { from: u.name, text: text, at: nowIso() } });
     refreshHelpViews();
     toast('Message sent.', 'success');
   }
@@ -4692,9 +4695,12 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
   }
 
   var ob = null;
+  var LANG_NAMES = [['en', 'English'], ['zu', 'isiZulu'], ['xh', 'isiXhosa'], ['af', 'Afrikaans'], ['nso', 'Sepedi'], ['tn', 'Setswana'], ['st', 'Sesotho'], ['ts', 'Xitsonga'], ['ss', 'siSwati'], ['ve', 'Tshivenda'], ['nr', 'isiNdebele']];
+  function ungate() { document.body.classList.remove('mm-gate'); }
+  $('onboardDialog').addEventListener('close', ungate);
   function openOnboarding() {
     var dlg = $('onboardDialog');
-    if (typeof dlg.showModal !== 'function') { setPrefs({ onboarded: true }); return; }
+    if (typeof dlg.showModal !== 'function') { setPrefs({ onboarded: true }); ungate(); return; }
     var p = getPrefs();
     ob = { step: 0, area: p.homeArea || '', services: (p.services || ['all']).slice(), level: p.level || 'watch' };
     renderOnboarding();
@@ -4708,16 +4714,27 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
   function renderOnboarding() {
     var c = $('onboardContent');
     $$('#onboardDialog .steps i').forEach(function (el, i) { el.classList.toggle('on', i <= ob.step); });
-    $('onboardStepLabel').textContent = 'Step ' + (ob.step + 1) + ' of 4';
+    $('onboardStepLabel').textContent = tFormat('ob.step', { n: ob.step + 1 });
     $('onboardBack').classList.toggle('hidden', ob.step === 0);
-    $('onboardNext').textContent = ob.step === 3 ? 'View my dashboard' : 'Next';
+    $('onboardBack').textContent = t('ob.back');
+    $('onboardSkip').textContent = t('ob.skip');
+    var x = document.querySelector('.mm-ob-skip'); if (x) x.setAttribute('aria-label', t('ob.skip'));
+    $('onboardNext').textContent = ob.step === 3 ? t('ob.finish') : t('ob.next');
     if (ob.step === 0) {
-      c.innerHTML = '<h3 id="onboardTitle" style="margin-top:0">Welcome to Mati-Metsi 💧</h3><p class="text-sm text-muted mb-4">Prepare for water, power, transport and food disruptions with your neighbours. Let\'s set things up — it takes 30 seconds.</p>' +
-        '<div class="field"><label for="obArea">Choose your area / suburb</label><input id="obArea" class="input" list="areaList" maxlength="100" placeholder="e.g. Mamelodi, Hatfield, Soshanguve" value="' + esc(ob.area) + '"><p class="help">Suburb only — we never ask for GPS or your home address. Leave blank to follow all areas.</p></div>';
+      c.innerHTML = '<h3 id="onboardTitle" style="margin-top:0">' + esc(t('ob.welcome')) + '</h3><p class="text-sm text-muted mb-4">' + esc(t('ob.intro')) + '</p>' +
+        '<div class="field"><label for="obLang">' + esc(t('a11y.lang')) + '</label><select id="obLang" class="select">' +
+        LANG_NAMES.map(function (n) { return '<option value="' + n[0] + '"' + (n[0] === lang ? ' selected' : '') + '>' + esc(n[1]) + '</option>'; }).join('') + '</select></div>' +
+        '<div class="field"><label for="obArea">' + esc(t('alerts.homeArea')) + '</label><input id="obArea" class="input" list="areaList" maxlength="100" placeholder="e.g. Mamelodi, Hatfield, Soshanguve" value="' + esc(ob.area) + '"><p class="help">' + esc(t('ob.areaHelp')) + '</p></div>';
+      $('obLang').addEventListener('change', function () {
+        obCollect();
+        var ls = $('langSelect'); ls.value = this.value;
+        ls.dispatchEvent(new Event('change', { bubbles: true }));   // applies the language to the whole page
+        renderOnboarding();
+      });
     } else if (ob.step === 1) {
-      var opts = [['all', '🌐', 'All'], ['water', '💧', 'Water'], ['energy', '⚡', 'Energy'], ['transport', '🚌', 'Transport'], ['food', '🥕', 'Food'], ['weather', '🌦', 'Weather']];
-      c.innerHTML = '<h3 id="onboardTitle" style="margin-top:0">Which services matter to you?</h3><p class="text-sm text-muted mb-4">We\'ll tailor alerts to these.</p><div class="chip-group" id="obServices">' +
-        opts.map(function (o) { return '<label class="chip"><input type="checkbox" value="' + o[0] + '"' + (ob.services.indexOf(o[0]) !== -1 ? ' checked' : '') + '><span>' + o[1] + ' ' + t('cat.' + o[0]) + '</span></label>'; }).join('') + '</div>';
+      var opts = [['all', '🌐'], ['water', '💧'], ['energy', '⚡'], ['transport', '🚌'], ['food', '🥕'], ['weather', '🌦']];
+      c.innerHTML = '<h3 id="onboardTitle" style="margin-top:0">' + esc(t('ob.servicesTitle')) + '</h3><p class="text-sm text-muted mb-4">' + esc(t('ob.servicesSub')) + '</p><div class="chip-group" id="obServices">' +
+        opts.map(function (o) { return '<label class="chip"><input type="checkbox" value="' + o[0] + '"' + (ob.services.indexOf(o[0]) !== -1 ? ' checked' : '') + '><span>' + o[1] + ' ' + esc(t('cat.' + o[0])) + '</span></label>'; }).join('') + '</div>';
       $$('#obServices input').forEach(function (inp) {
         inp.addEventListener('change', function () {
           if (!inp.checked) return;
@@ -4726,21 +4743,21 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
         });
       });
     } else if (ob.step === 2) {
-      c.innerHTML = '<h3 id="onboardTitle" style="margin-top:0">Enable alerts</h3><p class="text-sm text-muted mb-4">Choose how serious something must be before we alert you.</p>' +
-        '<div class="seg cols-3 mb-4">' + LEVELS.map(function (l) { return '<label><input type="radio" name="obLevel" value="' + l + '"' + (ob.level === l ? ' checked' : '') + '><span>' + t('level.' + l) + '</span></label>'; }).join('') + '</div>' +
-        '<p class="text-xs text-muted mb-4"><strong>Watch</strong> = early signs · <strong>Warning</strong> = likely disruption · <strong>Emergency</strong> = act now</p>' +
-        '<button type="button" class="btn btn-outline btn-sm" id="obNotify">🔔 Allow browser notifications</button><p class="text-xs text-muted mt-2" id="obNotifyStatus">' + esc(notifyStatusText()) + '</p>';
+      c.innerHTML = '<h3 id="onboardTitle" style="margin-top:0">' + esc(t('ob.alertsTitle')) + '</h3><p class="text-sm text-muted mb-4">' + esc(t('ob.alertsSub')) + '</p>' +
+        '<div class="seg cols-3 mb-4">' + LEVELS.map(function (l) { return '<label><input type="radio" name="obLevel" value="' + l + '"' + (ob.level === l ? ' checked' : '') + '><span>' + esc(t('level.' + l)) + '</span></label>'; }).join('') + '</div>' +
+        '<p class="text-xs text-muted mb-4">' + esc(t('ob.levelHelp')) + '</p>' +
+        '<button type="button" class="btn btn-outline btn-sm" id="obNotify">🔔 ' + esc(t('alerts.notify')) + '</button><p class="text-xs text-muted mt-2" id="obNotifyStatus">' + esc(notifyStatusText()) + '</p>';
       $('obNotify').addEventListener('click', function () {
-        requestNotify().then(function (ok) { setPrefs({ notify: ok }); $('obNotifyStatus').textContent = notifyStatusText(); if (ok) toast('Browser notifications enabled.', 'success'); });
+        requestNotify().then(function (ok) { setPrefs({ notify: ok }); $('obNotifyStatus').textContent = notifyStatusText(); if (ok) toast(t('alerts.notify'), 'success'); });
       });
     } else {
       var svc = ob.services.length ? ob.services : ['all'];
-      c.innerHTML = '<h3 id="onboardTitle" style="margin-top:0">You\'re all set 🎉</h3><ul class="action-list mb-4">' +
-        '<li><strong>Area:</strong> ' + esc(ob.area || 'All areas') + '</li>' +
-        '<li><strong>Services:</strong> ' + svc.map(function (s) { return t('cat.' + s); }).join(', ') + '</li>' +
-        '<li><strong>Alert level:</strong> ' + t('level.' + ob.level) + ' and above</li></ul>' +
-        '<p class="text-sm text-muted">Your dashboard shows <strong>What may happen next</strong> for your area, alerts, open reports and your readiness. You can change this any time under Alerts.</p>' +
-        '<p class="text-xs text-muted mt-4">🚨 Mati-Metsi is not an emergency service. In an emergency call 10111, 10177 or 112.</p>';
+      c.innerHTML = '<h3 id="onboardTitle" style="margin-top:0">' + esc(t('ob.doneTitle')) + '</h3><ul class="action-list mb-4">' +
+        '<li><strong>' + esc(t('common.area')) + ':</strong> ' + esc(ob.area || t('cat.all')) + '</li>' +
+        '<li><strong>' + esc(t('alerts.services')) + ':</strong> ' + svc.map(function (s) { return esc(t('cat.' + s)); }).join(', ') + '</li>' +
+        '<li><strong>' + esc(t('alerts.level')) + ':</strong> ' + esc(t('level.' + ob.level)) + '</li></ul>' +
+        '<p class="text-sm text-muted">' + esc(t('ob.doneBody')) + '</p>' +
+        '<p class="text-xs text-muted mt-4">🚨 ' + t('emergency') + '</p>';
     }
     var first = c.querySelector('input');
     if (first) setTimeout(function () { first.focus(); }, 30);
@@ -4906,7 +4923,7 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
         category: report.category, type: report.type, area: report.area,
         severity: report.severity, description: report.description,
         status: report.status, source: report.source || 'community',
-        org: report.org || null, votes: (report.votes || []).map(function () { return 'anon'; }),   // count only: voter emails stay on this device
+        org: report.org || null,
         history: report.history || [], responses: report.responses || [],
         demo: !!report.demo, lat: report.lat || null, lng: report.lng || null,
         photo_path: report.photo_path || null, created_at: report.createdAt
@@ -4928,15 +4945,96 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
         kind: listing.kind, category: listing.category, title: listing.title,
         description: listing.description || null, area: listing.area,
         quantity: listing.quantity || null, until_at: listing.until || null,
-        contact: listing.contact, contact_value: null,   // phone numbers stay on this device
+        contact: listing.contact, contact_value: listing.contactValue || null,
         status: listing.status, claimed_by: listing.claimedByUid || null,
-        messages: [], demo: !!listing.demo,   // private messages stay on this device
+        messages: listing.messages || [], demo: !!listing.demo,
         created_at: listing.createdAt
       };
       var res = await client.from('help_listings').upsert(payload, { onConflict: 'id' });
       if (res.error) { console.warn('[Mati-Metsi] Sync failed:', res.error.message); return false; }
       return true;
     } catch (e) { return false; }
+  }
+
+  // ----- RPC / delete helpers, and read-back from Supabase -----
+  var recentLocal = {};   // id -> time of last local edit; pull() will not overwrite these for 2 minutes
+  async function sbRpc(name, args) {
+    try {
+      var c = await getSupabase();
+      var r = await c.rpc(name, args);
+      if (r.error) { console.warn('[Mati-Metsi] ' + name + ' failed:', r.error.message); return false; }
+      return true;
+    } catch (e) { return false; }
+  }
+  async function sbDelete(table, id) {
+    try { var c = await getSupabase(); await c.from(table).delete().eq('id', id); } catch (e) {}
+  }
+  function sbVoter(v, me, u) { return (me && v === me && u) ? u.email : 'sb:' + v; }   // my own uid -> my email; others stay anonymous
+
+  var pulling = false;
+  async function pullFromSupabase() {
+    if (pulling || navigator.onLine === false) return;
+    pulling = true;
+    try {
+      var c = await getSupabase();
+      var me = lsGet('mm_sb_uid', null), u = getUser(), changed = false, now = Date.now();
+
+      var rr = await c.from('reports').select('*').eq('demo', false).order('created_at', { ascending: false }).limit(300);
+      if (!rr.error && rr.data) {
+        var local = lsGet(K.reports, []), byId = {};
+        local.forEach(function (r) { if (r && r.id) byId[r.id] = r; });
+        rr.data.forEach(function (x) {
+          var ex = byId[x.id], votes = (x.votes || []).map(function (v) { return sbVoter(v, me, u); });
+          if (ex) {
+            if (now - (recentLocal[x.id] || 0) < 120000) return;
+            var before = JSON.stringify([ex.status, ex.votes, ex.responses, ex.history]);
+            ex.status = x.status; ex.votes = votes; ex.responses = x.responses || []; ex.history = x.history || [];
+            if (JSON.stringify([ex.status, ex.votes, ex.responses, ex.history]) !== before) changed = true;
+          } else {
+            local.unshift({
+              id: x.id, category: x.category, type: x.type, area: x.area, severity: x.severity, description: x.description,
+              photo: null, createdAt: x.created_at, status: x.status, votes: votes, author: x.author_name || 'Neighbour',
+              authorEmail: (me && x.author_id === me && u) ? u.email : 'sb:' + x.author_id,
+              source: x.source || 'community', org: x.org || '', responses: x.responses || [], history: x.history || [],
+              demo: false, lat: x.lat, lng: x.lng
+            });
+            changed = true;
+          }
+        });
+        if (changed) lsSet(K.reports, local);
+      }
+
+      var lr = await c.from('help_listings').select('*').eq('demo', false).order('created_at', { ascending: false }).limit(300);
+      var lchanged = false;
+      if (!lr.error && lr.data) {
+        var ll = lsGet(K.help, []), lById = {};
+        ll.forEach(function (l) { if (l && l.id) lById[l.id] = l; });
+        lr.data.forEach(function (x) {
+          var msgs = (x.messages || []).map(function (m) { return { from: m.from, fromEmail: sbVoter(m.fromUid, me, u), text: m.text, at: m.at }; });
+          var claimedBy = x.claimed_by ? sbVoter(x.claimed_by, me, u) : undefined;
+          var ex = lById[x.id];
+          if (ex) {
+            if (now - (recentLocal[x.id] || 0) < 120000) return;
+            var b2 = JSON.stringify([ex.status, ex.messages, ex.claimedBy]);
+            ex.status = x.status; ex.messages = msgs; ex.claimedBy = claimedBy; ex.claimedByUid = x.claimed_by || undefined;
+            if (JSON.stringify([ex.status, ex.messages, ex.claimedBy]) !== b2) lchanged = true;
+          } else {
+            ll.unshift({
+              id: x.id, kind: x.kind, category: x.category, title: x.title, description: x.description || '', area: x.area,
+              quantity: x.quantity || '', until: x.until_at, contact: x.contact, contactValue: x.contact_value || '',
+              status: x.status, author: x.author_name || 'Neighbour',
+              authorEmail: (me && x.author_id === me && u) ? u.email : 'sb:' + x.author_id,
+              claimedBy: claimedBy, claimedByUid: x.claimed_by || undefined, claimedByName: x.claimed_by ? 'A neighbour' : '',
+              messages: msgs, createdAt: x.created_at, demo: false
+            });
+            lchanged = true;
+          }
+        });
+        if (lchanged) lsSet(K.help, ll);
+      }
+      if (changed || lchanged) renderAll();
+    } catch (e) { console.warn('[Mati-Metsi] pull failed:', e && e.message); }
+    pulling = false;
   }
   window.__mmSyncReport = syncReportToSupabase;
   // ===== END SUPABASE =====
@@ -4969,12 +5067,16 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
       goHome('#' + hash);
     }
 
-    if (!getPrefs().onboarded) setTimeout(openOnboarding, 600);
+    if (!getPrefs().onboarded) openOnboarding(); else ungate();
+    setTimeout(ungate, 8000);   // safety net: never leave the page hidden
 
     setInterval(function () {
       if (!document.hidden) refreshWeather();
     }, 15 * 60 * 1000);
     setInterval(function () { if (!document.hidden) renderAll(); }, 5 * 60 * 1000);
+    setTimeout(pullFromSupabase, 1500);
+    setInterval(function () { if (!document.hidden) pullFromSupabase(); }, 60 * 1000);
+    window.addEventListener('online', function () { setTimeout(pullFromSupabase, 1000); });
   }
 
   if (document.readyState === 'loading') {
@@ -5570,7 +5672,7 @@ try {
     var ev=get(EV,[]).filter(function(e){return e.t==='confirm';}),slot=$('mmPredict');
     if(ev.length<3)return;var k={};ev.forEach(function(e){var s=e.c+'|'+e.d;k[s]=(k[s]||0)+1;});
     var top=Object.keys(k).sort(function(a,b){return k[b]-k[a];})[0].split('|');
-    if(!slot){var h=$('view-home');if(!h)return;slot=document.createElement('div');slot.id='mmPredict';slot.className='card mm-pred';var m=h.querySelector('#main-content section')||h.querySelector('.view-main section')||h;m.insertBefore(slot,m.firstChild);}
+    if(!slot){var h=$('view-home');if(!h)return;slot=document.createElement('div');slot.id='mmPredict';slot.className='card mm-pred';var m=h.querySelector('main section')||h;m.insertBefore(slot,m.firstChild);}
     var open=get(REP,[]).filter(function(r){return r.category===top[0]&&r.status!=='resolved';}).length;
     var html='<strong>🔮 Likely next:</strong> You usually confirm '+esc(top[0])+' reports on '+DAYS[+top[1]]+' — '+open+' open right now.'+
       '<details><summary>Why this prediction?</summary><small>Based on '+ev.length+' confirmations logged on this device; the most frequent category + weekday pair ('+k[top.join('|')]+' times) is shown. Nothing leaves your device.</small></details> <button type="button" class="btn btn-outline btn-sm" onclick="goHome(\'#reports\')">View '+esc(top[0])+' reports</button>';
