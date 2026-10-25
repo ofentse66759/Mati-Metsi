@@ -14,9 +14,9 @@ Built as an offline-first Progressive Web App (PWA), it bridges the gap between 
 
 | Home, with offline banner | Your dashboard |
 | --- | --- |
-| ![Home page showing the offline banner and the four essential services](docs/screenshots/home-offline.png) | ![Dashboard tiles: alerts, open reports, readiness and help available](docs/screenshots/dashboard.png) |
+| ![Home page showing the offline banner and the four essential services](home-offline.png) | ![Dashboard tiles: alerts, open reports, readiness and help available](dashboard.png) |
 | **Local alerts** | **Neighbour Help** |
-| ![Alert subscriptions: home area, minimum level, services and thresholds](docs/screenshots/alerts.png) | ![Neighbour Help board with safety banner and filters](docs/screenshots/neighbour-help.png) |
+| ![Alert subscriptions: home area, minimum level, services and thresholds](alerts.png) | ![Neighbour Help board with safety banner and filters](neighbour-help.png) |
 
 The offline banner shows that the app keeps working without a connection and uses the last saved forecast.
 
@@ -47,7 +47,7 @@ Mati-Metsi/
 ├── index.html        # App shell, UI, logic and translations
 ├── sw.js             # Service Worker (app-shell caching, offline routing)
 ├── manifest.json     # PWA manifest (Add to Home Screen)
-├── docs/screenshots/ # Images used in this README
+├──  # Images used in this README
 ├── icons/            # icon-192.png, icon-512.png
 └── supabase/
     └── schema.sql    # Tables, RLS policies, trigger, storage policies
@@ -251,9 +251,7 @@ Please do not commit secrets. Only the Supabase **anon** key belongs in the fron
 - Backend by [Supabase](https://supabase.com/).
 
 ## Licence
-
-Add a licence (for example MIT) in a `LICENSE` file and name it here.
+ MIT LICENSE
 
 ## Contact
-
-Add a project contact email or issue-tracker link here.
+ofentserasekhula8@gmail.com
