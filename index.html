@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#08161b">
 <title>Mati-Metsi — Community Resilience &amp; Essential Services</title>
 <link rel="manifest" href="manifest.json">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💧%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%20100%20100%27%3E%3Ctext%20y=%27.9em%27%20font-size=%2790%27%3E%F0%9F%92%A7%3C/text%3E%3C/svg%3E">
 <style>
 /* ===== THEME TOKENS ===== */
 :root, [data-theme="dark"] {
@@ -149,7 +149,7 @@ header.top nav.desktop button:hover, header.top nav.desktop button[aria-current=
 .view.active { display: block; animation: viewIn .25s ease; }
 @keyframes viewIn { from { opacity: 0; transform: translateY(6px); } }
 
-main { max-width: 1040px; margin: 0 auto; padding: 24px 16px 100px; }
+main, [data-main] { max-width: 1040px; margin: 0 auto; padding: 24px 16px 100px; }
 section { margin-bottom: 48px; scroll-margin-top: 80px; }
 .kicker { font-size: 0.6875rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
 h2 { font-size: 1.625rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; line-height: 1.2; }
@@ -508,6 +508,45 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
 .adv-u{align-self:flex-end;background:var(--btn);color:var(--btn-text)}.adv-b{align-self:flex-start;background:var(--surface-2);border:1px solid var(--border-soft)}
 .leaflet-container{font-family:inherit}
 </style>
+
+<style>
+body.menu-locked { overflow: hidden; }
+.mm-lang-row { margin-top: 12px; padding: 14px 16px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
+.mm-lang-row label { font-size: 0.8125rem; font-weight: 700; color: var(--muted); }
+.mm-lang-row select { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; }
+.mm-dash-head { margin-bottom: 12px; }
+.mm-dash-head h2 { margin-bottom: 0; }
+</style>
+<style>
+@keyframes mmFlash { 0% { box-shadow: 0 0 0 0 var(--focus); } 30% { box-shadow: 0 0 0 6px var(--focus); } 100% { box-shadow: 0 0 0 0 transparent; } }
+.mm-arrived { animation: mmFlash 1.2s ease; border-radius: 12px; }
+</style>
+<style>
+.mm-ob-skip { position: absolute; top: 10px; right: 10px; z-index: 2; width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); font-size: 1rem; display: grid; place-items: center; }
+.mm-ob-skip:hover { background: var(--surface-3); }
+#onboardDialog .modal-body { position: relative; }
+</style>
+<style>
+.mm-rh-filters { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 16px; }
+.mm-rh-filters button { padding: 6px 14px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); font-size: 0.8125rem; font-weight: 600; }
+.mm-rh-filters button[aria-pressed="true"] { background: var(--btn); color: var(--btn-text); border-color: var(--btn); }
+.mm-rh-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
+.mm-rh-meta { font-size: 0.8125rem; color: var(--muted); margin: 4px 0 8px; }
+.mm-tl { list-style: none; margin: 12px 0 0; padding: 0 0 0 14px; border-left: 2px solid var(--border); }
+.mm-tl li { position: relative; padding: 0 0 12px 12px; font-size: 0.875rem; }
+.mm-tl li::before { content: ''; position: absolute; left: -21px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--brand); }
+.mm-tl li.resp::before { background: var(--accent); }
+.mm-tl small { display: block; color: var(--muted); font-size: 0.75rem; }
+.mm-queued { border-style: dashed; }
+</style>
+<style>
+.mm-or { text-align: center; color: var(--muted); font-size: 0.8125rem; margin: 14px 0 10px; }
+</style>
+<style>
+.mm-demo-flag{display:inline-block;padding:2px 10px;border-radius:999px;border:1px dashed var(--accent);font-size:.75rem;font-weight:700;color:var(--accent)}
+.mm-row{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}.mm-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0}
+.mm-kpi b{display:block;font-size:1.6rem}.mm-pred{border-left:4px solid var(--brand)}.mm-log{font-size:.8125rem;max-height:240px;overflow:auto}
+</style>
 </head>
 <body class="mm-gate">
 <a href="#main-content" class="skip-link">Skip to content</a>
@@ -792,7 +831,7 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
     <div class="grid-2">
       <div class="field">
         <label for="reportCategory" data-i18n="report.category">Service category</label>
-        <select id="reportCategory" class="select" required>
+        <select id="reportCategory" class="select">
           <option value="water">💧 Water</option>
           <option value="energy">⚡ Energy</option>
           <option value="transport">🚌 Transport</option>
@@ -801,7 +840,7 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
       </div>
       <div class="field">
         <label for="reportType" data-i18n="report.type">Issue type</label>
-        <select id="reportType" class="select" required></select>
+        <select id="reportType" class="select" required><option value="" label=" "></option></select>
       </div>
     </div>
     <fieldset class="field" style="border:none">
@@ -821,7 +860,7 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
     <div class="field">
       <label for="reportPhoto"><span data-i18n="report.photo">Photo (optional)</span></label>
       <div class="photo-drop">
-        <img id="photoPreview" class="hidden" alt="Selected photo preview">
+        <img id="photoPreview" class="hidden" alt="Selected photo preview" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
         <div style="flex:1;min-width:180px">
           <input id="reportPhoto" type="file" accept="image/*" class="text-sm">
           <p class="help">Resized and stored on this device only. Avoid faces and number plates.</p>
@@ -962,7 +1001,7 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
 </div>
 
 <div class="view" id="view-alerts">
-<main>
+<div data-main>
   <button class="btn btn-outline btn-sm mb-4" onclick="goHome()">← <span data-i18n="common.back">Back to home</span></button>
   <p class="kicker" data-i18n="alerts.kicker">Stay ahead</p>
   <h2 data-i18n="alerts.title">Local alerts</h2>
@@ -1026,11 +1065,11 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
   </div>
   <input id="alertSearch" class="input" type="search" placeholder="Search alerts…" maxlength="100" aria-label="Search alerts" style="margin-bottom:12px">
   <div id="alertFeed"></div>
-</main>
+</div>
 </div>
 
 <div class="view" id="view-help">
-<main>
+<div data-main>
   <button class="btn btn-outline btn-sm mb-4" onclick="goHome()">← <span data-i18n="common.back">Back to home</span></button>
   <p class="kicker" data-i18n="help.kicker">Share what you can</p>
   <h2 data-i18n="help.title">Neighbour Help</h2>
@@ -1056,7 +1095,7 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
       </div>
     </div>
     <div class="grid-2">
-      <div class="field"><label for="helpCategory">Category</label><select id="helpCategory" class="select" required></select></div>
+      <div class="field"><label for="helpCategory">Category</label><select id="helpCategory" class="select" required><option value="" label=" "></option></select></div>
       <div class="field"><label for="helpArea">Area / suburb</label><input id="helpArea" class="input" list="areaList" maxlength="80" required placeholder="e.g. Hatfield"><p class="help">Suburb only — never your street or house number.</p></div>
     </div>
     <div class="field"><label for="helpTitle">Short title</label><input id="helpTitle" class="input" maxlength="80" required placeholder="e.g. 4 × 25 L containers to lend"></div>
@@ -1087,11 +1126,11 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
   </div>
   <div class="result-meta"><span id="helpCount" aria-live="polite"></span></div>
   <div id="helpList" class="listing-grid"></div>
-</main>
+</div>
 </div>
 
 <div class="view" id="view-plan">
-<main>
+<div data-main>
   <button class="btn btn-outline btn-sm mb-4" onclick="goHome()">← <span data-i18n="common.back">Back to home</span></button>
   <p class="kicker" data-i18n="plan.kicker">Save money · Be ready</p>
   <h2 data-i18n="plan.title">My Resilience Plan</h2>
@@ -1123,11 +1162,11 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
     </div>
     <div id="planActions"></div>
   </div>
-</main>
+</div>
 </div>
 
 <div class="view" id="view-tools">
-<main class="tk">
+<div data-main class="tk">
   <button class="btn btn-outline btn-sm mb-4" onclick="goHome()">← <span data-i18n="common.back">Back to home</span></button>
   <p class="kicker" data-i18n="tk.kicker">Practical tools</p><h2 data-i18n="tk.title">Toolkit</h2>
   <p class="lead" data-i18n="tk.lead">Plan for load-shedding, estimate your savings and see what to grow. Everything runs on this device.</p>
@@ -1168,11 +1207,11 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
     <div id="advLog" aria-live="polite" style="display:flex;flex-direction:column;gap:8px;margin:10px 0"></div>
     <div class="flex gap-2"><input id="advIn" class="input grow" maxlength="200" placeholder="Ask about leaks, batteries, tanks, planting…" aria-label="Ask the advisor"><button class="btn" id="advGo" type="button">Ask</button></div>
   </section>
-</main>
+</div>
 </div>
 
 <div class="view" id="view-about">
-<main>
+<div data-main>
   <button class="btn btn-outline btn-sm mb-4" onclick="goHome()">← <span data-i18n="common.back">Back to home</span></button>
   <p class="kicker">About · Roadmap · Business model</p>
   <h2 data-i18n="about.title">About Mati-Metsi</h2>
@@ -1288,7 +1327,7 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
     <h3 style="margin-top:0">Contact</h3>
     <p class="text-sm text-muted">General: <a href="mailto:hello@mati-metsi.org">hello@mati-metsi.org</a> · Privacy / DPO: <a href="mailto:privacy@mati-metsi.org">privacy@mati-metsi.org</a> · Legal: <a href="mailto:legal@mati-metsi.org">legal@mati-metsi.org</a></p>
   </div>
-</main>
+</div>
 </div>
 
 <div class="view" id="view-login">
@@ -1398,7 +1437,7 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
 </div>
 
 <div class="view" id="view-profile">
-<main>
+<div data-main>
   <section>
     <div class="profile-header">
       <div class="avatar" id="profileAvatar">?</div>
@@ -1466,11 +1505,11 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
       </div>
     </div>
   </section>
-</main>
+</div>
 </div>
 
 <div class="view" id="view-privacy">
-<main class="legal">
+<div data-main class="legal">
   <button class="btn btn-outline btn-sm mb-4" onclick="goHome()">← Back to home</button>
   <p class="kicker">Legal · Your data</p>
   <h2>Privacy &amp; POPIA</h2>
@@ -1507,7 +1546,7 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
     <p><a href="mailto:privacy@mati-metsi.org">privacy@mati-metsi.org</a></p>
     <p class="text-xs mt-6">Last updated: 23 October 2026 · Version 2.1</p>
   </div>
-</main>
+</div>
 </div>
 
 <div class="emergency-bar" role="note">
@@ -1536,7 +1575,7 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
   </form>
 </dialog>
 
-<dialog class="modal" id="onboardDialog" aria-labelledby="onboardTitle">
+<dialog class="modal" id="onboardDialog" aria-label="Mati-Metsi setup">
   <div class="modal-body">
     <div class="steps" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     <p class="kicker" id="onboardStepLabel">Step 1 of 4</p>
@@ -1554,74 +1593,36 @@ footer.bottom .inner { max-width: 1040px; margin: 0 auto; }
 
 
 <!-- ===== Feature: Dashboard nav, hamburger upgrades, language helpers ===== -->
-<style>
-body.menu-locked { overflow: hidden; }
-.mm-lang-row { margin-top: 12px; padding: 14px 16px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
-.mm-lang-row label { font-size: 0.8125rem; font-weight: 700; color: var(--muted); }
-.mm-lang-row select { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font: inherit; }
-.mm-dash-head { margin-bottom: 12px; }
-.mm-dash-head h2 { margin-bottom: 0; }
-</style>
 
 <!-- ===== Feature: reliable section navigation (re-aligns if the layout shifts while scrolling) ===== -->
-<style>
-@keyframes mmFlash { 0% { box-shadow: 0 0 0 0 var(--focus); } 30% { box-shadow: 0 0 0 6px var(--focus); } 100% { box-shadow: 0 0 0 0 transparent; } }
-.mm-arrived { animation: mmFlash 1.2s ease; border-radius: 12px; }
-</style>
 
 <!-- ===== Feature: top "Skip" on the setup popup + Weather / Report links in the desktop nav ===== -->
-<style>
-.mm-ob-skip { position: absolute; top: 10px; right: 10px; z-index: 2; width: 40px; height: 40px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); font-size: 1rem; display: grid; place-items: center; }
-.mm-ob-skip:hover { background: var(--surface-3); }
-#onboardDialog .modal-body { position: relative; }
-</style>
 
 <!-- ===== Feature: WeatherAPI.com as the weather source (falls back to the original source if it fails) ===== -->
 
 <!-- ===== "Setup questions" menu entry ===== -->
 <!-- ===== Feature: "My reports" history page + offline outbox (draft offline, auto-send when back online) ===== -->
-<style>
-.mm-rh-filters { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 16px; }
-.mm-rh-filters button { padding: 6px 14px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); font-size: 0.8125rem; font-weight: 600; }
-.mm-rh-filters button[aria-pressed="true"] { background: var(--btn); color: var(--btn-text); border-color: var(--btn); }
-.mm-rh-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
-.mm-rh-meta { font-size: 0.8125rem; color: var(--muted); margin: 4px 0 8px; }
-.mm-tl { list-style: none; margin: 12px 0 0; padding: 0 0 0 14px; border-left: 2px solid var(--border); }
-.mm-tl li { position: relative; padding: 0 0 12px 12px; font-size: 0.875rem; }
-.mm-tl li::before { content: ''; position: absolute; left: -21px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--brand); }
-.mm-tl li.resp::before { background: var(--accent); }
-.mm-tl small { display: block; color: var(--muted); font-size: 0.75rem; }
-.mm-queued { border-style: dashed; }
-</style>
 <div class="view" id="view-myreports">
-  <main>
+  <div data-main>
     <section>
       <p class="kicker">My account</p>
       <h2>My report history</h2>
       <p class="lead">Every issue you have submitted, its current status and each update. Reports written offline wait here until you are back online.</p>
       <div id="mmRhBody"></div>
     </section>
-  </main>
+  </div>
 </div>
 <!-- ===== Feature: extra sign-up fields (surname, cell number), sign in by cell number, working "Remember me" — nothing existing is replaced ===== -->
-<style>
-.mm-or { text-align: center; color: var(--muted); font-size: 0.8125rem; margin: 14px 0 10px; }
-</style>
 <!-- ===== Feature: shared sync layer, learning intelligence, partner dashboard, push/fallback stubs, impact page, UX presets ===== -->
-<style>
-.mm-demo-flag{display:inline-block;padding:2px 10px;border-radius:999px;border:1px dashed var(--accent);font-size:.75rem;font-weight:700;color:var(--accent)}
-.mm-row{display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap}.mm-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:14px 0}
-.mm-kpi b{display:block;font-size:1.6rem}.mm-pred{border-left:4px solid var(--brand)}.mm-log{font-size:.8125rem;max-height:240px;overflow:auto}
-</style>
-<div class="view" id="view-partner"><main><section>
+<div class="view" id="view-partner"><div data-main><section>
   <p class="kicker">Partner workspace</p><h2>Partner dashboard</h2>
   <p id="mmPDemo"></p><div id="mmPBody"></div>
-</section></main></div>
-<div class="view" id="view-impact"><main><section>
+</section></div></div>
+<div class="view" id="view-impact"><div data-main><section>
   <p class="kicker">Pilot evidence</p><h2>Impact</h2>
   <p class="lead">Measured on this device only. No third-party trackers, no personal identifiers in the export.</p>
   <div id="mmImpBody"></div>
-</section></main></div>
+</section></div></div>
 <script>
 // The 4 setup steps (area, services, alert level, dashboard) run once per device. Returning users land on Home; re-open via the "Setup questions" menu item or the "Run setup again" button in demo-controls.
 window.MM_DEBUG = false; // true = module errors are re-thrown after being logged
