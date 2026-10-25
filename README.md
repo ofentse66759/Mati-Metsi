@@ -10,11 +10,15 @@ Mati-Metsi is a South African community resilience platform that helps household
 
 Built as an offline-first Progressive Web App (PWA), it bridges the gap between scattered community WhatsApp groups and formal municipal response.
 
-<!-- Add screenshots here, e.g.
-![Dashboard](docs/screenshots/dashboard.png)
-![Prediction card](docs/screenshots/prediction.png)
-![Offline mode](docs/screenshots/offline.png)
--->
+## Screenshots
+
+| Home, with offline banner | Your dashboard |
+| --- | --- |
+| ![Home page showing the offline banner and the four essential services](docs/screenshots/home-offline.png) | ![Dashboard tiles: alerts, open reports, readiness and help available](docs/screenshots/dashboard.png) |
+| **Local alerts** | **Neighbour Help** |
+| ![Alert subscriptions: home area, minimum level, services and thresholds](docs/screenshots/alerts.png) | ![Neighbour Help board with safety banner and filters](docs/screenshots/neighbour-help.png) |
+
+The offline banner shows that the app keeps working without a connection and uses the last saved forecast.
 
 ## Core Features
 
@@ -43,7 +47,8 @@ Mati-Metsi/
 ├── index.html        # App shell, UI, logic and translations
 ├── sw.js             # Service Worker (app-shell caching, offline routing)
 ├── manifest.json     # PWA manifest (Add to Home Screen)
-├── icons/            # App icons
+├── docs/screenshots/ # Images used in this README
+├── icons/            # icon-192.png, icon-512.png
 └── supabase/
     └── schema.sql    # Tables, RLS policies, trigger, storage policies
 ```
@@ -112,8 +117,8 @@ The app works without a backend (everything stays in `localStorage`). To enable 
 Set the values where the app configures Supabase (search for `SUPABASE_URL` in the source):
 
 ```js
-const SUPABASE_URL = 'https://imopicicoekcsgbqugai.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_YsFLdoEplA46N34M9LThVA_z93_VSYT';
+const SUPABASE_URL = 'https://YOUR-PROJECT-ref.supabase.co';
+const SUPABASE_ANON_KEY = 'YOUR-ANON-PUBLIC-KEY';
 ```
 
 > **About keys:** the `anon` key is designed to be public in front-end code. Your data is protected by **Row Level Security (RLS)**, not by hiding this key. **Never** put the `service_role` key in this repository or in any front-end file.
@@ -162,7 +167,8 @@ Mati-Metsi supports the 11 official South African languages: English, isiZulu, i
 
 - **No GPS.** Only the town or suburb the user types is used.
 - **No third-party trackers or analytics.**
-- **Minimal public data.** Reports and listings show a name and suburb only, never a home address.
+- **Minimal public data.** Reports and listings show a name, surname and suburb only, never a home address. Email and cell number (used to sign in) are never shown to other residents.
+- **Optional map pin.** A pin on a report is rounded to about 110 m before it is saved. The live street map loads only when the user taps "Load live map" and the map provider can then see their IP address.
 - **On-device by default.** Preferences, plan and alerts live in the browser's `localStorage`.
 - **Your data, your control.** Users can export and delete their data, including what this device synced to Supabase.
 - **Not an official channel.** Community reports are not municipal confirmations.
@@ -245,7 +251,9 @@ Please do not commit secrets. Only the Supabase **anon** key belongs in the fron
 - Backend by [Supabase](https://supabase.com/).
 
 ## Licence
-MIT LICENSE
+
+Add a licence (for example MIT) in a `LICENSE` file and name it here.
 
 ## Contact
-ofentserasekhula8@gmail.com
+
+Add a project contact email or issue-tracker link here.
