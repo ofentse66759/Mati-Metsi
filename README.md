@@ -14,9 +14,13 @@ Built as an offline-first Progressive Web App (PWA), it bridges the gap between 
 
 | Home, with offline banner | Your dashboard |
 | --- | --- |
-| ![Home page showing the offline banner and the four essential services](home-offline.png) | ![Dashboard tiles: alerts, open reports, readiness and help available](dashboard.png) |
+| ![Home page showing the offline banner and the four essential services](<img width="1337" height="700" alt="home-offline" src="https://github.com/user-attachments/assets/285f56c3-1436-49e0-b453-2baef4ee231f" />
+) | ![Dashboard tiles: alerts, open reports, readiness and help available](<img width="1315" height="228" alt="dashboard" src="https://github.com/user-attachments/assets/9b14bd72-5782-4f8d-b085-78a6fc687176" />
+) |
 | **Local alerts** | **Neighbour Help** |
-| ![Alert subscriptions: home area, minimum level, services and thresholds](alerts.png) | ![Neighbour Help board with safety banner and filters](neighbour-help.png) |
+| ![Alert subscriptions: home area, minimum level, services and thresholds](<img width="1320" height="787" alt="alerts" src="https://github.com/user-attachments/assets/c3dc36da-a6cb-4b04-9227-6a49dc1921a6" />
+) | ![Neighbour Help board with safety banner and filters](<img width="1427" height="812" alt="neighbour-help" src="https://github.com/user-attachments/assets/6a83d4e5-b810-41ab-b915-7fdad0082a8f" />
+) |
 
 The offline banner shows that the app keeps working without a connection and uses the last saved forecast.
 
