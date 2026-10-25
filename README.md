@@ -26,7 +26,7 @@ Built as an offline-first Progressive Web App (PWA), it bridges the gap between 
 | Frontend | Vanilla HTML5, CSS3, JavaScript (ES6+), PWA |
 | Backend & database | Supabase (PostgreSQL) |
 | Authentication | Supabase Auth (anonymous sign-ins) |
-| File storage | Supabase Storage (report photos) |
+| File storage | Supabase Storage (planned; photos are stored on the device for now) |
 | External APIs | Open-Meteo (weather and air quality) |
 | Hosting | GitHub Pages |
 
@@ -199,19 +199,15 @@ Mati-Metsi supports the 11 official South African languages: English, isiZulu, i
 
 ### Phase 3: Cloud Backend & Security (Supabase)
 1. Provisioned a Supabase PostgreSQL database.
-2. Created tables: `profiles`, `reports`, `help_listings`, `alerts`.
+2. Created tables: `reports` and `help_listings`.
 3. Implemented Row Level Security so users can modify only their own data, with public read access to community feeds.
 4. Added indexes on foreign keys and heavily queried columns (e.g. `author_id`, `status`).
 5. Enabled Supabase Anonymous Authentication for a zero-friction `auth.uid()`.
-6. Created the `handle_new_user` trigger to generate a profile for each new user.
 
-### Phase 4: Cloud Storage & Synchronization
-1. Provisioned the `photos` bucket with public read and owner-restricted uploads.
-2. Migrated image handling from local Base64 to direct Storage uploads.
-3. Implemented bi-directional sync:
-   - **Push:** local creates, updates and deletes sync to Supabase (fire-and-forget).
-   - **Pull:** on boot, the latest community data is fetched for cross-device visibility.
-4. Updated the offline outbox to sync queued reports on reconnection.
+### Phase 4: Cloud Synchronization
+1. Prepared optional `photos` storage policies (photos are still resized and stored on the device).
+2. Implemented one-way sync: local report and listing creates, updates and deletes are pushed to Supabase (fire-and-forget). Voter emails, phone numbers and private messages are never sent.
+3. Offline outbox queues reports written without internet and sends them on reconnect.
 
 ### Phase 5: Performance Optimization
 1. Memoized heavy `localStorage` reads (`getReports`, `getListings`).
@@ -241,7 +237,8 @@ Please do not commit secrets. Only the Supabase **anon** key belongs in the fron
 - Backend by [Supabase](https://supabase.com/).
 
 ## Licence
-MIT LICENSE
+
+MIT. See the `LICENSE` file.
 
 ## Contact
 
