@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Mati-Metsi helps South African communities prepare for disruptions to water, energy, transport and food — with live weather, community reports, alerts and neighbour help.">
 <meta name="theme-color" content="#08161b">
+<link rel="manifest" href="manifest.json">
 <title>Mati-Metsi — Community Resilience &amp; Essential Services</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%F0%9F%92%A7%3C/text%3E%3C/svg%3E">
 <style>
@@ -896,15 +897,11 @@ body.menu-locked { overflow: hidden; }
 <section id="contact">
   <p class="kicker" data-i18n="contact.kicker">Contact</p>
   <h2 data-i18n="contact.title">Get in touch</h2>
-  <p class="lead">Report a leak, ask about water shedding, or reach the rapid-response team.</p>
+  <p class="lead">Report a leak, ask about water shedding, or send us a message.</p>
   <a href="#" onclick="event.preventDefault(); showView('about')" class="card" style="border-color:var(--brand)">
     <strong>ℹ️ <span data-i18n="about.title">About Mati-Metsi</span></strong>
     <p class="text-sm text-muted mt-2">The problem we solve, our pilot, roadmap and business model — in one place.</p>
   </a>
-  <div class="grid-2 mb-4">
-    <a href="tel:+27800123456" class="card"><strong>📞 Phone</strong><p class="text-sm text-muted mt-2">+27 80 012 3456 · Mon–Fri 08:00–16:30</p></a>
-    <a href="https://wa.me/27825550199" target="_blank" rel="noopener" class="card"><strong>💬 WhatsApp</strong><p class="text-sm text-muted mt-2">+27 82 555 0199 · Fastest for leak photos</p></a>
-  </div>
   <form id="contactForm" class="card">
     <div class="grid-2">
       <div class="field"><label for="contactName">Full name</label><input id="contactName" class="input" required maxlength="100"></div>
@@ -923,9 +920,9 @@ body.menu-locked { overflow: hidden; }
   <div class="card">
     <h3>What we collect</h3>
     <ul>
-      <li><strong>Your name and email</strong> — only when you register or sign in. Your name is shown next to your reports and help listings.</li>
+      <li><strong>Your name, surname, email and cell number</strong> — only when you register. Your name and surname are shown next to your reports and help listings; your email and cell number are used to sign in and are never shown to other residents.</li>
       <li><strong>Approximate location</strong> — the city/suburb you type for weather, your home area and the suburb on reports and listings. Reports and listings you submit are also saved to our Supabase database so neighbours can see them. The weather place name is sent to the weather provider (WeatherAPI.com, with Open-Meteo as a fallback) to fetch the forecast.</li>
-      <li><strong>Reports, photos and help listings you submit</strong> — content you voluntarily provide. Photos are resized and stored on this device.</li>
+      <li><strong>Reports, photos and help listings you submit</strong> — content you voluntarily provide. Photos are resized and stored on this device. If you drop a map pin on a report, it is rounded to about 110 m before it is saved.</li>
       <li><strong>Optional contact details on help listings</strong> — a phone or WhatsApp number only if you choose to add one; it is shown to signed-in members only.</li>
       <li><strong>Preferences</strong> — alert subscriptions, thresholds, resilience-plan progress, language and display settings.</li>
       <li><strong>Session data</strong> — a browser token in localStorage that remembers you're signed in.</li>
@@ -1260,14 +1257,15 @@ body.menu-locked { overflow: hidden; }
           <li>POPIA export and one-click deletion</li>
           <li>Offline outbox with auto-send on reconnect</li>
           <li>Learning weights (per-category, from past confirmations)</li>
+          <li>Shared cloud backend (Supabase): reports and help listings you submit sync across devices, protected by Row Level Security</li>
         </ul>
       </div>
       <div>
         <h4>⏳ Roadmap (not in this build)</h4>
         <ul class="action-list">
-          <li>Shared backend — reports currently live on the device only</li>
+          <li>Per-ward moderation and magic-link sign-in (sign-in is still on this device)</li>
           <li>WhatsApp Business / SMS delivery for feature phones</li>
-          <li>Background push (service worker file is downloadable, not auto-registered)</li>
+          <li>Background push alerts (the app already caches itself for offline use; the push worker is a separate download)</li>
           <li>SAWS rainfall feed and Rand Water reservoir levels</li>
           <li>Leaflet map of verified JoJo tanks and boreholes</li>
           <li>Spaza marketplace with per-litre pricing</li>
@@ -1302,7 +1300,7 @@ body.menu-locked { overflow: hidden; }
     <h3 style="margin-top:0">Roadmap</h3>
     <ol class="action-list">
       <li><strong>Phase 1 — this build.</strong> Single-file PWA, all 11 official languages, offline-first, demo data, personal insights, verified-partner workflow.</li>
-      <li><strong>Phase 2 — shared backend (not yet shipped).</strong> Supabase/Firebase so reports are shared across devices; magic-link login; per-ward moderation.</li>
+      <li><strong>Phase 2 — shared backend (first version shipped).</strong> Reports and help listings sync to Supabase with Row Level Security. Still to come: server-side sign-in with magic links, and per-ward moderation.</li>
       <li><strong>Phase 3 — reach (service-worker file provided for download, not yet registered; WhatsApp/SMS not yet connected).</strong> Push notifications via a service worker; WhatsApp Business API; SMS fallback for feature phones.</li>
       <li><strong>Phase 4 — formal integration (partner dashboard shipped; official feeds pending).</strong> Official SAWS and municipal feeds; verified-partner dashboard; public data export.</li>
       <li><strong>Phase 5 — insights.</strong> Anonymised, POPIA-safe aggregate dashboards for planners and insurers.</li>
@@ -1519,7 +1517,7 @@ body.menu-locked { overflow: hidden; }
   <div class="card">
     <h3>Data we collect</h3>
     <ul>
-      <li><strong>Name and email</strong> — from your account registration</li>
+      <li><strong>Name, surname, email and cell number</strong> — from your account registration (email and cell number are never shown to other residents)</li>
       <li><strong>Password</strong> — hashed with SHA-256 in your browser, never stored in plain text</li>
       <li><strong>Location preferences</strong> — the town/suburb you type (never GPS)</li>
       <li><strong>Reports, photos and help listings</strong> — content you voluntarily submit</li>
@@ -4908,7 +4906,7 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
         category: report.category, type: report.type, area: report.area,
         severity: report.severity, description: report.description,
         status: report.status, source: report.source || 'community',
-        org: report.org || null, votes: report.votes || [],
+        org: report.org || null, votes: (report.votes || []).map(function () { return 'anon'; }),   // count only: voter emails stay on this device
         history: report.history || [], responses: report.responses || [],
         demo: !!report.demo, lat: report.lat || null, lng: report.lng || null,
         photo_path: report.photo_path || null, created_at: report.createdAt
@@ -4930,9 +4928,9 @@ window.MM_DEBUG = false; // true = module errors are re-thrown after being logge
         kind: listing.kind, category: listing.category, title: listing.title,
         description: listing.description || null, area: listing.area,
         quantity: listing.quantity || null, until_at: listing.until || null,
-        contact: listing.contact, contact_value: listing.contactValue || null,
+        contact: listing.contact, contact_value: null,   // phone numbers stay on this device
         status: listing.status, claimed_by: listing.claimedByUid || null,
-        messages: listing.messages || [], demo: !!listing.demo,
+        messages: [], demo: !!listing.demo,   // private messages stay on this device
         created_at: listing.createdAt
       };
       var res = await client.from('help_listings').upsert(payload, { onConflict: 'id' });
